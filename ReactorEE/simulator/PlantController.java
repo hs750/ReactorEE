@@ -400,19 +400,26 @@ public class PlantController {
 	 * Writes all highscores currently inside plant to a file called "highscores.ser".
 	 */
 	private void writeHighScores() {
-		List<HighScore> highScores = plant.getHighScores();
+		List<HighScore> highScoresOld = plant.getHighScores();
 		FileOutputStream fileOut   = null;
 		ObjectOutputStream out = null;
-		try {
-			fileOut = new FileOutputStream("highscores.ser");
-			out = new ObjectOutputStream(fileOut);
-			out.writeObject(highScores);
-			out.close();
-			fileOut.close();
+		
+		//Fix not serialisable error when cutting the end off the list of highscores when more than 20 are present.
+		List<HighScore> highScores = new ArrayList<HighScore>();
+		for(HighScore h : highScoresOld){
+			highScores.add(new HighScore(h.getName(),h.getHighScore()));
 		}
-		catch (IOException ex) {
-			ex.printStackTrace();
-		}
+		
+			try {
+				fileOut = new FileOutputStream("highscores.ser");
+				out = new ObjectOutputStream(fileOut);
+				out.writeObject(highScores);
+				out.close();
+				fileOut.close();
+			}
+			catch (IOException ex) {
+				ex.printStackTrace();
+			}
 	}
 	
 	/**
