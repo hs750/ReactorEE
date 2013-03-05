@@ -17,12 +17,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import ReactorEE.simulator.PlantController;
 import javax.swing.JTextField;
+
+import ReactorEE.model.Repair;
+import ReactorEE.pcomponents.*;
+import ReactorEE.simulator.PlantController;
+
+
+
 import java.awt.ComponentOrientation;
 import java.util.ArrayList;
-import ReactorEE.pcomponents.*;
-import ReactorEE.model.Repair;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Desktop;

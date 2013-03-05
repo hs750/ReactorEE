@@ -8,12 +8,15 @@ import javax.swing.text.NavigationFilter;
 import javax.swing.text.Position;
 
 import ReactorEE.model.HighScore;
+import ReactorEE.pcomponents.*;
+
+
+
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.List;
-import ReactorEE.pcomponents.*;
 
 
 /**

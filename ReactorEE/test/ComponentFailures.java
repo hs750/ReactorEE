@@ -2,13 +2,16 @@ package ReactorEE.test;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Test;
 
-import ReactorEE.simulator.*;
-import ReactorEE.model.*;
-import ReactorEE.pcomponents.*;
 
 import org.junit.Before;
+
+import ReactorEE.model.*;
+import ReactorEE.pcomponents.*;
+import ReactorEE.simulator.*;
+
 
 
 public class ComponentFailures {

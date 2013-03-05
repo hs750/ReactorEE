@@ -1,12 +1,15 @@
 package ReactorEE.test;
 
-import ReactorEE.model.*;
-import ReactorEE.pcomponents.*;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Before;
 import org.junit.Test;
+
+import ReactorEE.model.*;
+import ReactorEE.pcomponents.*;
+
 
 public class ValveTest {
 

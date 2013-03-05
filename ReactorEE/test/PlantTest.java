@@ -1,16 +1,19 @@
 package ReactorEE.test;
 
-import ReactorEE.simulator.*;
-import ReactorEE.model.*;
-import ReactorEE.pcomponents.*;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 import java.util.ArrayList;
 
+
 import org.junit.Before;
 import org.junit.Test;
+
+import ReactorEE.model.*;
+import ReactorEE.pcomponents.*;
+import ReactorEE.simulator.*;
+
 
 public class PlantTest {
 	

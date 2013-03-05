@@ -1,11 +1,13 @@
 package ReactorEE.test;
 
-import ReactorEE.pcomponents.*;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import ReactorEE.pcomponents.*;
+
 
 public class PumpTest {
 
