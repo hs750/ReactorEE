@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class PlantController {
 
 	private Plant plant;
 	private UIData uidata;
+	private StepLooper slooper;
 	
 	/**
 	 * 
@@ -43,7 +45,13 @@ public class PlantController {
 		readHighScores();
 		uidata = new UIData(plant);
 	}
-	
+	public void takeStepLooper(StepLooper slooper){
+		this.slooper = slooper;
+		slooper.start();
+	}
+	private void resetStepLooper(){
+		takeStepLooper(new StepLooper(this, slooper.getGUI()));
+	}
 	/* ----------------		Methods	for UI to call	----------------
 	 * There is a method for each command that can be given by the
 	 * user. 
@@ -105,8 +113,7 @@ public class PlantController {
 		uidata = new UIData(plant);
 		// update things as per the default values.
 		// mainly to calculate the pressure etc in these things.
-		updateFlow();
-		updatePlant();
+		resetStepLooper();
 	}
 	
 	/**
@@ -151,6 +158,7 @@ public class PlantController {
 				fileIn.close();
 				this.plant = plant;
 				uidata = new UIData(plant);
+				resetStepLooper();
 				return true;
 			}
 			else {
@@ -163,6 +171,11 @@ public class PlantController {
 		}
 		catch (ClassNotFoundException c) {
 			c.printStackTrace();
+			try {
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return false;
 		}
 	}
@@ -404,12 +417,11 @@ public class PlantController {
 		FileOutputStream fileOut   = null;
 		ObjectOutputStream out = null;
 		
-		//Fix not serialisable error when cutting the end off the list of highscores when more than 20 are present.
 		List<HighScore> highScores = new ArrayList<HighScore>();
+		
 		for(HighScore h : highScoresOld){
 			highScores.add(new HighScore(h.getName(),h.getHighScore()));
 		}
-		
 			try {
 				fileOut = new FileOutputStream("highscores.ser");
 				out = new ObjectOutputStream(fileOut);

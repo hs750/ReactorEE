@@ -118,7 +118,8 @@ public class MainGUI
     private ImageIcon viewManualImageIcon;
     private ImageIcon viewScoresImageIcon;
     private ImageIcon nextStepImageIcon;
-
+    private ImageIcon nextStepPausedImageIcon;
+    
     //the repair buttons are not disabled directly but a different image is associated
     //with them when they cannot be used - this variable prevents them from being used
     //when they are 'disabled'
@@ -200,6 +201,8 @@ public class MainGUI
         viewScoresImageIcon = new ImageIcon(imageURL);
         imageURL = this.getClass().getClassLoader().getResource("nextButtonLabel.png");
         nextStepImageIcon = new ImageIcon(imageURL);
+        imageURL = this.getClass().getClassLoader().getResource("nextButtonPausedLabel.png");
+        nextStepPausedImageIcon = new ImageIcon(imageURL);
         
         //initialises the label that shows the score
         lblScore = new JLabel("0");
@@ -250,6 +253,7 @@ public class MainGUI
         
         //instantiation of the label showing the number of time steps
         lblNumberOfSteps = new JLabel("1");
+        lblNumberOfSteps.setEnabled(false);
         lblNumberOfSteps.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNumberOfSteps.setFont(new Font("Tahoma", Font.PLAIN, 30));
         lblNumberOfSteps.setBounds(369, 499, 40, 40);
@@ -408,6 +412,7 @@ public class MainGUI
         layeredPane.add(sliderRodsLevel);
         
         sliderNumberOfSteps = new JSlider();
+        sliderNumberOfSteps.setEnabled(false);
         sliderNumberOfSteps.setBounds(46, 508, 305, 23);
         sliderNumberOfSteps.setOpaque(false);
         sliderNumberOfSteps.setValue(0);
@@ -524,7 +529,11 @@ public class MainGUI
             	{
                 	
                 	if (!plantController.getUIData().isGameOver()) {
-						plantController.step(1);
+						plantController.togglePaused();
+						if(plantController.getPlant().isPaused())
+							btnStep.setIcon(nextStepImageIcon);
+						else
+							btnStep.setIcon(nextStepPausedImageIcon);
 						updateGUI();
 					}
             	}
@@ -805,7 +814,7 @@ public class MainGUI
      * This method updates the appearance of the gui
      * synchronising it with the plant
      */
-    private void updateGUI()
+    public void updateGUI()
     {
     	//updates the information that is stored in the UIData object
         plantController.getUIData().updateUIData();
@@ -815,11 +824,12 @@ public class MainGUI
         
         //restores the state of the control buttons and sliderRodsLevel variables to true
         controlButtonsEnabled = true;
-        sliderRodsLevel.setEnabled(true);
         
         //updates the operators name that is shown to that that is stored,
         //useful when a game is being loaded
-        nameTextField.setText(plantController.getUIData().getOperatorName());
+        //Only change when text box is not in focus, this allows operator name to be changed while the game is running.
+        if(!nameTextField.isFocusOwner())
+        	nameTextField.setText(plantController.getUIData().getOperatorName());
         
         //updates the score and enables the buttons the control the valves
         //they can be disabled if the operatingSoftware is being repaired
@@ -846,7 +856,7 @@ public class MainGUI
         	//the control rods are inside the rods while in the gui it shows how
         	//much the control rods are out of the rods
             sliderRodsLevel.setValue(100 - tempValue);
-
+                
         //sets the values of the progress bars by scaling the value to 100
         tempValue = plantController.getUIData().getReactorHealth();
         if(tempValue >=0 && tempValue <= 100)
@@ -1026,7 +1036,14 @@ public class MainGUI
         {   //otherwise just set its light to show green and disable its repair button
             lblOperatingSoftwareState.setIcon(stateSafeImageIcon);
             btnRepairOperatingSoftware.setIcon(repairButtonDisabledImageIcon);
+            sliderRodsLevel.setEnabled(true);
         }   
+        
+        //Change the play/pause button depending on whether the game is paused or running.
+        if(plantController.getPlant().isPaused())
+        	btnStep.setIcon(nextStepImageIcon);
+        else
+        	btnStep.setIcon(nextStepPausedImageIcon);
     }
     
     /**
@@ -1034,7 +1051,7 @@ public class MainGUI
      * the operator's name and the end score
      * then it updates the gui and set the slider for the timesteps to 1
      */
-    private void endGameHandler()
+    public void endGameHandler()
     {
     	EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
     	plantController.newGame(initialNameValue);

@@ -50,6 +50,7 @@ public class ReactorUtils
 		instantiateComponents();
 		setupComponentReferences();
 		newPlant.setPlantComponents(makeComponentList());
+		newPlant.setPaused(true);
 		return newPlant;
 	}
 	

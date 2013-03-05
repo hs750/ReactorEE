@@ -1,5 +1,7 @@
 package ReactorEE.simulator;
 
+import java.util.Date;
+
 import ReactorEE.swing.MainGUI;
 
 
@@ -27,6 +29,7 @@ public class GameInit {
 		controller = new PlantController(utils);
 		//view = new TextUI(controller);
 		newView = new MainGUI(controller);
+		controller.takeStepLooper(new StepLooper(controller, newView));
 	}
 	
 	@SuppressWarnings("unused")
