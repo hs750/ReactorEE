@@ -53,8 +53,14 @@ public class PlantController {
 	}
 	private void resetStepLooper(){
 		StepLooper oldSL = slooper;
-		takeStepLooper(new StepLooper(this, slooper.getGUI()));
-		oldSL.stop();
+		try{
+			takeStepLooper(new StepLooper(this, slooper.getGUI()));
+			oldSL.stop();
+		}catch (NullPointerException e){
+			System.out.println("Step Looper was null! (OK during a UnitTest)");
+			
+		}
+		
 	}
 	/* ----------------		Methods	for UI to call	----------------
 	 * There is a method for each command that can be given by the
