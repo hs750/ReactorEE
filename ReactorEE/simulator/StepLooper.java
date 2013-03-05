@@ -8,6 +8,7 @@ public class StepLooper extends Thread{
 	public StepLooper(PlantController controller, MainGUI GUI){
 		this.controller = controller;
 		this.GUI = GUI;
+		GUI.updateGUI();
 	}
 	
 	
@@ -35,5 +36,4 @@ public class StepLooper extends Thread{
 	public MainGUI getGUI() {
 		return GUI;
 	}
-
 }

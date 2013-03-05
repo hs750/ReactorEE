@@ -52,7 +52,9 @@ public class PlantController {
 		slooper.start();
 	}
 	private void resetStepLooper(){
+		StepLooper oldSL = slooper;
 		takeStepLooper(new StepLooper(this, slooper.getGUI()));
+		oldSL.stop();
 	}
 	/* ----------------		Methods	for UI to call	----------------
 	 * There is a method for each command that can be given by the
