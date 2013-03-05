@@ -169,7 +169,7 @@ public class MainGUI
         frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
         
         //loads and sets the background image
-        java.net.URL imageURL = this.getClass().getClassLoader().getResource("plantBackground.png");
+        java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
@@ -178,34 +178,34 @@ public class MainGUI
 
         //loads all the images that are required for the image labels
         //the path is relative to the project
-        imageURL = this.getClass().getClassLoader().getResource("btnRepairEnabled.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/btnRepairEnabled.png");
         repairButtonEnabledImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("btnRepairDisabled.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/btnRepairDisabled.png");
         repairButtonDisabledImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("stateSafe.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/stateSafe.png");
         stateSafeImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("stateBeingRepaired.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/stateBeingRepaired.png");
         stateBeingRepairedImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("stateBroken.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/stateBroken.png");
         stateBrokenImageIcon = new ImageIcon(imageURL);  
-        imageURL = this.getClass().getClassLoader().getResource("valveOpened.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/valveOpened.png");
         valveOpenedImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("valveClosed.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/valveClosed.png");
         valveClosedImageIcon = new ImageIcon(imageURL);
         
-        imageURL = this.getClass().getClassLoader().getResource("newButtonLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/newButtonLabel.png");
         newGameImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("loadButtonLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/loadButtonLabel.png");
         loadGameImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("saveButtonLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/saveButtonLabel.png");
         saveGameImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("manualButtonLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/manualButtonLabel.png");
         viewManualImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("scoresButtonLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/scoresButtonLabel.png");
         viewScoresImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("nextButtonLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/nextButtonLabel.png");
         nextStepImageIcon = new ImageIcon(imageURL);
-        imageURL = this.getClass().getClassLoader().getResource("nextButtonPausedLabel.png");
+        imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/nextButtonPausedLabel.png");
         nextStepPausedImageIcon = new ImageIcon(imageURL);
         
         //initialises the label that shows the score

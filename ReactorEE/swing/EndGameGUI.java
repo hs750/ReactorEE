@@ -54,7 +54,7 @@ public class EndGameGUI {
 	private void initialize() 
 	{
 		//read the background image
-		java.net.URL imageURL = this.getClass().getClassLoader().getResource("endGameBackground.png");
+		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/endGameBackground.png");
 		ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
 		
 		//creates and sets the frame

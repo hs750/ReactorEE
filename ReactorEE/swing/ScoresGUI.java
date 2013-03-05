@@ -60,7 +60,7 @@ public class ScoresGUI {
 	private void initialize() {
 		
 		//reads the background image
-		java.net.URL imageURL = this.getClass().getClassLoader().getResource("scoresBackground.png");
+		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/scoresBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
 		
         //creates and sets the frame
