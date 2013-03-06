@@ -49,10 +49,12 @@ public class Reactor extends PlantComponent {
 	private ControlRod controlRod;
 	private int waterPumpedIn;
 	private int steamOut;
+	private QuenchWaterTank quenchTank;
 	
 	public Reactor() {
 		super(0,0,true,true); // Never fails, is operational and is pressurised.
 		this.controlRod = new ControlRod();
+		this.quenchTank = new QuenchWaterTank(this);
 		this.health = MAX_HEALTH;
 		this.temperature = DEFAULT_TEMPERATURE;
 		this.pressure = DEFAULT_PRESSURE;
@@ -169,6 +171,13 @@ public class Reactor extends PlantComponent {
 	 */
 	public void setPercentageLowered(int percentageLowered) {
 		controlRod.setPercentageLowered(percentageLowered);
+	}
+	
+	public void quench(){
+		quenchTank.quench();
+	}
+	public boolean isQuenchable(){
+		return quenchTank.isQuenchable();
 	}
 	
 	// ---------------- System update methods ---------------
@@ -351,6 +360,46 @@ public class Reactor extends PlantComponent {
 								"percentageLowered not in range [0..100].");
 			}
 			this.percentageLowered = percentageLowered;
+		}
+	}
+	
+	public final class QuenchWaterTank implements Serializable	{
+		private static final long serialVersionUID = 1L;
+		private final static int DEFAULT_WATER_VOLUME	= 1000;
+		private final static boolean DEFAULT_USED	= false;
+		private int waterVolume;
+		private boolean used;
+		Reactor reactor;
+		
+		QuenchWaterTank(Reactor reactor){
+			setWaterVolume(DEFAULT_WATER_VOLUME);
+			setUsed(DEFAULT_USED);
+			this.reactor = reactor;
+		}
+
+		public boolean isQuenchable() {
+			if(!used & reactor.getTemperature() >= (MAX_TEMPERATURE - MAX_TEMPERATURE/10))
+				return true;
+			return false;
+		}
+		public void setUsed(boolean used) {
+			this.used = used;
+		}
+	
+		void setWaterVolume(int newWaterVolume){
+			this.waterVolume = newWaterVolume;
+		}
+		int	getWaterVolume(){
+			return this.waterVolume;
+		}
+		
+		void quench(){
+			if(!used){
+				reactor.setTemperature(50);
+				reactor.waterVolume += this.waterVolume;
+				this.waterVolume = 0;
+				this.used = true;
+			}
 		}
 	}
 }

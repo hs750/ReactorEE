@@ -58,7 +58,6 @@ public class PlantController {
 			oldSL.stop();
 		}catch (NullPointerException e){
 			System.out.println("Step Looper was null! (OK during a UnitTest)");
-			
 		}
 		
 	}
@@ -102,7 +101,8 @@ public class PlantController {
             case RepairPump:
                 repairPump(operatingSoftware.getPumpID());
                 break;
-                
+            case Quench:
+            	quench();
             default:
                 //execute no command
                 break; 
@@ -305,6 +305,12 @@ public class PlantController {
 			Reactor reactor = plant.getReactor();
 			reactor.setPercentageLowered(percentageLowered);
 		}
+	}
+	
+	//TODO JavaDoc
+	public synchronized void quench(){
+		Reactor reactor = plant.getReactor();
+		reactor.quench();
 	}
 	
 	/**

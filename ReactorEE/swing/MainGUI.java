@@ -74,6 +74,7 @@ public class MainGUI
     private JButton btnRepairPump2;
     private JButton btnRepairPump3;
     private JButton btnRepairTurbine;
+    private JButton btnQuench;
     
     //labels showing the state of the different components that can fail
     private JLabel lblPump1State;
@@ -694,6 +695,19 @@ public class MainGUI
                 } 
             }
         });
+        btnQuench = new JButton("QUENCH!");
+        btnQuench.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		plantController.getPlant().getOperatingSoftware().quench();
+        		plantController.executeStoredCommand();
+                updateGUI();
+        	}
+        });
+        layeredPane.setLayer(btnQuench, 1);
+        btnQuench.setBounds(87, 626, 89, 23);
+        layeredPane.add(btnQuench);
+        
+        
         layeredPane.setLayer(btnRepairOperatingSoftware, 1);
         layeredPane.add(btnRepairOperatingSoftware);
       
@@ -1048,6 +1062,12 @@ public class MainGUI
         	btnStep.setIcon(nextStepImageIcon);
         else
         	btnStep.setIcon(nextStepPausedImageIcon);
+        
+        if(plantController.getPlant().getReactor().isQuenchable()){
+        	btnQuench.setEnabled(true);
+        }else{
+        	btnQuench.setEnabled(false);
+        }
     }
     
     /**
@@ -1082,5 +1102,4 @@ public class MainGUI
     {
     	ScoresGUI scoresGui = new ScoresGUI(this, plantController);
     }
-    
 }

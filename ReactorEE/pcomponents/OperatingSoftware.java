@@ -31,7 +31,7 @@ public class OperatingSoftware extends PlantComponent {
     
     //the available commands that can be stored by the operating software
     public enum OperationRequest 
-    {DoNothing, SetControlRods, SetPumpRpm, SetValve, RepairTurbine, RepairPump, SetPumpOnOff}
+    {DoNothing, SetControlRods, SetPumpRpm, SetValve, RepairTurbine, RepairPump, SetPumpOnOff, Quench}
     
     private OperationRequest requestedOperation = OperationRequest.DoNothing;
     
@@ -212,6 +212,14 @@ public class OperatingSoftware extends PlantComponent {
         }
         else
             failedSoftwareResponse();
+    }
+    //TODO javaDoc
+    public synchronized void quench(){
+    	if(super.isOperational()){
+    		requestedOperation = OperationRequest.Quench;
+    	}
+    	else 
+    		failedSoftwareResponse();
     }
     
     /**
