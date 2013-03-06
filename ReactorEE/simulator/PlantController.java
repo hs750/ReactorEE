@@ -1091,5 +1091,32 @@ public class PlantController {
 		int maxRpm = p.getMaxRpm();
 		return (int) Math.round(this.plant.getMaxWaterFlowRatePerPump() * (1 - (new Double((maxRpm - p.getRpm())/new Double(maxRpm)))));
 	}
+	public static enum falableComponents
+	{Pump1,Pump2,Pump3,Turbine,OperatorSoftare}
+	
+	public void setComponentFailed(falableComponents component){
+		PlantComponent c = null;
+		switch(component){
+		case OperatorSoftare:
+			c = plant.getOperatingSoftware();
+			break;
+		case Pump1:
+			c = plant.getPumps().get(0);
+			break;
+		case Pump2:
+			c = plant.getPumps().get(1);
+			break;
+		case Pump3:
+			c = plant.getPumps().get(2);
+			break;
+		case Turbine:
+			c = plant.getTurbine();
+			break;
+		default:
+			break;
+		}
+		c.setOperational(false);
+		plant.addFailedComponent(c);
+	}
 	
 }

@@ -1,7 +1,5 @@
 package ReactorEE.simulator;
 
-import java.util.Date;
-
 import ReactorEE.swing.MainGUI;
 
 
