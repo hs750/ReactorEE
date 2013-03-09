@@ -204,9 +204,6 @@ public class PlantController {
 	
 	/**
 	 * Pauses/resumes the game on call.
-	 * 
-	 * Currently not in used as the game is turn based. Gives the possibility
-	 * to easily create a real-time game.
 	 */
 	public synchronized void togglePaused() {
 		this.plant.setPaused(!this.plant.isPaused());
@@ -319,7 +316,9 @@ public class PlantController {
 		}
 	}
 	
-	//TODO JavaDoc
+	/**
+	 * Activates the Quench Component.
+	 */
 	public synchronized void quench(){
 		Reactor reactor = plant.getReactor();
 		reactor.quench();
@@ -429,7 +428,7 @@ public class PlantController {
 	
 	/**
 	 * 
-	 * @return 
+	 * @return The current plant in the game.
 	 */
 	public Plant getPlant() {
 		return this.plant;
@@ -1103,9 +1102,20 @@ public class PlantController {
 		int maxRpm = p.getMaxRpm();
 		return (int) Math.round(this.plant.getMaxWaterFlowRatePerPump() * (1 - (new Double((maxRpm - p.getRpm())/new Double(maxRpm)))));
 	}
+	
+	/**
+	 *	List of the components within the plant that can be manually broken.
+	 */
 	public static enum falableComponents
 	{Pump1,Pump2,Pump3,Turbine,OperatorSoftare}
 	
+	/**
+	 * Given the name of a component, takes the instance of that component from the plant, 
+	 * sets it isOperatoional() value to false then adds the 
+	 * component to the list of failed components within the plant. 
+	 * 
+	 * @param component	Component to be manually broken.
+	 */
 	public void setComponentFailed(falableComponents component){
 		PlantComponent c = null;
 		switch(component){
@@ -1131,6 +1141,10 @@ public class PlantController {
 		plant.addFailedComponent(c);
 	}
 	
+	/**
+	 * 
+	 * @param p	Plant to set the current plant to.
+	 */
 	public void setPlant(Plant p){
 		plant = p;
 	}
