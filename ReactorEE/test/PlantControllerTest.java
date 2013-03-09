@@ -14,6 +14,7 @@ import org.junit.Test;
 import ReactorEE.model.*;
 import ReactorEE.pcomponents.*;
 import ReactorEE.simulator.*;
+import ReactorEE.simulator.PlantController.falableComponents;
 
 
 public class PlantControllerTest {
@@ -155,5 +156,35 @@ public class PlantControllerTest {
 		assertEquals("Result", false, presenter.repairPump(1));
 		
 	}
+	
+	/**
+	 * Tests whether setting each breakable component withing the power plant has the affect of adding it to the list of broken components and that it's isOperational() returns false.
+	 */
+	@Test
+	public void testSetComponentFailed(){
+		//Test Operator Software manual break
+		presenter.setComponentFailed(falableComponents.OperatorSoftare);
+		assertTrue(plant.getFailedComponents().contains(plant.getOperatingSoftware()));
+		assertTrue(!plant.getOperatingSoftware().isOperational());
 
+		//Test Pump1 manual break
+		presenter.setComponentFailed(falableComponents.Pump1);
+		assertTrue(plant.getFailedComponents().contains(plant.getPumps().get(0)));
+		assertTrue(!plant.getPumps().get(0).isOperational());
+
+		//Test Pump2 manual break
+		presenter.setComponentFailed(falableComponents.Pump2);
+		assertTrue(plant.getFailedComponents().contains(plant.getPumps().get(1)));
+		assertTrue(!plant.getPumps().get(1).isOperational());
+
+		//Test Pump3 manual break
+		presenter.setComponentFailed(falableComponents.Pump3);
+		assertTrue(plant.getFailedComponents().contains(plant.getPumps().get(2)));
+		assertTrue(!plant.getPumps().get(2).isOperational());
+
+		//Test Turbine manual break
+		presenter.setComponentFailed(falableComponents.Turbine);
+		assertTrue(plant.getFailedComponents().contains(plant.getTurbine()));
+		assertTrue(!plant.getTurbine().isOperational());
+	}
 }
