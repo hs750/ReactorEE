@@ -20,7 +20,8 @@ import java.util.Random;
  */
 public class OperatingSoftware extends PlantComponent {
     
-    public final static int DEFAULT_FAILURE_RATE = 10; //1%
+	private static final long serialVersionUID = 2499545059142628546L;
+	public final static int DEFAULT_FAILURE_RATE = 10; //1%
     public final static int DEFAULT_REPAIR_TIME = 3;
     private final static int MAX_FAILURE_RATE = 50; //5%
     

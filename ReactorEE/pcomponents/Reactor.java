@@ -48,6 +48,7 @@ public class Reactor extends PlantComponent {
 	private int health;
 	private ControlRod controlRod;
 	private int waterPumpedIn;
+	@SuppressWarnings("unused")
 	private int steamOut;
 	private QuenchWaterTank quenchTank;
 	

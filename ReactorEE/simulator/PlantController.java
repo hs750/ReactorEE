@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,6 @@ import ReactorEE.model.HighScore;
 import ReactorEE.model.Plant;
 import ReactorEE.model.Repair;
 import ReactorEE.pcomponents.*;
-import ReactorEE.pcomponents.OperatingSoftware.OperationRequest;
 
 
 
@@ -464,6 +462,7 @@ public class PlantController {
 	/**
 	 * Loads all saved highscores from a file called "highscore.ser" to plant's highscores list.
 	 */
+	@SuppressWarnings("unchecked")
 	private void readHighScores() {
 		List<HighScore> highScores = null;
 		FileInputStream fileIn  = null;
@@ -503,6 +502,7 @@ public class PlantController {
 	/**
 	 * Prints debug info to the console.
 	 */
+	@SuppressWarnings("unused")
 	private void printDebugInfo() {
 		System.out.println("--------------------------");
 		System.out.println("--   Time Step No.: " + this.plant.getTimeStepsUsed() + "\t--");
@@ -526,6 +526,7 @@ public class PlantController {
 	/**
 	 * Prints debug info related to the flow of the plant to the console.
 	 */
+	@SuppressWarnings("unused")
 	private void printFlowDebugInfo() {
 		System.out.println("--------------------------");
 		for (PlantComponent pc : this.plant.getPlantComponents()) {
@@ -690,6 +691,7 @@ public class PlantController {
 	 * connected to a ConnectorPipe, then the 'zero flow' will not have been
 	 * propagated back to it's flowOut. We therefore need to check whether or not 
 	 */
+	@SuppressWarnings("unused")
 	private void propagateNoFlowBackToReactor()
 	{
 		Reactor reactor = this.plant.getReactor();

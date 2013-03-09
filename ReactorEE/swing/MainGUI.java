@@ -1,10 +1,8 @@
 package ReactorEE.swing;
 
-import java.awt.EventQueue;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
@@ -32,7 +30,6 @@ import java.awt.event.FocusEvent;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
-import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 
@@ -1077,7 +1074,8 @@ public class MainGUI
      */
     public void endGameHandler()
     {
-    	EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
+    	@SuppressWarnings("unused")
+		EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
     	plantController.newGame(initialNameValue);
     	updateGUI();
     	sliderNumberOfSteps.setValue(1);
@@ -1100,6 +1098,7 @@ public class MainGUI
      */
     private void showScores()
     {
-    	ScoresGUI scoresGui = new ScoresGUI(this, plantController);
+    	@SuppressWarnings("unused")
+		ScoresGUI scoresGui = new ScoresGUI(this, plantController);
     }
 }
