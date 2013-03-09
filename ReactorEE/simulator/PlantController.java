@@ -47,20 +47,32 @@ public class PlantController {
 		readHighScores();
 		uidata = new UIData(plant);
 	}
-	public void takeStepLooper(StepLooper slooper){
+	
+	//------------- Automatic Stepping Routines ----------------------------------------
+	/**
+	 * Sets the automatic stepping loop to control the game. Must be called to enable automatic stepping.
+	 * @param slooper The automatic looping object.
+	 */
+	public void setStepLooper(StepLooper slooper){
 		this.slooper = slooper;
 		slooper.start();
 	}
+	/**
+	 * Stops the current step looper and creates a new instance of a step looper to take control of automatic stepping for the game.
+	 * To be called when creating a new game, to reset the step loop.
+	 */
+	@SuppressWarnings("deprecation")
 	private void resetStepLooper(){
 		StepLooper oldSL = slooper;
 		try{
-			takeStepLooper(new StepLooper(this, slooper.getGUI()));
+			setStepLooper(new StepLooper(this, slooper.getGUI()));
 			oldSL.stop();
 		}catch (NullPointerException e){
 			System.out.println("Step Looper was null! (OK during a UnitTest)");
 		}
 		
 	}
+	
 	/* ----------------		Methods	for UI to call	----------------
 	 * There is a method for each command that can be given by the
 	 * user. 
@@ -1119,4 +1131,7 @@ public class PlantController {
 		plant.addFailedComponent(c);
 	}
 	
+	public void setPlant(Plant p){
+		plant = p;
+	}
 }

@@ -19,7 +19,7 @@ import ReactorEE.swing.MainGUI;
  */
 public class GameInit {
 	
-	private TextUI view;
+	//private TextUI view;
 	private PlantController controller;
 	private ReactorUtils utils;
 	private MainGUI newView;
@@ -29,7 +29,9 @@ public class GameInit {
 		controller = new PlantController(utils);
 		//view = new TextUI(controller);
 		newView = new MainGUI(controller);
-		controller.takeStepLooper(new StepLooper(controller, newView));
+		
+		//Give the game the step looper to enable the game to automatically step. Must be done like this as gui and controller are needed to initialise StepLooper.
+		controller.setStepLooper(new StepLooper(controller, newView));
 	}
 	
 	@SuppressWarnings("unused")
