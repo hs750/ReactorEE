@@ -1,4 +1,4 @@
-package Networking;
+package ReactorEE.Networking;
 
 import java.net.InetAddress;
 import java.net.Socket;
