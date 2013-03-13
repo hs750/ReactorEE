@@ -1,5 +1,10 @@
 package ReactorEE.Networking;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -59,4 +64,40 @@ public class SocketUtil
 	    }
 	    return(taken);
 	}
+	
+	/**
+	 * Serialises object into an array of bytes
+	 * @param object To Serialise
+	 * @return	Byte array representing object
+	 */
+	public static byte[] toBypeArray(Serializable object){
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	    ObjectOutputStream os;
+	    try{
+	    os= new ObjectOutputStream(bos);
+	    os.writeObject(object);
+	    os.close();
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    return bos.toByteArray();
+	}
+	/**
+	 * Unserialises an object from an array of bytes.
+	 * @param object Byte array of object
+	 * @return	Unserialised Object
+	 */
+	public static Object fromByteArray(byte[] object){
+	    ByteArrayInputStream bis = new ByteArrayInputStream(object);
+	    Object o = null;
+	    try{
+	    ObjectInputStream oInputStream = new ObjectInputStream(bis);
+	    oInputStream.close();
+	    o = oInputStream.readObject();
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    return o;
+	}
+	
 }
