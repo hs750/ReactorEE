@@ -379,7 +379,7 @@ public class Reactor extends PlantComponent {
 		}
 
 		public boolean isQuenchable() {
-			if(!used & reactor.getTemperature() >= (MAX_TEMPERATURE - MAX_TEMPERATURE/10))
+			if(!used & reactor.getTemperature() >= ((MAX_TEMPERATURE/4) *3))
 				return true;
 			return false;
 		}
