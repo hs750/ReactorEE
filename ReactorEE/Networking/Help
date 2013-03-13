@@ -1,0 +1,30 @@
+gamestate listener: runs on Player 2's machine. Messages should be sent from Player 1.
+					Recommended to send messages from Player 1's game loop to ensure frequent Player 2 GUI updates.
+sabotage listener: runs on Player 1's machine. Messages should be sent from Player 2.
+					Recommended to send messages directly from .onClick() events.
+
+
+
+
+Once handshaking is successful, the game will be initialised and the IPv4 of the
+other computer passed to the respective game initialisers. This is represented in
+the example as the variable clientIP.
+
+To send a message to the sabotage listener:
+		Message.run("Component to Fail", clientIP, 9003)
+		
+To send a message to the gamestate listener:
+		Message.run("Serialised Game State", clientIP, 9004)
+		
+
+
+
+The listener classes are initialised at handshake and will run in the background
+throughout the duration of the game to receive asynchronously. These classes are killed
+only after receiving a set message, which should be sent on closing a 2 player game.
+
+To end the sabotage listener:
+		message.run("ANCHOVY KILL", clientIP, 9003)
+		
+To send the gamestate listener:
+		message.run("ANCHOVY KILL", clientIP, 9004)		
