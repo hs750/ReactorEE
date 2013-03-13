@@ -3,8 +3,6 @@ package ReactorEE.Networking;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Tests2.SabotageListenerThread;
-
 public class HandshakeListener 
 {	
 	/**
@@ -27,7 +25,7 @@ public class HandshakeListener
 			if(message.equalsIgnoreCase("ANCHOVY"))	
 			{
 				commitedIP = socket.getInetAddress().toString();		
-				Thread listen = new Thread(new SabotageListenerThread(commitedIP));
+				Thread listen = new Thread(new SabotageListener(commitedIP));
 				listen.start();								
 				SocketUtil.write(socket, "ANCHOVY FREE");	
 				//TODO Start Operator's GameEngine (gameInit)
