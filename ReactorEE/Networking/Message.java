@@ -17,4 +17,11 @@ public class Message
 		SocketUtil.write(socket, message);			
 		socket.close();												
 	}
+	
+	public void run(byte[] message, String listenerIP, int portNo) throws Exception 
+	{
+		Socket socket = new Socket(InetAddress.getByName(listenerIP), portNo);
+		SocketUtil.write(socket, message);			
+		socket.close();												
+	}
 }

@@ -32,7 +32,11 @@ public class SocketUtil
 		socket.getOutputStream().write(message.getBytes());
 		socket.getOutputStream().flush();
 	}
-	
+	public static void write(Socket socket, byte[] message) throws Exception 
+	{
+		socket.getOutputStream().write(message);
+		socket.getOutputStream().flush();
+	}
 	/**
 	 * Checks whether a port is available by attempting to open the supplied port. 
 	 * Currently unused but may be implemented later if problems are encountered with ports being reserved.
