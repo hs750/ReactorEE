@@ -15,11 +15,22 @@ public class SocketUtil
 	 * @param socket the socket to read the message from.
 	 * @return The String sent over the socket.
 	 */
-	public static String read(Socket socket) throws Exception 
+	public static String readString(Socket socket) throws Exception 
 	{
 		byte[] bytes = new byte[100];
 		socket.getInputStream().read(bytes);
 		return new String(bytes).trim();
+	}
+	/**
+	 * A method to simplify reading messages received over a socket.
+	 * @param socket the socket to read the message from.
+	 * @return The byte array sent over the socket.
+	 */
+	public static byte[] readBytes (Socket socket) throws Exception
+	{
+		byte[] bytes = null;
+		socket.getInputStream().read(bytes);
+		return bytes;
 	}
 	
 	/**
@@ -32,6 +43,11 @@ public class SocketUtil
 		socket.getOutputStream().write(message.getBytes());
 		socket.getOutputStream().flush();
 	}
+	/**
+	 * A method to simplify sending messages over a socket.
+	 * @param socket the socket to send the message to.
+	 * @param message the message to be sent to the socket.
+	 */
 	public static void write(Socket socket, byte[] message) throws Exception 
 	{
 		socket.getOutputStream().write(message);

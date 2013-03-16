@@ -3,6 +3,8 @@ package ReactorEE.Networking;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ReactorEE.simulator.PlantController;
+
 public class HandshakeListener 
 {	
 	/**
@@ -11,8 +13,9 @@ public class HandshakeListener
 	 * against an expected string. If correct, the IP of the connected computer is recorded for future
 	 * message validation. The sabotage listener is started and provided with the IP of the other player.
 	 *  The rest of the game is then initialised, the listening loop exited and the connection closed.
+	 *  @param plantController PlantController for the game, needed once the connection has been established to allow interaction with the rest of the game.
 	 */
-	public void run() throws Exception 
+	public void run(PlantController plantController) throws Exception 
 	{
 		ServerSocket serverSocket = new ServerSocket(9002);
 		String commitedIP;
@@ -21,11 +24,11 @@ public class HandshakeListener
 		while (close == false) 
 		{
 			Socket socket = serverSocket.accept();		
-			String message = SocketUtil.read(socket);
+			String message = SocketUtil.readString(socket);
 			if(message.equalsIgnoreCase("ANCHOVY"))	
 			{
 				commitedIP = socket.getInetAddress().toString();		
-				Thread listen = new Thread(new SabotageListener(commitedIP));
+				Thread listen = new Thread(new SabotageListener(commitedIP, plantController));
 				listen.start();								
 				SocketUtil.write(socket, "ANCHOVY FREE");	
 				//TODO Start Operator's GameEngine (gameInit)

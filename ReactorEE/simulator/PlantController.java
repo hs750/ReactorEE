@@ -1109,7 +1109,7 @@ public class PlantController {
 	 *	List of the components within the plant that can be manually broken.
 	 */
 	public static enum falableComponents
-	{Pump1,Pump2,Pump3,Turbine,OperatorSoftare}
+	{Pump1,Pump2,Pump3,Turbine,OperatorSoftare, other}
 	
 	/**
 	 * Given the name of a component, takes the instance of that component from the plant, 
@@ -1141,6 +1141,33 @@ public class PlantController {
 		}
 		c.setOperational(false);
 		plant.addFailedComponent(c);
+	}
+	
+	/**
+	 * Parses a given break command, then breaks the specified inputs.
+	 * Legal commands:
+	 * 	Pump1, Pump2, Pump3, Turbine, Operator Software.
+	 * Not Case sensitive. 
+	 * @param command component breakage command to be parsed. 
+	 * @return the component to be set to failed.
+	 */
+	public falableComponents parseSabotageCommand(String command){
+		falableComponents compToFail = falableComponents.other;
+		command = command.toLowerCase();
+		if(command.equals("turbine"))
+			compToFail = falableComponents.Turbine;
+		else if(command.equals("operator software"))
+			compToFail = falableComponents.OperatorSoftare;
+		else if(command.contains("pump")){
+			if(command.contains("1"))
+				compToFail = falableComponents.Pump1;
+			else if(command.contains("2"))
+				compToFail = falableComponents.Pump2;
+			else if (command.contains("3"))
+				compToFail = falableComponents.Pump3;
+		}
+		
+		return compToFail;
 	}
 	
 	/**

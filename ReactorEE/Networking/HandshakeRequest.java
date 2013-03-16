@@ -3,6 +3,8 @@ package ReactorEE.Networking;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import ReactorEE.simulator.PlantController;
+
 public class HandshakeRequest 
 {
 	/**
@@ -12,14 +14,14 @@ public class HandshakeRequest
 	 * The rest of the game is then initialised, and the connection closed. 
 	 * @param HostIP The IP of the other computer, supplied from the user in the GUI.
 	 */
-	public void run(String HostIP) throws Exception 				
+	public void run(String HostIP, PlantController plantController) throws Exception 				
 	{
 		Socket socket = new Socket(InetAddress.getByName(HostIP), 9002);
-		SocketUtil.write(socket, "ANCHOVY");							
+		SocketUtil.write(socket, "ANCHOVY");						
 		
-		if(SocketUtil.read(socket).equalsIgnoreCase("ANCHOVY FREE"))	
+		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{
-			Thread listen = new Thread(new GamestateListener(HostIP));
+			Thread listen = new Thread(new GamestateListener(HostIP, plantController));
 			listen.start();												
 			//TODO Initialise Sabotage Classes (GUI etc)
 			//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()

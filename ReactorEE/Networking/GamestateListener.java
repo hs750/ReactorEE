@@ -3,17 +3,22 @@ package ReactorEE.Networking;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ReactorEE.model.Plant;
+import ReactorEE.simulator.PlantController;
+
 public class GamestateListener extends Thread
 {
 	private String consumerIP;
-	
+	private PlantController plantController;
 	/**
 	 * Constructor Method storing the IP of the second machine for later validation of incoming messages.
 	 * @param hostIP The IP to accept messages from.
+	 * @param pc PlantController of the game, needed for interaction with the rest of the game, allows plant sent across network to be saved into the game.
 	 */
-	public GamestateListener(String hostIP) throws Exception 
+	public GamestateListener(String hostIP, PlantController pc) throws Exception 
 	{
 		this.consumerIP = hostIP;
+		this.plantController = pc;
 	}
 	
 	/**
@@ -33,14 +38,15 @@ public class GamestateListener extends Thread
 				Socket socket = serverSocket.accept();									
 				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString())) 	
 				{
-					String message = SocketUtil.read(socket);	
-					if(message.equalsIgnoreCase("ANCHOVY KILL"))
+					byte[] message = SocketUtil.readBytes(socket);	
+					if(new String(message).trim().equalsIgnoreCase("ANCHOVY KILL"))
 					{
 						close = true;
 					}
 					else
 					{
-						//TODO Call game state deserialiser with argument (message)
+						Plant p = (Plant) SocketUtil.fromByteArray(message);
+						plantController.setPlant(p);
 					}
 				}
 				else

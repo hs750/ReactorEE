@@ -3,17 +3,22 @@ package ReactorEE.Networking;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ReactorEE.simulator.PlantController;
+
 public class SabotageListener extends Thread
 {
 	private String consumerIP;
+	private PlantController plantController;
 	
 	/**
 	 * Constructor Method storing the IP of the second machine for later validation of incoming messages.
 	 * @param clientIP The IP to accept messages from.
+	 * @param pc PlantController allowing interaction with the rest of the game, allows manual breaking of components to happen.
 	 */
-	public SabotageListener(String clientIP)
+	public SabotageListener(String clientIP, PlantController pc)
 	{
 		this.consumerIP = clientIP;
+		this.plantController = pc;
 	}
 	
 	/**
@@ -33,14 +38,14 @@ public class SabotageListener extends Thread
 				Socket socket = serverSocket.accept();								 
 				if (consumerIP.equalsIgnoreCase(socket.getInetAddress().toString())) 
 				{
-					String message = SocketUtil.read(socket);	
+					String message = SocketUtil.readString(socket);	
 					if(message.equalsIgnoreCase("ANCHOVY KILL"))
 					{
 						close = true;
 					}
 					else
 					{
-						//TODO Call sabotage parser with argument (message)
+						plantController.setComponentFailed(plantController.parseSabotageCommand(message));
 					}
 				}
 				else
