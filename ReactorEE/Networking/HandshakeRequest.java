@@ -3,7 +3,12 @@ package ReactorEE.Networking;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
+import ReactorEE.simulator.ReactorUtils;
+import ReactorEE.simulator.StepLooper;
+import ReactorEE.swing.MainGUI;
+import ReactorEE.swing.MultiplayerMainGUI;
 
 public class HandshakeRequest 
 {
@@ -24,6 +29,11 @@ public class HandshakeRequest
 			Thread listen = new Thread(new GamestateListener(HostIP, plantController));
 			listen.start();												
 			//TODO Initialise Sabotage Classes (GUI etc)
+			PlantController controller = new PlantController(new ReactorUtils());
+			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController);
+			//Give the game the step looper to enable the game to automatically step. Must be done like this as gui and controller are needed to initialise StepLooper.
+			controller.setStepLooper(new MultiplayerStepLooper(controller, view, HostIP, 9002));
+			
 			//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()
 		}
 		socket.close();												
