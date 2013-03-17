@@ -9,8 +9,8 @@ import ReactorEE.swing.MainGUI;
  * @author Harrison
  */
 public class StepLooper extends Thread{
-	private PlantController controller;
-	private MainGUI GUI;
+	protected PlantController controller;
+	protected MainGUI GUI;
 	
 	/**
 	 * Initialise the the step loop with the objects needed to control the loop. 

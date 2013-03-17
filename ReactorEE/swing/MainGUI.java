@@ -46,7 +46,7 @@ import java.io.IOException;
 public class MainGUI
 {
 	// the only reference that is needed to the plant
-    private PlantController plantController;
+    protected PlantController plantController;
     
     //the main frame
     private JFrame frame;
@@ -67,10 +67,10 @@ public class MainGUI
     //the affect of those buttons is dependent on the state of the operating software
     private JButton btnValve1;
     private JButton btnValve2;
-    private JButton btnRepairPump1;
-    private JButton btnRepairPump2;
-    private JButton btnRepairPump3;
-    private JButton btnRepairTurbine;
+    protected JButton btnRepairPump1;
+    protected JButton btnRepairPump2;
+    protected JButton btnRepairPump3;
+    protected JButton btnRepairTurbine;
     private JButton btnQuench;
     
     //labels showing the state of the different components that can fail
@@ -125,7 +125,7 @@ public class MainGUI
     //the repair buttons are not disabled directly but a different image is associated
     //with them when they cannot be used - this variable prevents them from being used
     //when they are 'disabled'
-    private boolean controlButtonsEnabled = true;
+    protected boolean controlButtonsEnabled = true;
     
     //a shorthand for the list of the components that are being repaired
     private ArrayList<String> componentsBeingRepaired = new ArrayList<String>();
