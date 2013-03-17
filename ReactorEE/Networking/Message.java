@@ -7,7 +7,7 @@ public class Message
 {
 	/**
 	 * Sends a string message to the described port.
-	 * @param message The String to be passed expressing the hardware failure to be incurred.
+	 * @param message The String to be passed expressing the plant/hardware failure to be incurred.
 	 * @param listenerIP The IP address of the other player's computer.
 	 * @param portNo The port number to connect to.
 	 */
@@ -17,7 +17,12 @@ public class Message
 		SocketUtil.write(socket, message);			
 		socket.close();												
 	}
-	
+	/**
+	 * Sends a string message to the described port.
+	 * @param message The byte array to be passed expressing the plant/hardware failure to be incurred.
+	 * @param listenerIP The IP address of the other player's computer.
+	 * @param portNo The port number to connect to.
+	 */
 	public void run(byte[] message, String listenerIP, int portNo) throws Exception 
 	{
 		Socket socket = new Socket(InetAddress.getByName(listenerIP), portNo);
