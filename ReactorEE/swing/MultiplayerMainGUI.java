@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import ReactorEE.Networking.Message;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 
 public class MultiplayerMainGUI extends MainGUI{
 
 	private JFrame frame;
-
+	private String saboteurIP;
 	/**
 	 * Launch the application.
 	 */
@@ -20,7 +21,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MultiplayerMainGUI window = new MultiplayerMainGUI(new PlantController(new ReactorUtils()));
+					MultiplayerMainGUI window = new MultiplayerMainGUI(new PlantController(new ReactorUtils()), "localhost");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,18 +33,16 @@ public class MultiplayerMainGUI extends MainGUI{
 	/**
 	 * Create the application.
 	 */
-	public MultiplayerMainGUI(final PlantController plantController) {
+	public MultiplayerMainGUI(final PlantController plantController, String IP) {
 		super(plantController);
+		this.saboteurIP = IP;
 		btnRepairPump1.removeActionListener(btnRepairPump1.getActionListeners()[0]);
 		btnRepairPump1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!");
-                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
-                {
-                    
-                    updateGUI();
-                    
-                } 
+                try {
+					new Message().run("pump1", saboteurIP, 9003);
+				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
 		
@@ -51,12 +50,9 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairPump2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!2");
-                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
-                {
-                    
-                    updateGUI();
-                    
-                } 
+            	try {
+					new Message().run("pump2", saboteurIP, 9003);
+				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
 		
@@ -64,12 +60,9 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairPump3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!3");
-                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
-                {
-                    
-                    updateGUI();
-                    
-                } 
+            	try {
+					new Message().run("pump3", saboteurIP, 9003);
+				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
 		
@@ -77,12 +70,9 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairTurbine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!T");
-                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
-                {
-                    
-                    updateGUI();
-                    
-                } 
+            	try {
+					new Message().run("turbine", saboteurIP, 9003);
+				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
 		
@@ -90,12 +80,9 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairOperatingSoftware.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!OS");
-                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
-                {
-                    
-                    updateGUI();
-                    
-                } 
+            	try {
+					new Message().run("operator software", saboteurIP, 9003);
+				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
 	}

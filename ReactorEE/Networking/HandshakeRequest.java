@@ -30,7 +30,7 @@ public class HandshakeRequest
 			listen.start();												
 			//TODO Initialise Sabotage Classes (GUI etc)
 			PlantController controller = new PlantController(new ReactorUtils());
-			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController);
+			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController);//TODO wrong
 			//Give the game the step looper to enable the game to automatically step. Must be done like this as gui and controller are needed to initialise StepLooper.
 			controller.setStepLooper(new MultiplayerStepLooper(controller, view, HostIP, 9002));
 			
