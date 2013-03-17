@@ -62,7 +62,7 @@ public class MainGUI
     private JButton btnShowScores;
     //make a number of steps
     private JButton btnStep;
-    private JButton btnRepairOperatingSoftware;
+    protected JButton btnRepairOperatingSoftware;
     
     //the affect of those buttons is dependent on the state of the operating software
     private JButton btnValve1;

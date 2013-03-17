@@ -47,6 +47,57 @@ public class MultiplayerMainGUI extends MainGUI{
             }
         });
 		
+		btnRepairPump2.removeActionListener(btnRepairPump2.getActionListeners()[0]);
+		btnRepairPump2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	System.out.print("Hello World!2");
+                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
+                {
+                    
+                    updateGUI();
+                    
+                } 
+            }
+        });
+		
+		btnRepairPump3.removeActionListener(btnRepairPump3.getActionListeners()[0]);
+		btnRepairPump3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	System.out.print("Hello World!3");
+                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
+                {
+                    
+                    updateGUI();
+                    
+                } 
+            }
+        });
+		
+		btnRepairTurbine.removeActionListener(btnRepairTurbine.getActionListeners()[0]);
+		btnRepairTurbine.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	System.out.print("Hello World!T");
+                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
+                {
+                    
+                    updateGUI();
+                    
+                } 
+            }
+        });
+		
+		btnRepairOperatingSoftware.removeActionListener(btnRepairOperatingSoftware.getActionListeners()[0]);
+		btnRepairOperatingSoftware.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	System.out.print("Hello World!OS");
+                if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
+                {
+                    
+                    updateGUI();
+                    
+                } 
+            }
+        });
 	}
 	
 }
