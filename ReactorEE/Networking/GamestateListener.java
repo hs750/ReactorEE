@@ -30,7 +30,7 @@ public class GamestateListener extends Thread
 	{
 		try 
 		{
-			ServerSocket serverSocket = new ServerSocket(9004);
+			ServerSocket serverSocket = new ServerSocket(SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 			boolean close = false;
 			
 			while (close == false) 																

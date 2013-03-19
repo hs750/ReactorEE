@@ -10,6 +10,8 @@ import java.net.Socket;
 
 public class SocketUtil 
 {	
+	public static final int GAMESTATE_LISTENER_PORT_NO = 9004;
+	public static final int SABOTAGE_LISTENER_PORT_NO = 9003;
 	/**
 	 * A method to simplify reading messages received over a socket.
 	 * @param socket the socket to read the message from.

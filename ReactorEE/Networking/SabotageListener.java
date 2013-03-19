@@ -30,7 +30,7 @@ public class SabotageListener extends Thread
 	{
 		try
 		{
-			ServerSocket serverSocket = new ServerSocket(9003);
+			ServerSocket serverSocket = new ServerSocket(SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 			boolean close = false;
 			
 			while (close == false) 
