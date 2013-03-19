@@ -27,14 +27,12 @@ public class HandshakeRequest
 		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{
 			Thread listen = new Thread(new GamestateListener(HostIP, plantController));
-			listen.start();												
+			listen.start();	
+			
 			//TODO Initialise Sabotage Classes (GUI etc)
 			PlantController controller = new PlantController(new ReactorUtils());
-			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController);//TODO wrong
-			//Give the game the step looper to enable the game to automatically step. Must be done like this as gui and controller are needed to initialise StepLooper.
-			controller.setStepLooper(new MultiplayerStepLooper(controller, view, HostIP, 9002));
-			
-			//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()
+			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()
+			//no step looper needed for the second player as stepping is synchronized by the reception of messages containing the plant info.
 		}
 		socket.close();												
 	}	

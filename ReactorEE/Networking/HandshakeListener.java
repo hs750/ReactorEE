@@ -3,7 +3,9 @@ package ReactorEE.Networking;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
+import ReactorEE.swing.MainGUI;
 
 public class HandshakeListener 
 {	
@@ -31,7 +33,12 @@ public class HandshakeListener
 				Thread listen = new Thread(new SabotageListener(commitedIP, plantController));
 				listen.start();								
 				SocketUtil.write(socket, "ANCHOVY FREE");	
+		
 				//TODO Start Operator's GameEngine (gameInit)
+				MainGUI view = new MainGUI(plantController);
+				plantController.setStepLooper(new MultiplayerStepLooper(plantController, view, commitedIP, SocketUtil.GAMESTATE_LISTENER_PORT_NO));
+				
+				
 				//TODO Pass commitedIP as argument to set method in class responsible for calling HandshakeRequest()
 				socket.getOutputStream().close();					
 				close = true;				
