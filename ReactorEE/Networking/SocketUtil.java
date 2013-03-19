@@ -30,7 +30,7 @@ public class SocketUtil
 	 */
 	public static byte[] readBytes (Socket socket) throws Exception
 	{
-		byte[] bytes = null;
+		byte[] bytes = new byte[10000];
 		socket.getInputStream().read(bytes);
 		return bytes;
 	}
