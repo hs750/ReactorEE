@@ -35,8 +35,8 @@ public class GamestateListener extends Thread
 			
 			while (close == false) 																
 			{
-				Socket socket = serverSocket.accept();									
-				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString())) 	
+				Socket socket = serverSocket.accept();
+				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString().substring(1))) 	
 				{
 					byte[] message = SocketUtil.readBytes(socket);	
 					if(new String(message).trim().equalsIgnoreCase("ANCHOVY KILL"))
@@ -57,7 +57,7 @@ public class GamestateListener extends Thread
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }

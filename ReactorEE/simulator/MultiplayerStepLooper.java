@@ -1,5 +1,6 @@
 package ReactorEE.simulator;
 
+import sun.launcher.resources.launcher;
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
 import ReactorEE.swing.MainGUI;
@@ -27,8 +28,12 @@ public class MultiplayerStepLooper extends StepLooper {
 		        		controller.step(1);
 		        		GUI.updateGUI();
 		        		sendPlant = new Message();
+		        		if(listenerIP.startsWith("/"));
+		        			listenerIP = listenerIP.substring(1, listenerIP.length());
+		        			
+		        		System.out.print(1); 
 		        		sendPlant.run(SocketUtil.toBypeArray(controller.getPlant()), listenerIP, portNo);
-		        		
+		        		System.out.println(2);
 		        	}
 		        	if(controller.getPlant().isGameOver()){
 		        		GUI.endGameHandler();
