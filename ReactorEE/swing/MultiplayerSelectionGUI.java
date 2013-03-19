@@ -9,13 +9,17 @@ import javax.swing.JButton;
 
 import ReactorEE.Networking.HandshakeListener;
 import ReactorEE.Networking.HandshakeRequest;
+import ReactorEE.simulator.PlantController;
+import ReactorEE.simulator.ReactorUtils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class MultiplayerSelectionGUI {
 
 	private JFrame frame;
+	private JTextField txtOperatorIP;
 
 	/**
 	 * Launch the application.
@@ -55,7 +59,10 @@ public class MultiplayerSelectionGUI {
 		JButton btnOperator = new JButton("Operator");
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new HandshakeListener();
+				try{
+				new HandshakeListener().run(new PlantController(new ReactorUtils()));
+				}catch(Exception e1){
+					e1.printStackTrace();}
 			}
 		});
 		btnOperator.setBounds(310, 66, 117, 29);
@@ -64,11 +71,20 @@ public class MultiplayerSelectionGUI {
 		JButton btnSabatur = new JButton("Sabatur");
 		btnSabatur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new HandshakeRequest();
+				try {
+					new HandshakeRequest().run(txtOperatorIP.getText(), new PlantController(new ReactorUtils()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSabatur.setBounds(310, 124, 117, 29);
 		layeredPane.add(btnSabatur);
+		
+		txtOperatorIP = new JTextField();
+		txtOperatorIP.setText("OperatorIP");
+		txtOperatorIP.setBounds(164, 123, 134, 28);
+		layeredPane.add(txtOperatorIP);
+		txtOperatorIP.setColumns(10);
 	}
-
 }
