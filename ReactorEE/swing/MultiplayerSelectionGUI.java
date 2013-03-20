@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 
@@ -72,7 +73,15 @@ public class MultiplayerSelectionGUI {
 		btnSabatur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					new HandshakeRequest().run(txtOperatorIP.getText(), new PlantController(new ReactorUtils()));
+					String suppliedIP = txtOperatorIP.getText();
+					if(ReactorEE.Networking.SocketUtil.validateIP(suppliedIP) == true)
+					{
+						new HandshakeRequest().run(suppliedIP, new PlantController(new ReactorUtils()));
+					}
+					else 
+					{
+						JOptionPane.showMessageDialog(frame, suppliedIP + " is an invalid IP Address. Please enter a valid IPv4 address.");
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
