@@ -7,6 +7,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SocketUtil 
 {	
@@ -121,5 +123,19 @@ public class SocketUtil
 	    }
 	    return o;
 	}
-	
+
+	/**
+	 * Validates a supplied IP against a regular expression representing the IPv4 format.
+	 * @param ip A string that may represent a IPv4.
+	 * @return True if ip is a valid IPv4, False otherwise.
+	 */
+	public static boolean validateIP(String ip)
+	{
+		Pattern pattern = Pattern.compile("^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+		Matcher matcher = pattern.matcher(ip);
+		return matcher.matches();
+	}
 }
