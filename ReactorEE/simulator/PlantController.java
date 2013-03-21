@@ -1176,5 +1176,6 @@ public class PlantController {
 	 */
 	public synchronized void setPlant(Plant p){
 		this.plant = p;
+		uidata = new UIData(plant);
 	}
 }
