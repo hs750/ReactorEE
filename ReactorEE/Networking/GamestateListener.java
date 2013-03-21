@@ -5,7 +5,6 @@ import java.net.Socket;
 
 import ReactorEE.model.Plant;
 import ReactorEE.simulator.PlantController;
-import ReactorEE.swing.MultiplayerMainGUI;
 
 public class GamestateListener extends Thread
 {

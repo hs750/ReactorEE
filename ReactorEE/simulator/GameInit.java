@@ -1,7 +1,6 @@
 package ReactorEE.simulator;
 
 import ReactorEE.swing.GameTypeSelectionGUI;
-import ReactorEE.swing.MainGUI;
 
 
 
@@ -20,6 +19,7 @@ import ReactorEE.swing.MainGUI;
  */
 public class GameInit {
 	
+	@SuppressWarnings("unused")
 	private GameTypeSelectionGUI view;
 	
 	public GameInit() {

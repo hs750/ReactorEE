@@ -48,5 +48,6 @@ public class HandshakeListener
 				socket.getOutputStream().close();
 			}
 		}
+		serverSocket.close();
 	}
 }

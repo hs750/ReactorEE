@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JSplitPane;
 import javax.swing.JLayeredPane;
 
 import ReactorEE.simulator.SinglePlayerInit;
@@ -19,7 +18,7 @@ public class GameTypeSelectionGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void GameTypeSelectionGUI() {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

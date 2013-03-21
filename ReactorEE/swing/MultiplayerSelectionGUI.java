@@ -16,7 +16,6 @@ import ReactorEE.simulator.ReactorUtils;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.net.Inet4Address;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.JTextField;

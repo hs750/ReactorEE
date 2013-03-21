@@ -4,11 +4,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import ReactorEE.simulator.GUIRefresher;
-import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
-import ReactorEE.simulator.StepLooper;
-import ReactorEE.swing.MainGUI;
 import ReactorEE.swing.MultiplayerMainGUI;
 
 public class HandshakeRequest 

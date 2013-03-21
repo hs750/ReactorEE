@@ -53,6 +53,7 @@ public class SabotageListener extends Thread
 					SocketUtil.write(socket, "REJECTED");
 				}
 			}
+			serverSocket.close();
 		}
 		catch (Exception e)
 		{

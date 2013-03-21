@@ -1,6 +1,5 @@
 package ReactorEE.simulator;
 
-import sun.launcher.resources.launcher;
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
 import ReactorEE.swing.MainGUI;

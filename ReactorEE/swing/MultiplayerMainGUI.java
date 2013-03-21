@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.PlantController;
@@ -13,7 +11,6 @@ import ReactorEE.simulator.ReactorUtils;
 
 public class MultiplayerMainGUI extends MainGUI{
 
-	private JFrame frame;
 	private String saboteurIP;
 	/**
 	 * Launch the application.
@@ -22,6 +19,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					@SuppressWarnings("unused")
 					MultiplayerMainGUI window = new MultiplayerMainGUI(new PlantController(new ReactorUtils()), "localhost");
 				} catch (Exception e) {
 					e.printStackTrace();
