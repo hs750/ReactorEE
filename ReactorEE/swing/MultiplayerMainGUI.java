@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import ReactorEE.Networking.Message;
+import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 
@@ -41,7 +42,7 @@ public class MultiplayerMainGUI extends MainGUI{
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!");
                 try {
-					new Message().run("pump1", saboteurIP, 9003);
+					new Message().run("pump1", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
@@ -51,7 +52,7 @@ public class MultiplayerMainGUI extends MainGUI{
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!2");
             	try {
-					new Message().run("pump2", saboteurIP, 9003);
+					new Message().run("pump2", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
@@ -61,7 +62,7 @@ public class MultiplayerMainGUI extends MainGUI{
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!3");
             	try {
-					new Message().run("pump3", saboteurIP, 9003);
+					new Message().run("pump3", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
@@ -71,7 +72,7 @@ public class MultiplayerMainGUI extends MainGUI{
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!T");
             	try {
-					new Message().run("turbine", saboteurIP, 9003);
+					new Message().run("turbine", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
@@ -81,7 +82,7 @@ public class MultiplayerMainGUI extends MainGUI{
             public void actionPerformed(ActionEvent e) {
             	System.out.print("Hello World!OS");
             	try {
-					new Message().run("operator software", saboteurIP, 9003);
+					new Message().run("operator software", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();}
             }
         });

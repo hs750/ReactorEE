@@ -15,6 +15,10 @@ import ReactorEE.simulator.ReactorUtils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.JTextField;
 
 public class MultiplayerSelectionGUI {
@@ -91,7 +95,12 @@ public class MultiplayerSelectionGUI {
 		layeredPane.add(btnSabatur);
 		
 		txtOperatorIP = new JTextField();
-		txtOperatorIP.setText("OperatorIP");
+		try {
+			txtOperatorIP.setText(Inet4Address.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e1) {
+			e1.printStackTrace();
+			txtOperatorIP.setText("OpIP");
+		}
 		txtOperatorIP.setBounds(164, 123, 134, 28);
 		layeredPane.add(txtOperatorIP);
 		txtOperatorIP.setColumns(10);

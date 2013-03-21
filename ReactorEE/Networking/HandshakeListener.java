@@ -36,8 +36,7 @@ public class HandshakeListener
 		
 				//TODO Start Operator's GameEngine (gameInit)
 				MainGUI view = new MainGUI(plantController);
-				plantController.setStepLooper(new MultiplayerStepLooper(plantController, view, commitedIP, SocketUtil.GAMESTATE_LISTENER_PORT_NO));
-				
+				plantController.setStepLooper(new MultiplayerStepLooper(plantController, view, commitedIP));
 				
 				//TODO Pass commitedIP as argument to set method in class responsible for calling HandshakeRequest()
 				socket.getOutputStream().close();					

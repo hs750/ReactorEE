@@ -7,13 +7,11 @@ import ReactorEE.swing.MainGUI;
 
 public class MultiplayerStepLooper extends StepLooper {
 	private String listenerIP;
-	private int portNo;
-	private Message sendPlant;
 	
-	public MultiplayerStepLooper(PlantController controller, MainGUI GUI, String listenerIP, int portNo) {
+	
+	public MultiplayerStepLooper(PlantController controller, MainGUI GUI, String listenerIP) {
 		super(controller, GUI);
 		this.listenerIP = listenerIP;
-		this.portNo = portNo;
 	}
 	
 	/**
@@ -27,13 +25,10 @@ public class MultiplayerStepLooper extends StepLooper {
 		        	if(!controller.getPlant().isPaused() & !controller.getPlant().isGameOver()){
 		        		controller.step(1);
 		        		GUI.updateGUI();
-		        		sendPlant = new Message();
-		        		if(listenerIP.startsWith("/"));
+		        		if(listenerIP.startsWith("/"))
 		        			listenerIP = listenerIP.substring(1, listenerIP.length());
-		        			
-		        		System.out.print(1); 
-		        		sendPlant.run(SocketUtil.toBypeArray(controller.getPlant()), listenerIP, portNo);
-		        		System.out.println(2);
+		        		
+		        		new Message().run(SocketUtil.toBypeArray(controller.getPlant()), listenerIP, SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 		        	}
 		        	if(controller.getPlant().isGameOver()){
 		        		GUI.endGameHandler();

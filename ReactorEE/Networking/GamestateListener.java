@@ -5,6 +5,7 @@ import java.net.Socket;
 
 import ReactorEE.model.Plant;
 import ReactorEE.simulator.PlantController;
+import ReactorEE.swing.MultiplayerMainGUI;
 
 public class GamestateListener extends Thread
 {
@@ -30,11 +31,11 @@ public class GamestateListener extends Thread
 	{
 		try 
 		{
-			ServerSocket serverSocket = new ServerSocket(SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 			boolean close = false;
 			
 			while (close == false) 																
 			{
+				ServerSocket serverSocket = new ServerSocket(SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 				Socket socket = serverSocket.accept();
 				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString().substring(1))) 	
 				{
@@ -53,6 +54,7 @@ public class GamestateListener extends Thread
 				{
 					SocketUtil.write(socket, "REJECTED");		
 				}	
+				serverSocket.close();
 			}
 		}
 		catch(Exception e)

@@ -1174,7 +1174,7 @@ public class PlantController {
 	 * 
 	 * @param p	Plant to set the current plant to.
 	 */
-	public void setPlant(Plant p){
-		plant = p;
+	public synchronized void setPlant(Plant p){
+		this.plant = p;
 	}
 }

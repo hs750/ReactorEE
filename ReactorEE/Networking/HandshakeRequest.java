@@ -3,6 +3,7 @@ package ReactorEE.Networking;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
@@ -26,13 +27,14 @@ public class HandshakeRequest
 		
 		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{
-			Thread listen = new Thread(new GamestateListener(HostIP, plantController));
+			GamestateListener listen = new GamestateListener(HostIP, plantController);
 			listen.start();	
 			
 			//TODO Initialise Sabotage Classes (GUI etc)
 			PlantController controller = new PlantController(new ReactorUtils());
 			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()
 			//no step looper needed for the second player as stepping is synchronized by the reception of messages containing the plant info.
+			controller.setStepLooper(new GUIRefresher(controller, view));
 		}
 		socket.close();												
 	}	
