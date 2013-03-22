@@ -50,7 +50,7 @@ public class MultiplayerSelectionGUI {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -72,8 +72,8 @@ public class MultiplayerSelectionGUI {
 		btnOperator.setBounds(310, 66, 117, 29);
 		layeredPane.add(btnOperator);
 		
-		JButton btnSabatur = new JButton("Sabatur");
-		btnSabatur.addActionListener(new ActionListener() {
+		JButton btnSabateur = new JButton("Sabateur");
+		btnSabateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String suppliedIP = txtOperatorIP.getText();
@@ -90,8 +90,8 @@ public class MultiplayerSelectionGUI {
 				}
 			}
 		});
-		btnSabatur.setBounds(310, 124, 117, 29);
-		layeredPane.add(btnSabatur);
+		btnSabateur.setBounds(310, 124, 117, 29);
+		layeredPane.add(btnSabateur);
 		
 		txtOperatorIP = new JTextField();
 		try {
