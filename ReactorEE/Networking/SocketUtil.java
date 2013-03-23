@@ -2,6 +2,7 @@ package ReactorEE.Networking;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -18,8 +19,9 @@ public class SocketUtil
 	 * A method to simplify reading messages received over a socket.
 	 * @param socket the socket to read the message from.
 	 * @return The String sent over the socket.
+	 * @throws IOException 
 	 */
-	public static String readString(Socket socket) throws Exception 
+	public static String readString(Socket socket) throws IOException
 	{
 		byte[] bytes = new byte[100];
 		socket.getInputStream().read(bytes);
@@ -29,8 +31,9 @@ public class SocketUtil
 	 * A method to simplify reading messages received over a socket.
 	 * @param socket the socket to read the message from.
 	 * @return The byte array sent over the socket.
+	 * @throws IOException 
 	 */
-	public static byte[] readBytes (Socket socket) throws Exception
+	public static byte[] readBytes (Socket socket) throws IOException
 	{
 		byte[] bytes = new byte[10000];
 		socket.getInputStream().read(bytes);
@@ -41,8 +44,9 @@ public class SocketUtil
 	 * A method to simplify sending messages over a socket.
 	 * @param socket the socket to send the message to.
 	 * @param message the message to be sent to the socket.
+	 * @throws IOException 
 	 */
-	public static void write(Socket socket, String message) throws Exception 
+	public static void write(Socket socket, String message) throws IOException
 	{
 		socket.getOutputStream().write(message.getBytes());
 		socket.getOutputStream().flush();
@@ -51,8 +55,9 @@ public class SocketUtil
 	 * A method to simplify sending messages over a socket.
 	 * @param socket the socket to send the message to.
 	 * @param message the message to be sent to the socket.
+	 * @throws IOException 
 	 */
-	public static void write(Socket socket, byte[] message) throws Exception 
+	public static void write(Socket socket, byte[] message) throws IOException
 	{
 		socket.getOutputStream().write(message);
 		socket.getOutputStream().flush();

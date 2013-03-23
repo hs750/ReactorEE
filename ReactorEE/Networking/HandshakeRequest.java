@@ -1,7 +1,9 @@
 package ReactorEE.Networking;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
@@ -16,8 +18,10 @@ public class HandshakeRequest
 	 * the game state listener is started and provided with the IP of the other player.
 	 * The rest of the game is then initialised, and the connection closed. 
 	 * @param HostIP The IP of the other computer, supplied from the user in the GUI.
+	 * @throws IOException 
+	 * @throws UnknownHostException 
 	 */
-	public void run(String HostIP, PlantController plantController) throws Exception 				
+	public void run(String HostIP, PlantController plantController) throws UnknownHostException, IOException				
 	{
 		Socket socket = new Socket(InetAddress.getByName(HostIP), 9002);
 		SocketUtil.write(socket, "ANCHOVY");						

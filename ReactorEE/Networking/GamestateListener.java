@@ -15,7 +15,7 @@ public class GamestateListener extends Thread
 	 * @param hostIP The IP to accept messages from.
 	 * @param pc PlantController of the game, needed for interaction with the rest of the game, allows plant sent across network to be saved into the game.
 	 */
-	public GamestateListener(String hostIP, PlantController pc) throws Exception 
+	public GamestateListener(String hostIP, PlantController pc)
 	{
 		this.consumerIP = hostIP;
 		this.plantController = pc;
