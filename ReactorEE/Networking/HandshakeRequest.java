@@ -21,10 +21,11 @@ public class HandshakeRequest
 	 * @throws IOException 
 	 * @throws UnknownHostException 
 	 */
-	public void run(String HostIP, PlantController plantController) throws UnknownHostException, IOException				
+	public void run(String HostIP) throws UnknownHostException, IOException				
 	{
 		Socket socket = new Socket(InetAddress.getByName(HostIP), 9002);
 		SocketUtil.write(socket, "ANCHOVY");						
+		PlantController plantController = new PlantController(new ReactorUtils());
 		
 		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{

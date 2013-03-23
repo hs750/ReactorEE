@@ -70,7 +70,7 @@ public class MultiplayerSelectionGUI {
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-				new HandshakeListener(new PlantController(new ReactorUtils())).start();
+				new HandshakeListener().start();
 				btnOperator.setEnabled(false);
 				btnSabateur.setEnabled(false);
 				btnCancel.setEnabled(true);
@@ -88,7 +88,7 @@ public class MultiplayerSelectionGUI {
 					String suppliedIP = txtOperatorIP.getText();
 					if(ReactorEE.Networking.SocketUtil.validateIP(suppliedIP) == true)
 					{
-						new HandshakeRequest().run(suppliedIP, new PlantController(new ReactorUtils()));
+						new HandshakeRequest().run(suppliedIP);
 						
 						btnOperator.setEnabled(false);
 						btnSabateur.setEnabled(false);

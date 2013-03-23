@@ -5,15 +5,11 @@ import java.net.Socket;
 
 import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
+import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.swing.MainGUI;
 
 public class HandshakeListener  extends Thread
 {	
-	private PlantController plantController;
-
-	public HandshakeListener(PlantController pc){
-		this.plantController = pc;
-	}
 	/**
 	 * Handles the initial handshaking procedure with the other player's computer.
 	 * Waits for another player to send a message, once a message is received it is validated
@@ -29,14 +25,16 @@ public class HandshakeListener  extends Thread
 			ServerSocket serverSocket = new ServerSocket(9002);
 			String commitedIP;
 			boolean close = false;
-
+			PlantController plantController = null;
+			
 			while (close == false) 
 			{
 				Socket socket = serverSocket.accept();		
 				String message = SocketUtil.readString(socket);
 				if(message.equalsIgnoreCase("ANCHOVY"))	
 				{
-					commitedIP = socket.getInetAddress().toString();		
+					commitedIP = socket.getInetAddress().toString();	
+					plantController = new PlantController(new ReactorUtils());
 					Thread listen = new Thread(new SabotageListener(commitedIP, plantController));
 					listen.start();								
 					SocketUtil.write(socket, "ANCHOVY FREE");	
@@ -49,11 +47,13 @@ public class HandshakeListener  extends Thread
 					socket.getOutputStream().close();					
 					close = true;				
 				}
+				else if(message.equalsIgnoreCase("ANCHOVY KILL")){
+					close = true;
+				}
 				else
 				{
 					SocketUtil.write(socket, "REJECTED");	
 					socket.getOutputStream().close();
-					close = true;
 				}
 			}
 			serverSocket.close();
