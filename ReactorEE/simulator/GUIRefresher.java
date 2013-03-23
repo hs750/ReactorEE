@@ -11,11 +11,12 @@ public class GUIRefresher extends StepLooper {
 	@Override
 	public void run(){
 		while(true){
-			GUI.updateGUI();
 			try {
+				GUI.updateGUI();
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			} catch (NullPointerException e1){
 			}
 		}
 		

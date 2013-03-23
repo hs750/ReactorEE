@@ -2,6 +2,9 @@ package ReactorEE.test;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+
 import org.junit.Test;
 
 import ReactorEE.Networking.SocketUtil;
@@ -12,7 +15,7 @@ import ReactorEE.simulator.ReactorUtils;
 public class SocketUtilTest {
 
 	@Test
-	public void test() {
+	public void test() throws StreamCorruptedException, ClassNotFoundException, IOException {
 		PlantController pc = new PlantController(new ReactorUtils());
 		Plant p = pc.getPlant();
 		

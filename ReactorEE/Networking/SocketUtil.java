@@ -3,9 +3,12 @@ package ReactorEE.Networking;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Matcher;
@@ -101,32 +104,42 @@ public class SocketUtil
 	 */
 	public static byte[] toBypeArray(Serializable object){
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	    ObjectOutputStream os;
-	    try{
-	    os= new ObjectOutputStream(bos);
-	    os.writeObject(object);
-	    os.close();
-	    }catch(Exception e){
-	    	e.printStackTrace();
-	    }
-	    return bos.toByteArray();
+		ObjectOutput out = null;
+		 byte[] bytes = null;
+		try {
+		  out = new ObjectOutputStream(bos);   
+		  out.writeObject(object);
+		  bytes = bos.toByteArray();			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+		  try {
+			out.close();
+			bos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		  
+		}
+		return bytes;
 	}
 	/**
 	 * Unserialises an object from an array of bytes.
 	 * @param object Byte array of object
 	 * @return	Unserialised Object
+	 * @throws IOException 
+	 * @throws ClassNotFoundException, StreamCorruptedException 
 	 */
-	public static Object fromByteArray(byte[] object){
-	    ByteArrayInputStream bis = new ByteArrayInputStream(object);
-	    Object o = null;
-	    try{
-	    ObjectInputStream oInputStream = new ObjectInputStream(bis);
-	    oInputStream.close();
-	    o = oInputStream.readObject();
-	    }catch(Exception e){
-	    	e.printStackTrace();
-	    }
-	    return o;
+	public static Object fromByteArray(byte[] object) throws IOException, ClassNotFoundException, StreamCorruptedException {
+		ByteArrayInputStream bis = new ByteArrayInputStream(object);
+		ObjectInput in = null;
+		
+		in = new ObjectInputStream(bis);
+		Object o = in.readObject(); 
+		bis.close();
+		in.close();
+		return o;
+		
 	}
 
 	/**

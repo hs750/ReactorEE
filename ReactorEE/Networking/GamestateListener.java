@@ -1,5 +1,6 @@
 package ReactorEE.Networking;
 
+import java.io.StreamCorruptedException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -45,7 +46,12 @@ public class GamestateListener extends Thread
 					}
 					else
 					{
-						Plant p = (Plant) SocketUtil.fromByteArray(message);
+						Plant p = null;
+						try{
+							p = (Plant) SocketUtil.fromByteArray(message);
+						}catch(StreamCorruptedException sce){
+							sce.printStackTrace();
+						}
 						plantController.setPlant(p);
 					}
 				}
