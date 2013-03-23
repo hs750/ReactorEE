@@ -10,12 +10,14 @@ import javax.swing.JButton;
 
 import ReactorEE.Networking.HandshakeListener;
 import ReactorEE.Networking.HandshakeRequest;
+import ReactorEE.Networking.Message;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.JTextField;
@@ -60,11 +62,18 @@ public class MultiplayerSelectionGUI {
 		JLayeredPane layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		JButton btnOperator = new JButton("Operator");
+		final JButton btnOperator = new JButton("Operator");
+		final JButton btnSabateur = new JButton("Sabateur");
+		final JButton btnCancel = new JButton("Cancel");
+		btnCancel.setEnabled(false);
+		
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-				new HandshakeListener().run(new PlantController(new ReactorUtils()));
+				new HandshakeListener(new PlantController(new ReactorUtils())).start();
+				btnOperator.setEnabled(false);
+				btnSabateur.setEnabled(false);
+				btnCancel.setEnabled(true);
 				}catch(Exception e1){
 					e1.printStackTrace();}
 			}
@@ -72,7 +81,7 @@ public class MultiplayerSelectionGUI {
 		btnOperator.setBounds(310, 66, 117, 29);
 		layeredPane.add(btnOperator);
 		
-		JButton btnSabateur = new JButton("Sabateur");
+		
 		btnSabateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -80,6 +89,11 @@ public class MultiplayerSelectionGUI {
 					if(ReactorEE.Networking.SocketUtil.validateIP(suppliedIP) == true)
 					{
 						new HandshakeRequest().run(suppliedIP, new PlantController(new ReactorUtils()));
+						
+						btnOperator.setEnabled(false);
+						btnSabateur.setEnabled(false);
+						btnCancel.setEnabled(true);
+						
 					}
 					else 
 					{
@@ -103,5 +117,21 @@ public class MultiplayerSelectionGUI {
 		txtOperatorIP.setBounds(164, 123, 134, 28);
 		layeredPane.add(txtOperatorIP);
 		txtOperatorIP.setColumns(10);
+		
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), 9002);
+					btnOperator.setEnabled(true);
+					btnSabateur.setEnabled(true);
+					btnCancel.setEnabled(false);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCancel.setBounds(310, 165, 117, 29);
+		layeredPane.add(btnCancel);
 	}
 }
