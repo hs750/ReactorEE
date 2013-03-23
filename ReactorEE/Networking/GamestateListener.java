@@ -32,10 +32,9 @@ public class GamestateListener extends Thread
 		try 
 		{
 			boolean close = false;
-			
+			ServerSocket serverSocket = new ServerSocket(SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 			while (close == false) 																
 			{
-				ServerSocket serverSocket = new ServerSocket(SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 				Socket socket = serverSocket.accept();
 				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString().substring(1))) 	
 				{
@@ -58,9 +57,9 @@ public class GamestateListener extends Thread
 				else
 				{
 					SocketUtil.write(socket, "REJECTED");		
-				}	
-				serverSocket.close();
+				}
 			}
+			serverSocket.close();
 		}
 		catch(Exception e)
 		{

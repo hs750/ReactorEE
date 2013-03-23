@@ -2,7 +2,9 @@ package ReactorEE.Networking;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -38,9 +40,15 @@ public class SocketUtil
 	 */
 	public static byte[] readBytes (Socket socket) throws IOException
 	{
-		byte[] bytes = new byte[10000];
-		socket.getInputStream().read(bytes);
-		return bytes;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		InputStream in = socket.getInputStream();
+		byte buffer[] = new byte[1024];
+		for(int s; (s=in.read(buffer)) != -1; )
+		{
+		  baos.write(buffer, 0, s);
+		}
+		byte result[] = baos.toByteArray();
+		return result;
 	}
 	
 	/**

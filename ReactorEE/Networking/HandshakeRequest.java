@@ -30,13 +30,14 @@ public class HandshakeRequest
 		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{
 			GamestateListener listen = new GamestateListener(HostIP, plantController);
-			listen.start();	
+				
 			
 			//TODO Initialise Sabotage Classes (GUI etc)
 			PlantController controller = new PlantController(new ReactorUtils());
 			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()
 			//no step looper needed for the second player as stepping is synchronized by the reception of messages containing the plant info.
 			controller.setStepLooper(new GUIRefresher(controller, view));
+			listen.start();
 		}
 		socket.close();												
 	}	
