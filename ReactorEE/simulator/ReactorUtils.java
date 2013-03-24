@@ -208,4 +208,22 @@ public class ReactorUtils
 			to.setInput(from);
 		}
 	}
+	/**
+	 * Change the rate of failure of fallible components to a specified level.
+	 * @param p	The plant to change the failure rate evenly of all fallible components
+	 * @param initialFailRate The rate of failure that the components will start with. Cant be higher than maxFailRate
+	 * @param maxFailRate	The maximum rate of failure that the components will achieve. Binds more strongly than initialFailRate.
+	 */
+	public void setFailureRateOfFalableComponents(Plant p, int initialFailRate, int maxFailRate){
+		if(initialFailRate > maxFailRate)
+			initialFailRate = maxFailRate;
+		for(Pump pump: p.getPumps()){
+			pump.setFailureRate(initialFailRate);
+			pump.setMaxFailureRate(maxFailRate);
+		}
+		p.getTurbine().setFailureRate(initialFailRate);
+		p.getTurbine().setMaxFailureRate(maxFailRate);
+		p.getOperatingSoftware().setFailureRate(initialFailRate);
+		p.getOperatingSoftware().setMaxFailureRate(maxFailRate);
+	}
 }

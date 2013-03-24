@@ -33,8 +33,12 @@ public class HandshakeListener  extends Thread
 				String message = SocketUtil.readString(socket);
 				if(message.equalsIgnoreCase("ANCHOVY"))	
 				{
-					commitedIP = socket.getInetAddress().toString();	
-					plantController = new PlantController(new ReactorUtils());
+					commitedIP = socket.getInetAddress().toString();
+					ReactorUtils utils = new ReactorUtils();
+					plantController = new PlantController(utils);
+					
+					utils.setFailureRateOfFalableComponents(plantController.getPlant(), 1, 1); //Reduce failure rates for multiplayer game.
+					
 					Thread listen = new Thread(new SabotageListener(commitedIP, plantController));
 					listen.start();								
 					SocketUtil.write(socket, "ANCHOVY FREE");	

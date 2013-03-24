@@ -123,7 +123,7 @@ public abstract class PlantComponent implements Serializable{
 	 * 
 	 * @param failureRate the new value for failureRate
 	 */
-	protected void setFailureRate(int failureRate) {
+	public void setFailureRate(int failureRate) {
 		this.failureRate = failureRate;
 	}
 	
@@ -241,5 +241,9 @@ public abstract class PlantComponent implements Serializable{
 		if (currentFailureRate < maxFailureRate) {
 			this.setFailureRate(++currentFailureRate);
 		}
+	}
+
+	public void setMaxFailureRate(int maxFailureRate) {
+		this.maxFailureRate = maxFailureRate;
 	}
 }
