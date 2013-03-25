@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import ReactorEE.Networking.HandshakeListener;
 import ReactorEE.Networking.HandshakeRequest;
 import ReactorEE.Networking.Message;
+import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 
@@ -122,7 +123,7 @@ public class MultiplayerSelectionGUI {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), 9002);
+					new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), SocketUtil.HANDSHAKE_PORT_NO);
 					btnOperator.setEnabled(true);
 					btnSabateur.setEnabled(true);
 					btnCancel.setEnabled(false);
