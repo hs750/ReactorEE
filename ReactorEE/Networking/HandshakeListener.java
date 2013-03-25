@@ -22,7 +22,7 @@ public class HandshakeListener  extends Thread
 	public void run() 
 	{
 		try{
-			ServerSocket serverSocket = new ServerSocket(9002);
+			ServerSocket serverSocket = new ServerSocket(SocketUtil.HANDSHAKE_PORT_NO);
 			String commitedIP;
 			boolean close = false;
 			PlantController plantController = null;

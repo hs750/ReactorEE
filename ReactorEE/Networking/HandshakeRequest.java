@@ -23,7 +23,7 @@ public class HandshakeRequest
 	 */
 	public void run(String HostIP) throws UnknownHostException, IOException				
 	{
-		Socket socket = new Socket(InetAddress.getByName(HostIP), 9002);
+		Socket socket = new Socket(InetAddress.getByName(HostIP), SocketUtil.HANDSHAKE_PORT_NO);
 		SocketUtil.write(socket, "ANCHOVY");						
 		PlantController plantController = new PlantController(new ReactorUtils());
 		
