@@ -298,20 +298,20 @@ public class Condenser extends PlantComponent {
 		health -= HEALTH_CHANGE_WHEN_DAMAGING;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result
-				+ ((coolantPump == null) ? 0 : coolantPump.hashCode());
-		result = prime * result + health;
-		result = prime * result + pressure;
-		result = prime * result + steamIn;
-		result = prime * result + steamVolume;
-		result = prime * result + temperature;
-		result = prime * result + waterVolume;
-		return result;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = super.hashCode();
+//		result = prime * result
+//				+ ((coolantPump == null) ? 0 : coolantPump.hashCode());
+//		result = prime * result + health;
+//		result = prime * result + pressure;
+//		result = prime * result + steamIn;
+//		result = prime * result + steamVolume;
+//		result = prime * result + temperature;
+//		result = prime * result + waterVolume;
+//		return result;
+//	}
 
 	@Override
 	public boolean equals(Object obj) {

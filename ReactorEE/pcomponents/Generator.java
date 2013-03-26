@@ -42,14 +42,14 @@ public class Generator extends PlantComponent {
 		return powerOutput;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + powerOutput;
-		result = prime * result + ((turbine == null) ? 0 : turbine.hashCode());
-		return result;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = super.hashCode();
+//		result = prime * result + powerOutput;
+//		result = prime * result + ((turbine == null) ? 0 : turbine.hashCode());
+//		return result;
+//	}
 
 	@Override
 	public boolean equals(Object obj) {

@@ -58,15 +58,15 @@ public class Turbine extends PlantComponent {
 	public void setRpm(int rpm){
 		this.rpm = rpm;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + maxSteamThroughput;
-		result = prime * result + rpm;
-		return result;
-	}
+//
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = super.hashCode();
+//		result = prime * result + maxSteamThroughput;
+//		result = prime * result + rpm;
+//		return result;
+//	}
 
 	@Override
 	public boolean equals(Object obj) {
