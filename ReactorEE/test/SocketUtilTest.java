@@ -24,10 +24,7 @@ public class SocketUtilTest {
 		
 		Plant p2 = (Plant) SocketUtil.fromByteArray(ba);
 		
-		boolean b = p.equals(p2);
 		assertEquals(p, p2);
-		
-		
 	}
 
 }

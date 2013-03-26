@@ -1,6 +1,7 @@
 package ReactorEE.pcomponents;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -157,14 +158,30 @@ public class ConnectorPipe extends PlantComponent {
 		if (inputs == null) {
 			if (other.inputs != null)
 				return false;
-		} else if (inputs.hashCode() != other.inputs.hashCode())
+		} else if (!inputs.equals(other.inputs))
 			return false;
 		if (outputs == null) {
 			if (other.outputs != null)
 				return false;
-		} else if (outputs.hashCode() != other.outputs.hashCode())
+		} else if (!outputsSame(other))
 			return false;
 		return true;
+		
 	}
+	private boolean outputsSame(ConnectorPipe other){
+		List<PlantComponent> out = new ArrayList<PlantComponent>(outputs.keySet());
+		List<PlantComponent> otherOut = new ArrayList<PlantComponent>(other.outputs.keySet());
+		boolean sameOutpus = out.containsAll(otherOut);
+		
+		List<Boolean> outBlocked = new ArrayList<Boolean>(outputs.values());
+		List<Boolean> otherOutBlocked = new ArrayList<Boolean>(other.outputs.values());
+		boolean sameBlockedOutputs = outBlocked.equals(otherOutBlocked);
+		
+		return sameOutpus && sameBlockedOutputs;
+		
+		
+	}
+	
+	
 
 }
