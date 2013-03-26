@@ -445,8 +445,7 @@ public class Reactor extends PlantComponent {
 			if (reactor == null) {
 				if (other.reactor != null)
 					return false;
-			} else if (reactor.hashCode() !=(other.reactor.hashCode()))
-				return false;
+			}
 			if (used != other.used)
 				return false;
 			if (waterVolume != other.waterVolume)

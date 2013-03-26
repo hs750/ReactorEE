@@ -52,7 +52,7 @@ public class HandshakeListener  extends Thread
 					socket.getOutputStream().close();					
 					close = true;				
 				}
-				else if(message.equalsIgnoreCase("ANCHOVY KILL") && socket.getInetAddress().toString().equalsIgnoreCase(InetAddress.getLocalHost().getAddress().toString())){
+				else if(message.equalsIgnoreCase("ANCHOVY KILL") && socket.getInetAddress().toString().substring(1).equals(InetAddress.getLocalHost().getHostAddress())){
 					close = true;
 				}
 				else
