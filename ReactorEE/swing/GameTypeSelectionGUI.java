@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
 
 import ReactorEE.simulator.SinglePlayerInit;
+import ReactorEE.sound.Music;
 
 public class GameTypeSelectionGUI {
 
@@ -53,8 +54,8 @@ public class GameTypeSelectionGUI {
 		JButton btnSinglePlayer = new JButton("Single Player");
 		btnSinglePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Music.changeGameContext("game");
 				new SinglePlayerInit();
-				
 			}
 		});
 		btnSinglePlayer.setBounds(143, 93, 117, 29);

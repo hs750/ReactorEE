@@ -5,25 +5,10 @@ import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import javazoom.jl.player.Player;
 
-public class Music {
-	public static void main(String[] args) { // this is bleeding edge i.e. not finished code! to have fun with it, run and type in a,s,d as seen below (you might have to add the .jar in Libraries/ to your build path)
-		Music.play();
-		
-		char x = 'y'; Scanner sc = new Scanner(System.in);
-		while(x != 'q') {
-			x = sc.next().toCharArray()[0];
-			if(x == 'a') Music.play();
-			if(x == 's') Music.pause();
-			if(x == 'd') Music.kill();
-			if(x == 'f') Music.changeGameContext("game");
-			if(x == 'g') Music.changeGameContext("menu");
-		}
-	}
-	
+public class Music {	
 	// API
 	/**
 	 * Enter <pre>Music.play();</pre> to play/resume the current track. Make sure to change game context with <pre>Music.changeGameContext(String)</pre>
@@ -38,7 +23,7 @@ public class Music {
 	 * Enter <pre>Music.pause();</pre> to
 	 */
 	public static void pause() {
-		if(instance == null) setup();
+		if(instance == null) return;
 		instance.ps = PlaybackStatus.PAUSE;
 	}
 	
@@ -46,7 +31,7 @@ public class Music {
 	 * Enter <pre>Music.kill();</pre> to clear memory and stop the music. Any command will reinitialize the class.
 	 */
 	public static void kill() {
-		if(instance == null) setup();
+		if(instance == null) return;
 		instance.ps = PlaybackStatus.CLOSE;
 	}
 	
@@ -55,12 +40,13 @@ public class Music {
 	 * @param newGameContext
 	 */
 	public static void changeGameContext(String newGameContext) {
+		if (instance == null) return;
+
 		GameStatus new_gs = GameStatus.fromString(newGameContext);
-		
-		if(new_gs == null)
-			System.err.println("Music.changeGameContext: Incorrect string for game context (possible values are \"menu\", \"game\", \"credits\")");
-		else
+		if (new_gs != null)
 			instance.gs = new_gs;
+		else
+			System.err.println("Incorrect Music.changeGameContext string!");
 	}
 	
 	// implementation
@@ -72,7 +58,7 @@ public class Music {
 			playlist = new HashMap<GameStatus, List<String>>();
 			playlist.put(GameStatus.MENU, menu);
 			playlist.put(GameStatus.PLAYING, playing);
-			//playlist.put(GameStatus.CREDITS, credits);
+			playlist.put(GameStatus.CREDITS, credits);
 		}
 		
 		playback = new Thread(new Runnable() { public void run(){ instance.playback(); } });
@@ -96,7 +82,7 @@ public class Music {
 				if(gs != oldGS) {
 					oldGS = gs;
 					trackEnded = false;
-					index = 0; 			System.out.println("hi 1");
+					index = 0;
 
 					player.close();
 					player = createPlayer(gs, index);
@@ -105,39 +91,16 @@ public class Music {
 					trackEnded = false;
 					index = (index+1) % playlist.get(gs).size();
 					
-					player.close();			System.out.println("hi 2");
+					player.close();
 					player = createPlayer(gs, index);
 				}
-				try { trackEnded = !player.play(8); } catch (Exception e) { System.out.println(e); } System.out.println("hi 3");
+				try { trackEnded = !player.play(8); } catch (Exception e) { System.out.println(e); }
 				break;
 			case PAUSE:
-				try { Thread.sleep(500); } catch (InterruptedException e) { System.out.println(e); } System.out.println("hi 4");
+				try { Thread.sleep(500); } catch (InterruptedException e) { System.out.println(e); }
 				break;
 			}
 		}
-		
-		while(true) {
-			if(ps == PlaybackStatus.CLOSE) {
-				instance = null;
-				return;
-			} else if(ps == PlaybackStatus.PLAY) { 
-				if(gs != oldGS) {
-					player = createPlayer(gs,0);
-					oldGS = gs;
-					trackEnded = false;
-					index = 0;
-				} else if(trackEnded) {
-					int size = playlist.get(gs).size();
-					player = createPlayer(gs, (index+1) % size);
-					trackEnded = false;
-				}
-				else {
-					try { trackEnded = player.play(8); } catch (Exception e) { System.out.println(e); }
-				}
-			} else {
-				try { Thread.sleep(500); } catch (InterruptedException e) { System.out.println(e); }
-			}
-		} //end while(true)
 	}
 	
 	protected static Player createPlayer(GameStatus gs, int index) {
@@ -163,6 +126,7 @@ public class Music {
 	// data
 	private static final List<String> menu = Arrays.asList("menu-1", "menu-2");
 	private static final List<String> playing = Arrays.asList("game-1", "game-2", "game-3", "game-4");
+	private static final List<String> credits = Arrays.asList();
 	private static final String path = "Music/";
 	private static final String extension = ".mp3";
 	private static HashMap<GameStatus, List<String>> playlist = null;

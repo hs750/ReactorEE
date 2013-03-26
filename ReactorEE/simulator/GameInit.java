@@ -1,5 +1,6 @@
 package ReactorEE.simulator;
 
+import ReactorEE.sound.Music;
 import ReactorEE.swing.GameTypeSelectionGUI;
 
 
@@ -28,6 +29,7 @@ public class GameInit {
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
+		Music.play();
 		GameInit game = new GameInit();
 	}
 	
