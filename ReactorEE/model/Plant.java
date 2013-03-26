@@ -388,4 +388,125 @@ public class Plant implements Serializable {
 	public boolean isGameOver() {
 		return this.gameOver;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((beingRepaired == null) ? 0 : beingRepaired.hashCode());
+		result = prime * result
+				+ ((condenser == null) ? 0 : condenser.hashCode());
+		result = prime * result
+				+ ((connectorPipes == null) ? 0 : connectorPipes.hashCode());
+		result = prime
+				* result
+				+ ((failedComponents == null) ? 0 : failedComponents.hashCode());
+		result = prime * result + (gameOver ? 1231 : 1237);
+		result = prime * result
+				+ ((generator == null) ? 0 : generator.hashCode());
+		result = prime * result
+				+ ((highScores == null) ? 0 : highScores.hashCode());
+		result = prime * result + (isPaused ? 1231 : 1237);
+		result = prime
+				* result
+				+ ((operatingSoftware == null) ? 0 : operatingSoftware
+						.hashCode());
+		result = prime * result
+				+ ((operatorName == null) ? 0 : operatorName.hashCode());
+		result = prime * result
+				+ ((plantComponents == null) ? 0 : plantComponents.hashCode());
+		result = prime * result + ((pumps == null) ? 0 : pumps.hashCode());
+		result = prime * result + ((reactor == null) ? 0 : reactor.hashCode());
+		result = prime * result + score;
+		result = prime * result + timeStepsUsed;
+		result = prime * result + ((turbine == null) ? 0 : turbine.hashCode());
+		result = prime * result + ((valves == null) ? 0 : valves.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Plant other = (Plant) obj;
+		if (beingRepaired == null) {
+			if (other.beingRepaired != null)
+				return false;
+		} else if (!beingRepaired.equals(other.beingRepaired))
+			return false;
+		if (condenser == null) {
+			if (other.condenser != null)
+				return false;
+		} else if (!condenser.equals(other.condenser))
+			return false;
+		if (connectorPipes == null) {
+			if (other.connectorPipes != null)
+				return false;
+		} else if (!connectorPipes.equals(other.connectorPipes))
+			return false;
+		if (failedComponents == null) {
+			if (other.failedComponents != null)
+				return false;
+		} else if (!failedComponents.equals(other.failedComponents))
+			return false;
+		if (gameOver != other.gameOver)
+			return false;
+		if (generator == null) {
+			if (other.generator != null)
+				return false;
+		} else if (!generator.equals(other.generator))
+			return false;
+		if (highScores == null) {
+			if (other.highScores != null)
+				return false;
+		} else if (!highScores.equals(other.highScores))
+			return false;
+		if (isPaused != other.isPaused)
+			return false;
+		if (operatingSoftware == null) {
+			if (other.operatingSoftware != null)
+				return false;
+		} else if (!operatingSoftware.equals(other.operatingSoftware))
+			return false;
+		if (operatorName == null) {
+			if (other.operatorName != null)
+				return false;
+		} else if (!operatorName.equals(other.operatorName))
+			return false;
+		if (plantComponents == null) {
+			if (other.plantComponents != null)
+				return false;
+		} else if (!plantComponents.equals(other.plantComponents))
+			return false;
+		if (pumps == null) {
+			if (other.pumps != null)
+				return false;
+		} else if (!pumps.equals(other.pumps))
+			return false;
+		if (reactor == null) {
+			if (other.reactor != null)
+				return false;
+		} else if (!reactor.equals(other.reactor))
+			return false;
+		if (score != other.score)
+			return false;
+		if (timeStepsUsed != other.timeStepsUsed)
+			return false;
+		if (turbine == null) {
+			if (other.turbine != null)
+				return false;
+		} else if (!turbine.equals(other.turbine))
+			return false;
+		if (valves == null) {
+			if (other.valves != null)
+				return false;
+		} else if (!valves.equals(other.valves))
+			return false;
+		return true;
+	}
 }

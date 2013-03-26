@@ -297,4 +297,48 @@ public class Condenser extends PlantComponent {
 	private void damageCondenser() {
 		health -= HEALTH_CHANGE_WHEN_DAMAGING;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((coolantPump == null) ? 0 : coolantPump.hashCode());
+		result = prime * result + health;
+		result = prime * result + pressure;
+		result = prime * result + steamIn;
+		result = prime * result + steamVolume;
+		result = prime * result + temperature;
+		result = prime * result + waterVolume;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Condenser other = (Condenser) obj;
+		if (coolantPump == null) {
+			if (other.coolantPump != null)
+				return false;
+		} else if (!coolantPump.equals(other.coolantPump))
+			return false;
+		if (health != other.health)
+			return false;
+		if (pressure != other.pressure)
+			return false;
+		if (steamIn != other.steamIn)
+			return false;
+		if (steamVolume != other.steamVolume)
+			return false;
+		if (temperature != other.temperature)
+			return false;
+		if (waterVolume != other.waterVolume)
+			return false;
+		return true;
+	}
 }

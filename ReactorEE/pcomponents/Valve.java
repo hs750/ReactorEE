@@ -103,6 +103,31 @@ public class Valve extends PlantComponent {
 	public boolean checkFailure() {
 		return super.checkFailure();
 		//Insert implementation 
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ID;
+		result = prime * result + (open ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Valve other = (Valve) obj;
+		if (ID != other.ID)
+			return false;
+		if (open != other.open)
+			return false;
+		return true;
 	}	
 	
 }

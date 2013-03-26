@@ -362,6 +362,28 @@ public class Reactor extends PlantComponent {
 			}
 			this.percentageLowered = percentageLowered;
 		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + percentageLowered;
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			ControlRod other = (ControlRod) obj;
+			if (percentageLowered != other.percentageLowered)
+				return false;
+			return true;
+		}
 	}
 	
 	public final class QuenchWaterTank implements Serializable	{
@@ -402,5 +424,89 @@ public class Reactor extends PlantComponent {
 				this.used = true;
 			}
 		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + (used ? 1231 : 1237);
+			result = prime * result + waterVolume;
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			QuenchWaterTank other = (QuenchWaterTank) obj;
+			if (reactor == null) {
+				if (other.reactor != null)
+					return false;
+			} else if (reactor.hashCode() !=(other.reactor.hashCode()))
+				return false;
+			if (used != other.used)
+				return false;
+			if (waterVolume != other.waterVolume)
+				return false;
+			return true;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((controlRod == null) ? 0 : controlRod.hashCode());
+		result = prime * result + health;
+		result = prime * result + pressure;
+		result = prime * result
+				+ ((quenchTank == null) ? 0 : quenchTank.hashCode());
+		result = prime * result + steamOut;
+		result = prime * result + steamVolume;
+		result = prime * result + temperature;
+		result = prime * result + waterPumpedIn;
+		result = prime * result + waterVolume;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reactor other = (Reactor) obj;
+		if (controlRod == null) {
+			if (other.controlRod != null)
+				return false;
+		} else if (!controlRod.equals(other.controlRod))
+			return false;
+		if (health != other.health)
+			return false;
+		if (pressure != other.pressure)
+			return false;
+		if (quenchTank == null) {
+			if (other.quenchTank != null)
+				return false;
+		} else if (!quenchTank.equals(other.quenchTank))
+			return false;
+		if (steamOut != other.steamOut)
+			return false;
+		if (steamVolume != other.steamVolume)
+			return false;
+		if (temperature != other.temperature)
+			return false;
+		if (waterPumpedIn != other.waterPumpedIn)
+			return false;
+		if (waterVolume != other.waterVolume)
+			return false;
+		return true;
 	}
 }

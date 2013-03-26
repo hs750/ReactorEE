@@ -246,4 +246,53 @@ public abstract class PlantComponent implements Serializable{
 	public void setMaxFailureRate(int maxFailureRate) {
 		this.maxFailureRate = maxFailureRate;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + failureRate;
+		result = prime * result + ((flowOut == null) ? 0 : flowOut.hashCode());
+		result = prime * result + maxFailureRate;
+		result = prime * result + (operational ? 1231 : 1237);
+		result = prime * result + (pressurised ? 1231 : 1237);
+		result = prime * result + repairTime;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof PlantComponent))
+			return false;
+		PlantComponent other = (PlantComponent) obj;
+		if (failureRate != other.failureRate)
+			return false;
+		if (flowOut == null) {
+			if (other.flowOut != null)
+				return false;
+		} else if (!flowOut.equals(other.flowOut))
+			return false;
+		if (input == null) {
+			if (other.input != null)
+				return false;
+		}
+		if (maxFailureRate != other.maxFailureRate)
+			return false;
+		if (operational != other.operational)
+			return false;
+		if (output == null) {
+			if (other.output != null)
+				return false;
+		}
+		if (pressurised != other.pressurised)
+			return false;
+		if (repairTime != other.repairTime)
+			return false;
+		return true;
+	}
+
 }

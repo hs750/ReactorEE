@@ -16,14 +16,17 @@ public class SocketUtilTest {
 
 	@Test
 	public void test() throws StreamCorruptedException, ClassNotFoundException, IOException {
-		PlantController pc = new PlantController(new ReactorUtils());
+		ReactorUtils r = new ReactorUtils();
+		PlantController pc = new PlantController(r);
 		Plant p = pc.getPlant();
 		
 		byte[] ba = SocketUtil.toBypeArray(p);
 		
 		Plant p2 = (Plant) SocketUtil.fromByteArray(ba);
 		
-		assertEquals(p,p2);// TODO This doesnt have the desired effect
+		p.equals(p2);
+		assertEquals(p, p2);
+		
 		
 	}
 

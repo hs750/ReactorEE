@@ -144,4 +144,27 @@ public class ConnectorPipe extends PlantComponent {
 		return false; //Never breaks.
 	}
 
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ConnectorPipe other = (ConnectorPipe) obj;
+		if (inputs == null) {
+			if (other.inputs != null)
+				return false;
+		} else if (inputs.hashCode() != other.inputs.hashCode())
+			return false;
+		if (outputs == null) {
+			if (other.outputs != null)
+				return false;
+		} else if (outputs.hashCode() != other.outputs.hashCode())
+			return false;
+		return true;
+	}
+
 }

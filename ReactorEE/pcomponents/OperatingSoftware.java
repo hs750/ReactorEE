@@ -342,4 +342,55 @@ public class OperatingSoftware extends PlantComponent {
     {
         return percentageLowered;
     }
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(DO_NOTHING_OR_DIFFERENT_COMMAND_LIMIT);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (on ? 1231 : 1237);
+		result = prime * result + (open ? 1231 : 1237);
+		result = prime * result + percentageLowered;
+		result = prime * result + pumpID;
+		result = prime
+				* result
+				+ ((requestedOperation == null) ? 0 : requestedOperation
+						.hashCode());
+		result = prime * result + rpm;
+		result = prime * result + valveID;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OperatingSoftware other = (OperatingSoftware) obj;
+		if (Double.doubleToLongBits(DO_NOTHING_OR_DIFFERENT_COMMAND_LIMIT) != Double
+				.doubleToLongBits(other.DO_NOTHING_OR_DIFFERENT_COMMAND_LIMIT))
+			return false;
+		if (on != other.on)
+			return false;
+		if (open != other.open)
+			return false;
+		if (percentageLowered != other.percentageLowered)
+			return false;
+		if (pumpID != other.pumpID)
+			return false;
+		if (requestedOperation != other.requestedOperation)
+			return false;
+		if (rpm != other.rpm)
+			return false;
+		if (valveID != other.valveID)
+			return false;
+		return true;
+	}
 }

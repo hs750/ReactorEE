@@ -110,4 +110,32 @@ public class Pump extends PlantComponent {
 	public boolean checkFailure() {
 		return super.checkFailure();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ID;
+		result = prime * result + (on ? 1231 : 1237);
+		result = prime * result + rpm;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pump other = (Pump) obj;
+		if (ID != other.ID)
+			return false;
+		if (on != other.on)
+			return false;
+		if (rpm != other.rpm)
+			return false;
+		return true;
+	}
 }

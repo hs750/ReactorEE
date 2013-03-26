@@ -58,4 +58,29 @@ public class Turbine extends PlantComponent {
 	public void setRpm(int rpm){
 		this.rpm = rpm;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + maxSteamThroughput;
+		result = prime * result + rpm;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Turbine other = (Turbine) obj;
+		if (maxSteamThroughput != other.maxSteamThroughput)
+			return false;
+		if (rpm != other.rpm)
+			return false;
+		return true;
+	}
 }
