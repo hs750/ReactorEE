@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
+import ReactorEE.sound.Music;
 import ReactorEE.swing.MultiplayerMainGUI;
 
 public class HandshakeRequest 
@@ -30,12 +31,10 @@ public class HandshakeRequest
 		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{
 			GamestateListener listen = new GamestateListener(HostIP, plantController);
-				
-			
-			//TODO Initialise Sabotage Classes (GUI etc)
 			PlantController controller = new PlantController(new ReactorUtils());
-			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);//TODO Pass HostIP as argument to set method in class responsible for calling SabotageRequest()
-			//no step looper needed for the second player as stepping is synchronized by the reception of messages containing the plant info.
+			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);
+			//no step looper needed as stepping is synchronized through GamestateListener
+			Music.changeGameContext("game");
 			controller.setStepLooper(new GUIRefresher(controller, view));
 			listen.start();
 		}
