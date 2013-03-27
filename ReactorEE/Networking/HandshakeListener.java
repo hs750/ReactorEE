@@ -7,6 +7,7 @@ import java.net.Socket;
 import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
+import ReactorEE.sound.Music;
 import ReactorEE.swing.MainGUI;
 
 public class HandshakeListener  extends Thread
@@ -43,16 +44,14 @@ public class HandshakeListener  extends Thread
 					Thread listen = new Thread(new SabotageListener(commitedIP, plantController));
 					listen.start();								
 					SocketUtil.write(socket, "ANCHOVY FREE");	
-
-					//TODO Start Operator's GameEngine (gameInit)
 					MainGUI view = new MainGUI(plantController);
 					plantController.setStepLooper(new MultiplayerStepLooper(plantController, view, commitedIP));
-
-					//TODO Pass commitedIP as argument to set method in class responsible for calling HandshakeRequest()
+					Music.changeGameContext("game");
 					socket.getOutputStream().close();					
 					close = true;				
 				}
 				else if(message.equalsIgnoreCase("ANCHOVY KILL") && socket.getInetAddress().toString().substring(1).equals(InetAddress.getLocalHost().getHostAddress())){
+					socket.getOutputStream().close();
 					close = true;
 				}
 				else
