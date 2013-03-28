@@ -214,7 +214,12 @@ public class OperatingSoftware extends PlantComponent {
         else
             failedSoftwareResponse();
     }
-    //TODO javaDoc
+    
+    /**
+     * Stores a reactor quench command if the software is working properly,
+     * otherwise calls the appropriate method.
+     *
+     */
     public synchronized void quench(){
     	if(super.isOperational()){
     		requestedOperation = OperationRequest.Quench;
