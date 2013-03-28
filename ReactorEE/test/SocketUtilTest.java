@@ -15,7 +15,7 @@ import ReactorEE.simulator.ReactorUtils;
 public class SocketUtilTest {
 
 	@Test
-	public void test() throws StreamCorruptedException, ClassNotFoundException, IOException {
+	public void testSerialisationAndDeserialisationOfPlant() throws StreamCorruptedException, ClassNotFoundException, IOException {
 		ReactorUtils r = new ReactorUtils();
 		PlantController pc = new PlantController(r);
 		Plant p = pc.getPlant();
