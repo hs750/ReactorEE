@@ -157,7 +157,7 @@ public class PlantControllerTest {
 		
 	}
 	
-	//------------------- Tests of A3 added functionality ------------------------
+	//------------------- Tests of A4 added functionality ------------------------
 	/**
 	 * Tests whether setting each breakable component within the power plant has the affect of adding it to the list of broken components and that it's isOperational() returns false.
 	 */
@@ -188,6 +188,9 @@ public class PlantControllerTest {
 		assertTrue(plant.getFailedComponents().contains(plant.getTurbine()));
 		assertTrue(!plant.getTurbine().isOperational());
 	}
+	/**
+	 * Tests whether parseSabotageCommand() correctly returns the component to sabotage from the given string containing the name of the component.
+	 */
 	@Test
 	public void testParseSabotageCommand(){
 		assertEquals(falableComponents.Pump1, presenter.parseSabotageCommand("pump1"));
