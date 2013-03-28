@@ -6,6 +6,7 @@ public class GUIRefresher extends StepLooper {
 
 	public GUIRefresher(PlantController controller, MainGUI GUI) {
 		super(controller, GUI);
+		waitPeriod = 50;
 	}
 	
 	@Override
@@ -13,7 +14,7 @@ public class GUIRefresher extends StepLooper {
 		while(true){
 			try {
 				GUI.updateGUI();
-				Thread.sleep(50);
+				Thread.sleep(waitPeriod);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (NullPointerException e1){

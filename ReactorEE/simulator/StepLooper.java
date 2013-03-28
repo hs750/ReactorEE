@@ -11,6 +11,8 @@ import ReactorEE.swing.MainGUI;
 public class StepLooper extends Thread{
 	protected PlantController controller;
 	protected MainGUI GUI;
+	protected int waitPeriod = 500;
+	
 	
 	/**
 	 * Initialise the the step loop with the objects needed to control the loop. 
@@ -40,7 +42,7 @@ public class StepLooper extends Thread{
 		        		GUI.endGameHandler();
 		        		break;
 		        	}
-	        		Thread.sleep(500);
+	        		Thread.sleep(waitPeriod);
 		        }
 		    } catch (InterruptedException e) {
 		        e.printStackTrace();
@@ -52,4 +54,9 @@ public class StepLooper extends Thread{
 	public MainGUI getGUI() {
 		return GUI;
 	}
+
+	public int getWaitPeriod() {
+		return waitPeriod;
+	}
+
 }

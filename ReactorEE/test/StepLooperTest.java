@@ -36,7 +36,7 @@ public class StepLooperTest {
 		if(controller.getPlant().isPaused())
 			controller.togglePaused();
 		
-		Thread.sleep(5000);
+		Thread.sleep(slooper.getWaitPeriod() * 10);
 		
 		controller.togglePaused();
 		

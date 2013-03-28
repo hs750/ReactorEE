@@ -33,7 +33,7 @@ public class MultiplayerStepLooper extends StepLooper {
 		        		GUI.endGameHandler();
 		        		break;
 		        	}
-	        		Thread.sleep(500);
+	        		Thread.sleep(waitPeriod);
 		        }
 		    } catch (InterruptedException e) {
 		        e.printStackTrace();
