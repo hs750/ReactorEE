@@ -24,11 +24,10 @@ public class MultiplayerStepLooper extends StepLooper {
 		        	if(!controller.getPlant().isPaused() & !controller.getPlant().isGameOver()){
 		        		controller.step(1);
 		        		GUI.updateGUI();
-		        		if(listenerIP.startsWith("/"))
-		        			listenerIP = listenerIP.substring(1, listenerIP.length());
-		        		
-		        		new Message().run(SocketUtil.toBypeArray(controller.getPlant()), listenerIP, SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 		        	}
+		        	if(listenerIP.startsWith("/"))
+	        			listenerIP = listenerIP.substring(1, listenerIP.length());
+		        	new Message().run(SocketUtil.toBypeArray(controller.getPlant()), listenerIP, SocketUtil.GAMESTATE_LISTENER_PORT_NO);
 		        	if(controller.getPlant().isGameOver()){
 		        		GUI.endGameHandler();
 		        		break;
