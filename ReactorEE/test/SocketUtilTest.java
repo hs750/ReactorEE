@@ -84,6 +84,18 @@ public class SocketUtilTest {
 		ss.close();
 		
 	}
+	
+	/**
+	 * Tests whether SocketUtils.portTaken() correctly returns whether a given port is already being used.
+	 * @throws IOException
+	 */
+	@Test
+	public void testPortTaken() throws IOException{
+		assertTrue(!SocketUtil.portTaken(9000));
+		ServerSocket ss = new ServerSocket(9000);
+		assertTrue(SocketUtil.portTaken(9000));
+		ss.close();
+	}
 
 	/**
 	 * Tests whether an instance of a plant is serialized and then unserialized correctly, resulting in the initial and unserialized version of the plant are the same.
