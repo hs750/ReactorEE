@@ -18,11 +18,11 @@ import ReactorEE.simulator.ReactorUtils;
 public class SocketUtilTest {
 	
 	/**
-	 * Tests whether a string sent over a socket is read from the socket by the method SocketUtil.readString() correctly.
+	 * Tests whether a string sent over a socket using SocketUtil.wright() is read from the socket by the method SocketUtil.readString() correctly.
 	 * @throws IOException
 	 */
 	@Test
-	public void testReadString() throws IOException{
+	public void testWriteAndReadString() throws IOException{
 		final String message = "Hello Testing World!";
 		ServerSocket ss = new ServerSocket(9000);
 		
@@ -31,7 +31,7 @@ public class SocketUtilTest {
 				try {	Thread.sleep(10);	} catch (InterruptedException e) {e.printStackTrace();}
 				try {
 					Socket s1 = new Socket(InetAddress.getLocalHost(), 9000);
-					s1.getOutputStream().write(message.getBytes());
+					SocketUtil.write(s1, message);
 					s1.close();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -50,11 +50,11 @@ public class SocketUtilTest {
 	}
 	
 	/**
-	 * Tests whether a byte array written to a socket is read correctly from the socket using SocketUtil.readBytes(). 
+	 * Tests whether a byte array written to a socket using SocketUitl.write() is read correctly from the socket using SocketUtil.readBytes(). 
 	 * @throws IOException
 	 */
 	@Test
-	public void testReadBytes() throws IOException{
+	public void testWriteAndReadBytes() throws IOException{
 		final byte[] message = "Hello Testing World!".getBytes();
 		ServerSocket ss = new ServerSocket(9000);
 		
@@ -63,7 +63,7 @@ public class SocketUtilTest {
 				try {	Thread.sleep(10);	} catch (InterruptedException e) {e.printStackTrace();}
 				try {
 					Socket s1 = new Socket(InetAddress.getLocalHost(), 9000);
-					s1.getOutputStream().write(message);
+					SocketUtil.write(s1, message);
 					s1.close();
 				} catch (IOException e) {
 					e.printStackTrace();
