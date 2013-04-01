@@ -84,7 +84,16 @@ public class MultiplayerMainGUI extends MainGUI{
 				} catch (Exception e1) {e1.printStackTrace();}
             }
         });
+		
+		btnStep.setEnabled(false);
 	}
+	
+	@Override
+	public void endGameHandler(){
+		@SuppressWarnings("unused")
+		EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
+	}
+
 	
 }
 
