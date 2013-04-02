@@ -396,7 +396,7 @@ public class MainGUI
         
         sliderRodsLevel = new JSlider();
         sliderRodsLevel.setOpaque(false);
-        sliderRodsLevel.setBounds(63, 592, 25, 106);
+        sliderRodsLevel.setBounds(27, 592, 25, 106);
         sliderRodsLevel.setOrientation(SwingConstants.VERTICAL);
         sliderRodsLevel.setValue(0);
         sliderRodsLevel.addChangeListener(new ChangeListener() {
@@ -540,7 +540,13 @@ public class MainGUI
 					}
             	}
                 if(plantController.getUIData().isGameOver())
-                    endGameHandler();
+                {
+                	//Show score and create a new game selection screen
+                	   
+                	//frame.dispose();
+                	endGameHandler();
+                }
+                    
             }
         });
         layeredPane.setLayer(btnStep, 1);
@@ -669,7 +675,7 @@ public class MainGUI
                     plantController.executeStoredCommand();
                     updateGUI();
                     
-                } 
+                }  
             }
         });
         layeredPane.setLayer(btnRepairTurbine, 1);
@@ -693,6 +699,7 @@ public class MainGUI
             }
         });
         btnQuench = new JButton("QUENCH!");
+        btnQuench.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/btnRepairDisabled.png")));
         btnQuench.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		plantController.getPlant().getOperatingSoftware().quench();
@@ -701,7 +708,7 @@ public class MainGUI
         	}
         });
         layeredPane.setLayer(btnQuench, 1);
-        btnQuench.setBounds(87, 626, 89, 23);
+        btnQuench.setBounds(47, 627, 59, 62);
         layeredPane.add(btnQuench);
         
         
@@ -1076,9 +1083,12 @@ public class MainGUI
     {
     	@SuppressWarnings("unused")
 		EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
-    	plantController.newGame(initialNameValue);
-    	updateGUI();
-    	sliderNumberOfSteps.setValue(1);
+    	//plantController.newGame(initialNameValue);
+    	//updateGUI();
+    	//sliderNumberOfSteps.setValue(1);
+    	frame.dispose();
+    	
+    	
     }
     
     
