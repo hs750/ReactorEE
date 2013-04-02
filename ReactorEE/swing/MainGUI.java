@@ -61,7 +61,7 @@ public class MainGUI
     private JButton btnShowManual;
     private JButton btnShowScores;
     //make a number of steps
-    private JButton btnStep;
+    protected JButton btnStep;
     protected JButton btnRepairOperatingSoftware;
     
     //the affect of those buttons is dependent on the state of the operating software
@@ -131,7 +131,7 @@ public class MainGUI
     private ArrayList<String> componentsBeingRepaired = new ArrayList<String>();
     
     //the string that is shown initially in the player name field
-    private String initialNameValue = "Change me";
+    protected String initialNameValue = "Change me";
 
     //a temporary value which has different usages 
     private int tempValue;

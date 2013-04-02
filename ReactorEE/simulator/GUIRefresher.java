@@ -13,6 +13,10 @@ public class GUIRefresher extends StepLooper {
 	public void run(){
 		while(true){
 			try {
+				if(controller.getPlant().isGameOver()){
+					GUI.endGameHandler();
+					break;
+				}
 				GUI.updateGUI();
 				Thread.sleep(waitPeriod);
 			} catch (InterruptedException e) {

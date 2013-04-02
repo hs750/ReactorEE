@@ -8,6 +8,7 @@ import ReactorEE.simulator.MultiplayerStepLooper;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.sound.Music;
+import ReactorEE.swing.MPOperatorMainGUI;
 import ReactorEE.swing.MainGUI;
 
 public class HandshakeListener  extends Thread
@@ -44,7 +45,7 @@ public class HandshakeListener  extends Thread
 					Thread listen = new Thread(new SabotageListener(commitedIP, plantController));
 					listen.start();								
 					SocketUtil.write(socket, "ANCHOVY FREE");	
-					MainGUI view = new MainGUI(plantController);
+					MPOperatorMainGUI view = new MPOperatorMainGUI(plantController);
 					plantController.setStepLooper(new MultiplayerStepLooper(plantController, view, commitedIP));
 					Music.changeGameContext("game");
 					socket.getOutputStream().close();					

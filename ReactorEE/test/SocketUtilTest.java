@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 import org.junit.Test;
 
@@ -13,6 +16,86 @@ import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 
 public class SocketUtilTest {
+	
+	/**
+	 * Tests whether a string sent over a socket using SocketUtil.wright() is read from the socket by the method SocketUtil.readString() correctly.
+	 * @throws IOException
+	 */
+	@Test
+	public void testWriteAndReadString() throws IOException{
+		final String message = "Hello Testing World!";
+		ServerSocket ss = new ServerSocket(9000);
+		
+		class Sender extends Thread{
+			public void run(){
+				try {	Thread.sleep(10);	} catch (InterruptedException e) {e.printStackTrace();}
+				try {
+					Socket s1 = new Socket(InetAddress.getLocalHost(), 9000);
+					SocketUtil.write(s1, message);
+					s1.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		new Sender().run();
+		Socket s = ss.accept();
+		
+		assertEquals(message, SocketUtil.readString(s));
+		
+		s.close();
+		ss.close();
+		
+	}
+	
+	/**
+	 * Tests whether a byte array written to a socket using SocketUitl.write() is read correctly from the socket using SocketUtil.readBytes(). 
+	 * @throws IOException
+	 */
+	@Test
+	public void testWriteAndReadBytes() throws IOException{
+		final byte[] message = "Hello Testing World!".getBytes();
+		ServerSocket ss = new ServerSocket(9000);
+		
+		class Sender extends Thread{
+			public void run(){
+				try {	Thread.sleep(10);	} catch (InterruptedException e) {e.printStackTrace();}
+				try {
+					Socket s1 = new Socket(InetAddress.getLocalHost(), 9000);
+					SocketUtil.write(s1, message);
+					s1.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		new Sender().run();
+		Socket s = ss.accept();
+		
+		byte[] recieved = SocketUtil.readBytes(s);
+		for(int i = 0; i < message.length; i++){
+			assertEquals(message[i], recieved[i]);
+		}
+		
+		
+		s.close();
+		ss.close();
+		
+	}
+	
+	/**
+	 * Tests whether SocketUtils.portTaken() correctly returns whether a given port is already being used.
+	 * @throws IOException
+	 */
+	@Test
+	public void testPortTaken() throws IOException{
+		assertTrue(!SocketUtil.portTaken(9000));
+		ServerSocket ss = new ServerSocket(9000);
+		assertTrue(SocketUtil.portTaken(9000));
+		ss.close();
+	}
 
 	/**
 	 * Tests whether an instance of a plant is serialized and then unserialized correctly, resulting in the initial and unserialized version of the plant are the same.

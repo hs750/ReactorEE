@@ -136,6 +136,14 @@ public class PlantController {
 		resetStepLooper();
 	}
 	
+	public synchronized void newMultiplayerGame(String operatorName){
+		this.plant = new ReactorUtils().createNewPlant();
+		this.plant.setOperatorName(operatorName);
+		readHighScores();
+		uidata = new UIData(plant);
+		
+	}
+	
 	/**
 	 * Saves the state of the current game (plant) into a file called "save.ser" inside the current folder.
 	 * 
