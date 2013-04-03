@@ -49,7 +49,7 @@ public class MainGUI
     protected PlantController plantController;
     
     //the main frame
-    private JFrame frame;
+    private JFrame frmReactoree;
     
     //the field where the player should write theirs
     private JTextField nameTextField;
@@ -147,7 +147,7 @@ public class MainGUI
     {
         this.plantController = plantController;
         initialize();
-        frame.setVisible(true);
+        frmReactoree.setVisible(true);
     }
 
 
@@ -157,14 +157,15 @@ public class MainGUI
     private void initialize()
     {
     	//instantiates the main frame
-        frame = new JFrame();
-        frame.setBounds(100, 100, 1049, 740);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmReactoree = new JFrame();
+        frmReactoree.setTitle("ReactorEE");
+        frmReactoree.setBounds(100, 100, 1049, 740);
+        frmReactoree.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //which is layered - two layers: background picture - layer 0
         //all interactive components - layer 1
         JLayeredPane layeredPane = new JLayeredPane();
-        frame.getContentPane().add(layeredPane, BorderLayout.CENTER);
+        frmReactoree.getContentPane().add(layeredPane, BorderLayout.CENTER);
         
         //loads and sets the background image
         java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
@@ -438,10 +439,12 @@ public class MainGUI
         btnNewGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 btnNewGame.setEnabled(false);
-                plantController.newGame(initialNameValue);
-                updateGUI();
+                //plantController.newGame(initialNameValue);
+                //updateGUI();
                 btnNewGame.setEnabled(true);
                 sliderNumberOfSteps.setValue(1);
+                frmReactoree.dispose();
+                new GameTypeSelectionGUI();
             }
         });
         layeredPane.setLayer(btnNewGame, 1);
@@ -1086,7 +1089,7 @@ public class MainGUI
     	//plantController.newGame(initialNameValue);
     	//updateGUI();
     	//sliderNumberOfSteps.setValue(1);
-    	frame.dispose();
+    	frmReactoree.dispose();
     	
     	
     }
@@ -1098,7 +1101,7 @@ public class MainGUI
      */
     public JFrame getFrame()
     {
-    	return frame;
+    	return frmReactoree;
     }
     
     
