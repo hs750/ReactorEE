@@ -216,3 +216,7 @@ pip-log.txt
 
 #IntelliJ IDEA
 .idea
+*.eml
+*.iml
+
+*.iml
