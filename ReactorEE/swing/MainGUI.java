@@ -32,6 +32,7 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Label;
 
 
 /**
@@ -79,7 +80,7 @@ public class MainGUI
     private JLabel lblPump3State;
     private JLabel lblTurbineState;
     private JLabel lblOperatingSoftwareState;
-    
+    private JLabel warningLabel;
     
     private JLabel lblScore;
     
@@ -170,6 +171,13 @@ public class MainGUI
         //loads and sets the background image
         java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
+        
+        warningLabel = new JLabel("Warning");
+        warningLabel.setToolTipText("Reactor is overheating!");
+        warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
+        warningLabel.setBounds(27, 58, 500, 500);
+        layeredPane.add(warningLabel);
+        warningLabel.setVisible(false);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
@@ -711,7 +719,7 @@ public class MainGUI
         	}
         });
         layeredPane.setLayer(btnQuench, 1);
-        btnQuench.setBounds(47, 627, 59, 62);
+        btnQuench.setBounds(70, 626, 59, 62);
         layeredPane.add(btnQuench);
         
         
@@ -1072,8 +1080,10 @@ public class MainGUI
         
         if(plantController.getPlant().getReactor().isQuenchable()){
         	btnQuench.setEnabled(true);
+        	warningLabel.setVisible(true);
         }else{
         	btnQuench.setEnabled(false);
+        	warningLabel.setVisible(false);
         }
     }
     
