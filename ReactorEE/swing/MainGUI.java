@@ -1096,12 +1096,13 @@ public class MainGUI
     {
     	@SuppressWarnings("unused")
 		EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
+    	plantController.togglePaused();
     	//plantController.newGame(initialNameValue);
     	//updateGUI();
     	//sliderNumberOfSteps.setValue(1);
     	frmReactoree.dispose();
-    	
-    	
+
+    	new GameTypeSelectionGUI();
     }
     
     

@@ -28,8 +28,8 @@ public class MultiplayerSelectionGUI {
 
 	private JFrame frmMultiplayerConnection;
 	private JTextField txtOperatorIP;
-	protected Component btnCancel;
-	protected Component btnSabateur;
+	//protected Component btnCancel;
+	//protected Component btnSabateur;
 
 	/**
 	 * Launch the application.
@@ -72,6 +72,8 @@ public class MultiplayerSelectionGUI {
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         
 		final JButton btnOperator = new JButton("Operator");
+		final JButton btnSabateur = new JButton("Saboteur");
+		final JButton btnCancel = new JButton("Cancel");
 		
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +88,7 @@ public class MultiplayerSelectionGUI {
 		});
 		btnOperator.setBounds(310, 66, 117, 29);
 		layeredPane.add(btnOperator);
-        final JButton btnSabateur = new JButton("Saboteur");
+        
         
         
         btnSabateur.addActionListener(new ActionListener() {
@@ -113,7 +115,7 @@ public class MultiplayerSelectionGUI {
         });
         btnSabateur.setBounds(310, 124, 117, 29);
         layeredPane.add(btnSabateur);
-        final JButton btnCancel = new JButton("Cancel");
+        
         btnCancel.setEnabled(false);
         
         
