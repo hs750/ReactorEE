@@ -53,7 +53,6 @@ public class GameTypeSelectionGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Music.changeGameContext("Menu");
 		frmErr = new JFrame();
 		frmErr.setTitle("Game type selection");
 		frmErr.setBounds(100, 100, 450, 300);
