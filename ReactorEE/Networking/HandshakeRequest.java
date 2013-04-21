@@ -31,11 +31,10 @@ public class HandshakeRequest
 		if(SocketUtil.readString(socket).equalsIgnoreCase("ANCHOVY FREE"))	
 		{
 			GamestateListener listen = new GamestateListener(HostIP, plantController);
-			PlantController controller = new PlantController(new ReactorUtils());
 			MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);
 			//no step looper needed as stepping is synchronized through GamestateListener
 			Music.changeGameContext("game");
-			controller.setStepLooper(new GUIRefresher(controller, view));
+			(new PlantController(new ReactorUtils())).setStepLooper(new GUIRefresher(plantController, view));
 			listen.start();
 		}
 		socket.close();												
