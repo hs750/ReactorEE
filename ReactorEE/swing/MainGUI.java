@@ -46,6 +46,8 @@ import java.awt.Label;
  */
 public class MainGUI
 {
+	protected JLayeredPane layeredPane = new JLayeredPane();
+	
 	// the only reference that is needed to the plant
     protected PlantController plantController;
     
@@ -165,7 +167,8 @@ public class MainGUI
         
         //which is layered - two layers: background picture - layer 0
         //all interactive components - layer 1
-        JLayeredPane layeredPane = new JLayeredPane();
+        
+        
         frmReactoree.getContentPane().add(layeredPane, BorderLayout.CENTER);
         
         //loads and sets the background image
