@@ -5,10 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.simulator.StepLooper;
 import ReactorEE.swing.MainGUI;
+import ReactorEE.swing.MultiplayerMainGUI;
 
 public class StepLooperTest {
 
@@ -44,6 +46,52 @@ public class StepLooperTest {
 	
 	}
 	
-	
+	/**
+	 * Tests whether Sabotages for player two in multi player are correctly given and used during gameplay.
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void testSabotageLimit() throws InterruptedException{
+		gui = new MultiplayerMainGUI(controller, "127.0.0.1");
+		GUIRefresher guir = new GUIRefresher(controller, gui);
+		controller.setStepLooper(guir);
+		assertEquals(0,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(1,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(2,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(3,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(3,guir.getNumberOfAvailableSabotages());
+		
+		guir.useSabo();
+		assertEquals(2,guir.getNumberOfAvailableSabotages());
+		
+		guir.useSabo();
+		assertEquals(1,guir.getNumberOfAvailableSabotages());
+		
+		guir.useSabo();
+		assertEquals(0,guir.getNumberOfAvailableSabotages());
+		
+		guir.useSabo();
+		assertEquals(0,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(1,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(2,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(3,guir.getNumberOfAvailableSabotages());
+		
+		controller.step(5);
+		assertEquals(3,guir.getNumberOfAvailableSabotages());
+	}
 
 }
