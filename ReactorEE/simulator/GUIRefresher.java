@@ -11,7 +11,7 @@ public class GUIRefresher extends StepLooper {
 	}
 	
 	private static int MAX_NO_OF_SABOS = 3;
-	private static int STEPS_TO_GAIN_SABO = 5;
+	private static int STEPS_TO_GAIN_SABO = 10;
 	private int currentAvailableSabos = 0;
 	private int lastSaboGivenAt = 0 ;
 	
@@ -60,6 +60,10 @@ public class GUIRefresher extends StepLooper {
 	 * @return The Number of sabotages that the player currently has available.
 	 */
 	public synchronized int getNumberOfAvailableSabotages(){
+		if(controller.getPlant().getTimeStepsUsed() == 0){
+			currentAvailableSabos = 0;
+			lastSaboGivenAt = 0;
+		}
 		if(controller.getPlant().getTimeStepsUsed() == lastSaboGivenAt + STEPS_TO_GAIN_SABO){
 			if(currentAvailableSabos < MAX_NO_OF_SABOS){
 				currentAvailableSabos++;
