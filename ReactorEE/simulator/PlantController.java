@@ -136,8 +136,14 @@ public class PlantController {
 		resetStepLooper();
 	}
 	
+	/**
+	 * Creates a new game for use in multiplayer. This involves not reseting the setpLooper as in a single player now game and reducing the failure rate of falable components.
+	 * @param operatorName
+	 */
 	public synchronized void newMultiplayerGame(String operatorName){
-		this.plant = new ReactorUtils().createNewPlant();
+		ReactorUtils utils = new ReactorUtils();
+		this.plant = utils.createNewPlant();
+		utils.setFailureRateOfFalableComponents(plant, 1, 1);
 		this.plant.setOperatorName(operatorName);
 		readHighScores();
 		uidata = new UIData(plant);
