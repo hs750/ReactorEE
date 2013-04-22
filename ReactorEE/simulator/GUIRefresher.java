@@ -16,16 +16,22 @@ public class GUIRefresher extends StepLooper {
 	private int lastSaboGivenAt = 0 ;
 	
 	@Override
+	/**
+	 * This method continuously runs, updating the saboteur's gui, keeping it up to date with the latest information on the plant and game's state. 
+	 */
 	public void run(){
 		((MultiplayerMainGUI) GUI).setGUIRefresher(this);
 		
+		boolean gameEnded = false;
 		while(true){
 			try {
-				if(controller.getPlant().isGameOver()){
+				if(controller.getPlant().isGameOver() && !gameEnded){
 					GUI.endGameHandler();
-					break;
+					gameEnded = true;
 				}
-				
+				if(!controller.getPlant().isGameOver()){
+					gameEnded = false;
+				}
 				GUI.updateGUI();
 				Thread.sleep(waitPeriod);
 			} catch (InterruptedException e) {
