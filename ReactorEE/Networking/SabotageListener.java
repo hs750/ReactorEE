@@ -1,5 +1,6 @@
 package ReactorEE.Networking;
 
+import java.net.Inet4Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -36,7 +37,7 @@ public class SabotageListener extends Thread
 			while (close == false) 
 			{
 				Socket socket = serverSocket.accept();								 
-				if (consumerIP.equalsIgnoreCase(socket.getInetAddress().toString())) 
+				if (consumerIP.equalsIgnoreCase(socket.getInetAddress().toString()) || socket.getInetAddress().toString().substring(1).equals(Inet4Address.getLocalHost().getHostAddress())) 
 				{
 					String message = SocketUtil.readString(socket);	
 					if(message.equalsIgnoreCase("ANCHOVY KILL"))

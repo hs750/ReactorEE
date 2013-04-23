@@ -1,6 +1,7 @@
 package ReactorEE.Networking;
 
 import java.io.StreamCorruptedException;
+import java.net.Inet4Address;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -36,7 +37,7 @@ public class GamestateListener extends Thread
 			while (close == false) 																
 			{
 				Socket socket = serverSocket.accept();
-				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString().substring(1))) 	
+				if(consumerIP.equalsIgnoreCase(socket.getInetAddress().toString().substring(1)) || socket.getInetAddress().toString().substring(1).equals(Inet4Address.getLocalHost().getHostAddress())) 	
 				{
 					byte[] message = SocketUtil.readBytes(socket);	
 					if(new String(message).trim().equalsIgnoreCase("ANCHOVY KILL"))

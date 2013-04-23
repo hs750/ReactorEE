@@ -3,7 +3,6 @@ package ReactorEE.Networking;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
