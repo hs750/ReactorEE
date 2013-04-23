@@ -124,8 +124,8 @@ public class Music {
 	protected Thread playback;
 	
 	// data
-	private static final List<String> menu = Arrays.asList("menu-1", "menu-2");
-	private static final List<String> playing = Arrays.asList("game-1", "game-2", "game-3", "game-4");
+	private static final List<String> menu = Arrays.asList("game-3");
+	private static final List<String> playing = Arrays.asList("menu-1");
 	private static final List<String> credits = Arrays.asList();
 	private static final String path = "Music/";
 	private static final String extension = ".mp3";
