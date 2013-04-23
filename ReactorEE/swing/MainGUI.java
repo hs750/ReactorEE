@@ -32,7 +32,6 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Label;
 
 
 /**
@@ -58,9 +57,9 @@ public class MainGUI
     private JTextField nameTextField;
     
     //the buttons which effect is not dependent on the operating software
-    private JButton btnNewGame;
-    private JButton btnLoad;
-    private JButton btnSave;
+    protected JButton btnNewGame;
+    protected JButton btnLoad;
+    protected JButton btnSave;
     private JButton btnShowManual;
     private JButton btnShowScores;
     //make a number of steps
@@ -86,9 +85,6 @@ public class MainGUI
     
     private JLabel lblScore;
     
-    //this label shows how many timesteps will be issued
-    private JLabel lblNumberOfSteps;
-    
     //progress bars showing the temperature, pressure, water level and
     //health of the reactor and the condenser
     private JProgressBar progressBarReactorTemperature;
@@ -107,7 +103,6 @@ public class MainGUI
     private JSlider sliderPump2RPM;
     private JSlider sliderPump3RPM;
     private JSlider sliderRodsLevel;
-    private JSlider sliderNumberOfSteps;
     
     //image icons containing the images that are used in the gui
     private ImageIcon repairButtonEnabledImageIcon;
@@ -265,17 +260,6 @@ public class MainGUI
         layeredPane.setLayer(nameTextField, 1);
         layeredPane.add(nameTextField);
         
-        //instantiation of the label showing the number of time steps
-        lblNumberOfSteps = new JLabel("1");
-        lblNumberOfSteps.setEnabled(false);
-        lblNumberOfSteps.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblNumberOfSteps.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        lblNumberOfSteps.setBounds(369, 499, 40, 40);
-        lblNumberOfSteps.setBackground(new Color(18, 140, 0));
-        lblNumberOfSteps.setOpaque(false);
-        layeredPane.setLayer(lblNumberOfSteps, 1);
-        layeredPane.add(lblNumberOfSteps);
-        
         //all the labels that show component states are
         //initialised with green light showing
         lblPump1State = new JLabel(stateSafeImageIcon);
@@ -425,21 +409,6 @@ public class MainGUI
         layeredPane.setLayer(sliderRodsLevel, 1);
         layeredPane.add(sliderRodsLevel);
         
-        sliderNumberOfSteps = new JSlider();
-        sliderNumberOfSteps.setEnabled(false);
-        sliderNumberOfSteps.setBounds(46, 508, 305, 23);
-        sliderNumberOfSteps.setOpaque(false);
-        sliderNumberOfSteps.setValue(0);
-        sliderNumberOfSteps.setMinimum(1);
-        sliderNumberOfSteps.setMaximum(10);
-        sliderNumberOfSteps.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent arg0) {
-                lblNumberOfSteps.setText("" + sliderNumberOfSteps.getValue());
-            }
-        });
-        layeredPane.setLayer(sliderNumberOfSteps, 1);
-        layeredPane.add(sliderNumberOfSteps);
-        
         //starts a new game when pressed
         //and updates the gui
         btnNewGame = new JButton(newGameImageIcon);
@@ -453,7 +422,6 @@ public class MainGUI
                 //plantController.newGame(initialNameValue);
                 //updateGUI();
                 btnNewGame.setEnabled(true);
-                sliderNumberOfSteps.setValue(1);
                 frmReactoree.dispose();
                 new GameTypeSelectionGUI();
             }
@@ -541,9 +509,7 @@ public class MainGUI
         btnStep.setBorder(null);
         btnStep.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                for(int i=0;i<sliderNumberOfSteps.getValue();i++)
-            	{
-                	
+               
                 	if (!plantController.getUIData().isGameOver()) {
 						plantController.togglePaused();
 						if(plantController.getPlant().isPaused())
@@ -552,7 +518,7 @@ public class MainGUI
 							btnStep.setIcon(nextStepPausedImageIcon);
 						updateGUI();
 					}
-            	}
+            	
                 if(plantController.getUIData().isGameOver())
                 {
                 	//Show score and create a new game selection screen
