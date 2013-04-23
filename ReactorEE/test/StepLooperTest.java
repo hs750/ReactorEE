@@ -57,16 +57,16 @@ public class StepLooperTest {
 		controller.setStepLooper(guir);
 		assertEquals(0,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(1,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(2,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(3,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(3,guir.getNumberOfAvailableSabotages());
 		
 		guir.useSabo();
@@ -81,16 +81,16 @@ public class StepLooperTest {
 		guir.useSabo();
 		assertEquals(0,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(1,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(2,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(3,guir.getNumberOfAvailableSabotages());
 		
-		controller.step(5);
+		controller.step(10);
 		assertEquals(3,guir.getNumberOfAvailableSabotages());
 	}
 
