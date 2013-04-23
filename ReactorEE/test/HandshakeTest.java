@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import ReactorEE.Networking.HandshakeListener;
 import ReactorEE.Networking.HandshakeRequest;
+import ReactorEE.swing.MultiplayerSelectionGUI;
 
 public class HandshakeTest {
 
@@ -21,8 +22,8 @@ public class HandshakeTest {
 	 */
 	@Test
 	public void testHandshake() throws UnknownHostException, IOException, InterruptedException {
-		HandshakeListener hsl = new HandshakeListener();
-		HandshakeRequest hsr = new HandshakeRequest();
+		HandshakeListener hsl = new HandshakeListener(new MultiplayerSelectionGUI());
+		HandshakeRequest hsr = new HandshakeRequest(new MultiplayerSelectionGUI());
 		
 		hsl.start();
 		hsr.run(InetAddress.getLocalHost().getHostAddress());

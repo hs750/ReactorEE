@@ -10,9 +10,14 @@ import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.sound.Music;
 import ReactorEE.swing.MultiplayerMainGUI;
+import ReactorEE.swing.MultiplayerSelectionGUI;
 
 public class HandshakeRequest 
 {
+	private MultiplayerSelectionGUI parent = null;
+	public HandshakeRequest(MultiplayerSelectionGUI parent){
+		this.parent = parent;
+	}
 	/**
 	 * Handles the initial handshaking procedure with the other player's computer.
 	 * Sends an expected message and waits for a reply. If the reply is also expected, 
@@ -36,6 +41,7 @@ public class HandshakeRequest
 			Music.changeGameContext("game");
 			(new PlantController(new ReactorUtils())).setStepLooper(new GUIRefresher(plantController, view));
 			listen.start();
+			parent.close();
 		}
 		socket.close();												
 	}	

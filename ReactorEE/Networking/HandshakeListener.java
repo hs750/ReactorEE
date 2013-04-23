@@ -9,9 +9,15 @@ import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.sound.Music;
 import ReactorEE.swing.MPOperatorMainGUI;
+import ReactorEE.swing.MultiplayerSelectionGUI;
 
 public class HandshakeListener  extends Thread
 {	
+	
+	private MultiplayerSelectionGUI parent = null;
+	public HandshakeListener(MultiplayerSelectionGUI parent){
+		this.parent = parent;
+	}
 	/**
 	 * Handles the initial handshaking procedure with the other player's computer.
 	 * Waits for another player to send a message, once a message is received it is validated
@@ -47,8 +53,9 @@ public class HandshakeListener  extends Thread
 					MPOperatorMainGUI view = new MPOperatorMainGUI(plantController);
 					plantController.setStepLooper(new MultiplayerStepLooper(plantController, view, commitedIP));
 					Music.changeGameContext("game");
-					socket.getOutputStream().close();					
-					close = true;				
+					socket.getOutputStream().close();
+					parent.close();
+					close = true;
 				}
 				else if(message.equalsIgnoreCase("ANCHOVY KILL") && socket.getInetAddress().toString().substring(1).equals(InetAddress.getLocalHost().getHostAddress())){
 					socket.getOutputStream().close();

@@ -77,7 +77,7 @@ public class MultiplayerSelectionGUI {
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-				new HandshakeListener().start();
+				new HandshakeListener(getThis()).start();
 				btnOperator.setEnabled(false);
 				btnSabateur.setEnabled(false);
 				btnCancel.setEnabled(true);
@@ -96,7 +96,7 @@ public class MultiplayerSelectionGUI {
         			String suppliedIP = txtOperatorIP.getText();
         			if(ReactorEE.Networking.SocketUtil.validateIP(suppliedIP) == true)
         			{
-        				new HandshakeRequest().run(suppliedIP);
+        				new HandshakeRequest(getThis()).run(suppliedIP);
         				
         				btnOperator.setEnabled(false);
         				btnSabateur.setEnabled(false);
@@ -148,5 +148,15 @@ public class MultiplayerSelectionGUI {
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 450, 300);
         layeredPane.add(backgroundImageLabel);
+	}
+	
+	/**
+	 * Closes this window.
+	 */
+	public void close(){
+		frmMultiplayerConnection.dispose();
+	}
+	private MultiplayerSelectionGUI getThis(){
+		return this;
 	}
 }
