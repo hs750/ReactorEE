@@ -23,12 +23,14 @@ public class HandshakeTest {
 	@Test
 	public void testHandshake() throws UnknownHostException, IOException, InterruptedException {
 		HandshakeListener hsl = new HandshakeListener(new MultiplayerSelectionGUI());
-		HandshakeRequest hsr = new HandshakeRequest(new MultiplayerSelectionGUI());
+		HandshakeRequest hsr = new HandshakeRequest(new MultiplayerSelectionGUI(), InetAddress.getLocalHost().getHostAddress());
 		
 		hsl.start();
-		hsr.run(InetAddress.getLocalHost().getHostAddress());
-		Thread.sleep(50);
+		Thread.sleep(500);
+		hsr.start();
+		Thread.sleep(500);
 		
+		//After some time the listener is nolonger active.
 		assertTrue(!hsl.isAlive());
 	}
 

@@ -92,15 +92,18 @@ public class MultiplayerSelectionGUI {
         
         btnSabateur.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		btnOperator.setEnabled(false);
+				btnSabateur.setEnabled(false);
+				btnCancel.setEnabled(true);
         		try {
         			String suppliedIP = txtOperatorIP.getText();
         			if(ReactorEE.Networking.SocketUtil.validateIP(suppliedIP) == true)
         			{
-        				new HandshakeRequest(getThis()).run(suppliedIP);
-        				
         				btnOperator.setEnabled(false);
         				btnSabateur.setEnabled(false);
         				btnCancel.setEnabled(true);
+        				new HandshakeRequest(getThis(),suppliedIP).start();
+        				
         				
         			}
         			else 
@@ -121,12 +124,11 @@ public class MultiplayerSelectionGUI {
         btnCancel.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		try {
-        			new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), SocketUtil.HANDSHAKE_PORT_NO);
         			btnOperator.setEnabled(true);
         			btnSabateur.setEnabled(true);
         			btnCancel.setEnabled(false);
+        			new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), SocketUtil.HANDSHAKE_PORT_NO);
         		} catch (Exception e1) {
-        			e1.printStackTrace();
         		}
         	}
         });
