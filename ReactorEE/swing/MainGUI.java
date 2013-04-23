@@ -60,8 +60,8 @@ public class MainGUI
     protected JButton btnNewGame;
     protected JButton btnLoad;
     protected JButton btnSave;
-    private JButton btnShowManual;
-    private JButton btnShowScores;
+    protected JButton btnShowManual;
+    protected JButton btnShowScores;
     //make a number of steps
     protected JButton btnStep;
     protected JButton btnRepairOperatingSoftware;

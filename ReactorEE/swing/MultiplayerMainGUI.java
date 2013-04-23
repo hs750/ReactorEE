@@ -18,6 +18,7 @@ public class MultiplayerMainGUI extends MainGUI{
 	private String saboteurIP;
 	JLabel lblAvailableSabos = new JLabel("Available Sabotages: 0");
 	GUIRefresher guir = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -97,13 +98,23 @@ public class MultiplayerMainGUI extends MainGUI{
             }
         });
 		
-		btnStep.setEnabled(false);
+		//disable step button as sabateur cannot controll playing of the game. keeping it allows saboteur to see whether the game is playing or not.
+		btnStep.removeActionListener(btnStep.getActionListeners()[0]);
 		
-		
+		//initialise label displaying the number of sabtages that that sabateur has.
         lblAvailableSabos.setFont(new Font("Tahoma", Font.PLAIN, 30));
         layeredPane.setLayer(lblAvailableSabos, 2);
         lblAvailableSabos.setBounds(46, 490, 315, 59);
         layeredPane.add(lblAvailableSabos);
+        
+        //disable gui componnets that are not needed in multiplayer
+      	btnLoad.setEnabled(false);
+      	btnLoad.setVisible(false);
+      	btnSave.setEnabled(false);
+      	btnSave.setVisible(false);
+      	//Move remaining buttons
+      	btnShowManual.setBounds(btnLoad.getX(), btnShowManual.getY(), btnShowManual.getWidth(), btnShowManual.getHeight());
+      	btnShowScores.setBounds(btnSave.getX(), btnShowScores.getY(), btnShowScores.getWidth(), btnShowScores.getHeight());
 	}
 	
 	@Override
