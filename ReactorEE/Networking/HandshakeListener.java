@@ -9,7 +9,6 @@ import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.sound.Music;
 import ReactorEE.swing.MPOperatorMainGUI;
-import ReactorEE.swing.MainGUI;
 
 public class HandshakeListener  extends Thread
 {	

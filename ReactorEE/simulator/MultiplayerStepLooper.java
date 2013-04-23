@@ -2,7 +2,6 @@ package ReactorEE.simulator;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.rmi.ConnectException;
 
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
