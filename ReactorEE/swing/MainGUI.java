@@ -227,12 +227,12 @@ public class MainGUI
         //if the text is bigger than 15 characters only the first 15 are used
         //if the text field is empty, the initial text is set put it
         nameTextField = new JTextField(initialNameValue);
-        nameTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        nameTextField.setFont(new Font("OCR A Std", Font.PLAIN, 15));
         nameTextField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         nameTextField.setColumns(20);
         nameTextField.setOpaque(false);
         nameTextField.setBorder(null);
-        nameTextField.setBounds(10, 11, 102, 20);
+        nameTextField.setBounds(0, 14, 117, 20);
         nameTextField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent arg0) {
