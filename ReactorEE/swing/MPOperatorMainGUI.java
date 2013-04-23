@@ -35,6 +35,7 @@ public class MPOperatorMainGUI extends MainGUI {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+				plantController.newMultiplayerGame(initialNameValue);
 			}
 		});
 	}
