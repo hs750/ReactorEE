@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.PlantController;
+import ReactorEE.simulator.StepLooper;
 
 public class MPOperatorMainGUI extends MainGUI {
 
@@ -35,7 +36,9 @@ public class MPOperatorMainGUI extends MainGUI {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				plantController.newMultiplayerGame(initialNameValue);
+				
+				//Stop broadcasting plant information. 
+				MPOperatorMainGUI.this.plantController.setStepLooper(new StepLooper(MPOperatorMainGUI.this.plantController, MPOperatorMainGUI.this));
 			}
 		});
 	}

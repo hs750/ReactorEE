@@ -129,6 +129,7 @@ public class MultiplayerMainGUI extends MainGUI{
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+				//Reset game values to default - makes it obvious that the multiplayer game is no longer active.
 				plantController.newMultiplayerGame(initialNameValue);
 			}
 		});

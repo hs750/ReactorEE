@@ -64,7 +64,7 @@ public class PlantController {
 		StepLooper oldSL = slooper;
 		try{
 			setStepLooper(new StepLooper(this, slooper.getGUI()));
-			oldSL.stop();
+			oldSL.suspend();
 		}catch (NullPointerException e){
 			System.out.println("Step Looper was null! (OK during a UnitTest)");
 		}
