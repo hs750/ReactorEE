@@ -12,7 +12,7 @@ public class StepLooper extends Thread{
 	protected PlantController controller;
 	protected MainGUI GUI;
 	protected int waitPeriod = 500;
-	
+	protected boolean running = true;
 	
 	/**
 	 * Initialise the the step loop with the objects needed to control the loop. 
@@ -32,7 +32,7 @@ public class StepLooper extends Thread{
 	 */
 	public void run(){
 		 try {
-		        while (true) {
+		        while (running) {
 		        	if(!controller.getPlant().isPaused() & !controller.getPlant().isGameOver()){
 		        		controller.step(1);
 		        		GUI.updateGUI();
@@ -50,13 +50,25 @@ public class StepLooper extends Thread{
 		 
 	}
 
-
+	/**
+	 * @return The GUI that the step looper is running with.
+	 */
 	public MainGUI getGUI() {
 		return GUI;
 	}
 
+	/**
+	 * @return The amount of time the loop is asleep between iterations
+	 */
 	public int getWaitPeriod() {
 		return waitPeriod;
+	}
+	
+	/**
+	 * Stop the step looper from running it's loop.
+	 */
+	public void stopLoop(){
+		running = false;
 	}
 
 }

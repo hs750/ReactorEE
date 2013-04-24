@@ -25,7 +25,7 @@ public class MultiplayerStepLooper extends StepLooper {
 		boolean gameOver = false;
 		int connectionAttempts = 0;
 		 try {
-		        while (true) {
+		        while (running) {
 		        	if(!controller.getPlant().isPaused() & !controller.getPlant().isGameOver()){
 		        		controller.step(1);
 		        		GUI.updateGUI();

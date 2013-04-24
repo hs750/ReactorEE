@@ -1192,4 +1192,8 @@ public class PlantController {
 		this.plant = p;
 		uidata = new UIData(plant);
 	}
+	
+	public StepLooper getStepLooper(){
+		return slooper;
+	}
 }

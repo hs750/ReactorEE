@@ -23,7 +23,7 @@ public class GUIRefresher extends StepLooper {
 		((MultiplayerMainGUI) GUI).setGUIRefresher(this);
 		
 		boolean gameEnded = false;
-		while(true){
+		while(running){
 			try {
 				if(controller.getPlant().isGameOver() && !gameEnded){
 					GUI.endGameHandler();
