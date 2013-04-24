@@ -2,6 +2,7 @@ package ReactorEE.swing;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -169,6 +170,13 @@ public class MultiplayerSelectionGUI {
 			e1.printStackTrace();
 			txtOperatorIP.setText("OpIP");
 		}
+        
+        JLabel lblNewLabel = new JLabel("I.P. address");
+        lblNewLabel.setForeground(new Color(240, 255, 255));
+        lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        lblNewLabel.setLabelFor(txtOperatorIP);
+        lblNewLabel.setBounds(70, 113, 94, 47);
+        layeredPane.add(lblNewLabel);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 450, 300);
