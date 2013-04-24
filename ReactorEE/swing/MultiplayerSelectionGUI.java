@@ -27,6 +27,7 @@ public class MultiplayerSelectionGUI {
 
 	private JFrame frmMultiplayerConnection;
 	private JTextField txtOperatorIP;
+	boolean connectionActive = false;
 	//protected Component btnCancel;
 	//protected Component btnSabateur;
 
@@ -81,11 +82,12 @@ public class MultiplayerSelectionGUI {
 				btnOperator.setEnabled(false);
 				btnSabateur.setEnabled(false);
 				btnCancel.setEnabled(true);
+				connectionActive = true;
 				}catch(Exception e1){
 					e1.printStackTrace();}
 			}
 		});
-		btnOperator.setBounds(310, 66, 117, 29);
+		btnOperator.setBounds(310, 84, 117, 29);
 		layeredPane.add(btnOperator);
         
         
@@ -103,7 +105,7 @@ public class MultiplayerSelectionGUI {
         				btnSabateur.setEnabled(false);
         				btnCancel.setEnabled(true);
         				new HandshakeRequest(getThis(),suppliedIP).start();
-        				
+        				connectionActive = true;
         				
         			}
         			else 
@@ -127,6 +129,7 @@ public class MultiplayerSelectionGUI {
         			btnOperator.setEnabled(true);
         			btnSabateur.setEnabled(true);
         			btnCancel.setEnabled(false);
+        			connectionActive = false;
         			new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), SocketUtil.HANDSHAKE_PORT_NO);
         		} catch (Exception e1) {
         		}
@@ -134,7 +137,27 @@ public class MultiplayerSelectionGUI {
         });
         btnCancel.setBounds(310, 165, 117, 29);
         layeredPane.add(btnCancel);
-
+        
+        JButton btnBack = new JButton("Back");
+        btnBack.setBounds(310, 205, 117, 28);
+        layeredPane.add(btnBack);
+        
+        btnBack.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		try {
+        			frmMultiplayerConnection.dispose();
+        			if(connectionActive)
+        			{
+        				new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), SocketUtil.HANDSHAKE_PORT_NO);
+        				connectionActive = false;
+        			}
+        			new GameTypeSelectionGUI();
+        		} catch (Exception e1) 
+        		{
+        		}
+        	}
+        });
+        
         txtOperatorIP = new JTextField();
         txtOperatorIP.setBounds(164, 123, 134, 28);
         txtOperatorIP.setColumns(10);
