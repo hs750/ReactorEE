@@ -9,9 +9,9 @@ import java.util.List;
 public class MP3Player {
     protected Player player;
     protected List<String> tracks;
-
+    public boolean isInterrupted = false;
     Thread thread = new Thread() {
-        public boolean isInterrupted = false;
+       
 
         public void interrupt() {
             player.close();
