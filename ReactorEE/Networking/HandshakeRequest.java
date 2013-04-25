@@ -7,7 +7,6 @@ import java.net.Socket;
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
-import ReactorEE.sound.Music;
 import ReactorEE.swing.MultiplayerMainGUI;
 import ReactorEE.swing.MultiplayerSelectionGUI;
 
@@ -41,7 +40,7 @@ public class HandshakeRequest extends Thread
 				GamestateListener listen = new GamestateListener(HostIP, plantController);
 				MultiplayerMainGUI view = new MultiplayerMainGUI(plantController,HostIP);
 				//no step looper needed as stepping is synchronized through GamestateListener
-				Music.changeGameContext("game");
+				// TODO change music
 				(new PlantController(new ReactorUtils())).setStepLooper(new GUIRefresher(plantController, view));
 				listen.start();
 				parent.close();

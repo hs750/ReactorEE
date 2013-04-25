@@ -12,7 +12,7 @@ public class Sound {
 
         library = new HashMap<String, List<String>>();
         library.put("menu", Arrays.asList("Music/menu-1.mp3","Music/menu-2.mp3"));
-        library.put("test", Arrays.asList("Music/game-1.mp3"));
+        library.put("game", Arrays.asList("Music/game-1.mp3","Music/game-2.mp3","Music/game-3.mp3","Music/game-4.mp3"));
         library.put("bm1", Arrays.asList("Music/button-med.mp3"));
         library.put("bm2", Arrays.asList("Music/button-med2.mp3"));
         library.put("bmine", Arrays.asList("Music/button-minecraft.mp3"));
@@ -21,6 +21,7 @@ public class Sound {
         library.put("mc1", Arrays.asList("Music/menu-change.mp3"));
         library.put("mc2", Arrays.asList("Music/menu-change2.mp3"));
         //library.put("", Arrays.asList("Music/.mp3"));
+        library.put("button-test", Arrays.asList("Music/button-short.mp3", "Music/button-short2.mp3"));
     }
 
     // API
@@ -57,19 +58,6 @@ public class Sound {
     private static Sound instance = null;
     private static void setup() {
         instance = new Sound();
-    }
-
-    public static void main(String[] args) {
-        //Sound.play("menu");
-
-        List<String> s = Arrays.asList(
-                "bm1", "bm2", /*"bmine", REALLY LOUD*/ "bs1", "bs2", "mc1", "mc2");
-
-        for(int i = 0, index = 0; i < 50; ++i) {
-            try { Thread.sleep(600); } catch(Exception e) { e.printStackTrace(); }
-            Sound.play(s.get(index));
-            index = (index+1) % s.size();
-        }
     }
 
     private static boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().

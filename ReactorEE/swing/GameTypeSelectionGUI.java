@@ -3,6 +3,7 @@ package ReactorEE.swing;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.sound.sampled.SourceDataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -14,7 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
 
 import ReactorEE.simulator.SinglePlayerInit;
-import ReactorEE.sound.Music;
+import ReactorEE.sound.Sound;
 
 public class GameTypeSelectionGUI {
 
@@ -53,22 +54,23 @@ public class GameTypeSelectionGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Music.changeGameContext("menu");
 		frmErr = new JFrame();
 		frmErr.setTitle("Game type selection");
 		frmErr.setBounds(100, 100, 450, 300);
 		frmErr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JLayeredPane layeredPane = new JLayeredPane();
 		frmErr.getContentPane().add(layeredPane, BorderLayout.CENTER);
-		
+
+        //Sound.play("menu");
+
 		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         
 		JButton btnSinglePlayer = new JButton("Single Player");
 		btnSinglePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Music.changeGameContext("game");
+                Sound.play("game");
 				new SinglePlayerInit();
 				frmErr.dispose();
 			}

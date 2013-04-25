@@ -9,34 +9,33 @@ import java.util.List;
 public class MP3Player {
     protected Player player;
     protected List<String> tracks;
+
     Thread thread = new Thread() {
+        public boolean isInterrupted = false;
+
         public void interrupt() {
             player.close();
             if(isDebug) System.out.println("DEBUG Killed thread " + this);
-            Thread.currentThread().interrupt();
+            isInterrupted = true;
         }
+
         public void run() {
             try {
-                if(tracks == null) {
-                    // System.out.println("[MP3] Playing a track");
+                if(tracks == null)
                     player.play();
-                }
                 else {
-                    // System.out.println("[MP3] Playing a playlist");
                     boolean hasEnded = false;
                     int index = 0;
 
-                    while(true) {
-                        // System.out.println("[MP3] Playing " + tracks.get(index));
+                    while(!isInterrupted) {
+                        player = createPlayer(tracks.get(index));
 
                         // 1 frame ~= 28 milliseconds
-                        while(!hasEnded) hasEnded = !player.play(8);
+                        while(!hasEnded && !isInterrupted) hasEnded = !player.play(8);
 
-                        player.close();
                         hasEnded = false;
-
                         index = (index+1) % tracks.size();
-                        player = createPlayer(tracks.get(index));
+                        player.close();
                     }
                 }
 
@@ -51,9 +50,7 @@ public class MP3Player {
     }
 
     public MP3Player(List<String> tracks) {
-        // doesn't create a new list, just a reference to 'tracks'
         this.tracks = tracks;
-        player =createPlayer(this.tracks.get(0));
     }
 
     public Thread play() {
