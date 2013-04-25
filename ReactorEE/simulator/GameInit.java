@@ -29,7 +29,6 @@ public class GameInit {
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-        Sound.play("menu");
         GameInit game = new GameInit();
 	}
 	

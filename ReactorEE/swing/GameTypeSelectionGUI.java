@@ -62,7 +62,7 @@ public class GameTypeSelectionGUI {
 		JLayeredPane layeredPane = new JLayeredPane();
 		frmErr.getContentPane().add(layeredPane, BorderLayout.CENTER);
 
-        //Sound.play("menu");
+        Sound.play("menu");
 
 		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
