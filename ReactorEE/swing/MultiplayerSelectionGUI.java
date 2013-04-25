@@ -145,17 +145,17 @@ public class MultiplayerSelectionGUI {
         
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		frmMultiplayerConnection.dispose();
         		try {
-        			frmMultiplayerConnection.dispose();
         			if(connectionActive)
         			{
         				new Message().run("ANCHOVY KILL", Inet4Address.getLocalHost().getHostAddress(), SocketUtil.HANDSHAKE_PORT_NO);
         				connectionActive = false;
         			}
-        			new GameTypeSelectionGUI();
         		} catch (Exception e1) 
         		{
         		}
+        		new GameTypeSelectionGUI();
         	}
         });
         
