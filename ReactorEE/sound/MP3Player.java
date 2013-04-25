@@ -10,6 +10,7 @@ public class MP3Player {
     protected Player player;
     protected List<String> tracks;
     public boolean isInterrupted = false;
+    
     Thread thread = new Thread() {
        
 

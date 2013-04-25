@@ -15,6 +15,7 @@ import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
+import ReactorEE.sound.Sound;
 
 public class MultiplayerMainGUI extends MainGUI{
 
@@ -49,7 +50,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairPump1.removeActionListener(btnRepairPump1.getActionListeners()[0]);
 		btnRepairPump1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	System.out.print("Hello World!");
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 try {
                 	if(guir.useSabo())
                 		new Message().run("pump1", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
@@ -60,7 +61,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairPump2.removeActionListener(btnRepairPump2.getActionListeners()[0]);
 		btnRepairPump2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	System.out.print("Hello World!2");
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
                 		new Message().run("pump2", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
@@ -71,7 +72,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairPump3.removeActionListener(btnRepairPump3.getActionListeners()[0]);
 		btnRepairPump3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	System.out.print("Hello World!3");
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
                 		new Message().run("pump3", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
@@ -82,7 +83,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairTurbine.removeActionListener(btnRepairTurbine.getActionListeners()[0]);
 		btnRepairTurbine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	System.out.print("Hello World!T");
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
                 		new Message().run("turbine", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
@@ -93,7 +94,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		btnRepairOperatingSoftware.removeActionListener(btnRepairOperatingSoftware.getActionListeners()[0]);
 		btnRepairOperatingSoftware.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	System.out.print("Hello World!OS");
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
                 		new Message().run("operator software", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);

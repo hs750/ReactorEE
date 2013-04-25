@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import ReactorEE.model.Repair;
 import ReactorEE.pcomponents.*;
 import ReactorEE.simulator.PlantController;
+import ReactorEE.sound.Sound;
 
 
 
@@ -509,7 +510,7 @@ public class MainGUI
         btnStep.setBorder(null);
         btnStep.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-               
+               Sound.play(Sound.DEFAULT_PLAY_BUTTON_CLICK);
                 	if (!plantController.getUIData().isGameOver()) {
 						plantController.togglePaused();
 						if(plantController.getPlant().isPaused())
@@ -590,6 +591,7 @@ public class MainGUI
         btnRepairPump1.setBounds(283, 626, 59, 57);
         btnRepairPump1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 if(!plantController.getUIData().getPumps().get(0).isOperational() && controlButtonsEnabled)
                 {
                     plantController.getPlant().getOperatingSoftware().repairPump(1);
@@ -609,6 +611,7 @@ public class MainGUI
         btnRepairPump2.setBounds(506, 626, 59, 57);
         btnRepairPump2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 if(!plantController.getUIData().getPumps().get(1).isOperational() && controlButtonsEnabled)
                 {
                     plantController.getPlant().getOperatingSoftware().repairPump(2);
@@ -628,6 +631,7 @@ public class MainGUI
         btnRepairPump3.setBounds(726, 626, 59, 57);
         btnRepairPump3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 if(!plantController.getUIData().getPumps().get(2).isOperational() && controlButtonsEnabled)
                 {
                     plantController.getPlant().getOperatingSoftware().repairPump(3);
@@ -649,6 +653,7 @@ public class MainGUI
         btnRepairTurbine.setBorder(null);
         btnRepairTurbine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 if(!plantController.getUIData().isTurbineFunctional()  && controlButtonsEnabled)
                 {
                     plantController.getPlant().getOperatingSoftware().repairTurbine();
@@ -670,6 +675,7 @@ public class MainGUI
         btnRepairOperatingSoftware.setBorder(null);
         btnRepairOperatingSoftware.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 if(!plantController.getUIData().isOperatingSoftwareFunctional())
                 {
                     plantController.repairOperatingSoftware();
@@ -682,6 +688,7 @@ public class MainGUI
         btnQuench.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/btnRepairDisabled.png")));
         btnQuench.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		Sound.play(Sound.DEFAULT_BUTTON_CLICK);
         		plantController.getPlant().getOperatingSoftware().quench();
         		plantController.executeStoredCommand();
                 updateGUI();
