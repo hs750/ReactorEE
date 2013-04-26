@@ -155,6 +155,7 @@ public class MainGUI
      */
     private void initialize()
     {
+    	Sound.play("game");
     	//instantiates the main frame
         frmReactoree = new JFrame();
         frmReactoree.setTitle("ReactorEE");

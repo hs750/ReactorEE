@@ -70,7 +70,6 @@ public class GameTypeSelectionGUI {
 		JButton btnSinglePlayer = new JButton("Single Player");
 		btnSinglePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                Sound.play("game");
 				new SinglePlayerInit();
 				frmErr.dispose();
 			}
