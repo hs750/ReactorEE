@@ -197,4 +197,7 @@ public class MultiplayerSelectionGUI {
 	private MultiplayerSelectionGUI getThis(){
 		return this;
 	}
+	public JFrame getFrame(){
+		return frmMultiplayerConnection;
+	}
 }

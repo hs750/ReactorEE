@@ -1,8 +1,11 @@
 package ReactorEE.Networking;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
+
+import javax.swing.JOptionPane;
 
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
@@ -46,7 +49,17 @@ public class HandshakeRequest extends Thread
 				parent.close();
 			}
 			socket.close();	
-		} catch (IOException e){
+		} catch (ConnectException ce){
+			if(ce.getLocalizedMessage().contains("Connection refused")){
+				JOptionPane.showMessageDialog(parent.getFrame(), "Unable to connect to operator.\n " +
+						"Possible Causes: Wrong IP Address, Player one has not pressed operator button or Firewall blocking connection.", 
+						"Unable To Connect" , JOptionPane.ERROR_MESSAGE);
+			}else if(ce.getLocalizedMessage().contains("Connection timed out")){
+				JOptionPane.showMessageDialog(parent.getFrame(), "Connection Timed Out.\n Possible Causes: Wrong IP Address, " +
+						"Player one has not pressed operator button or Firewall blocking connection.", "Unable To Connect" , JOptionPane.ERROR_MESSAGE);
+			}
+			ce.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}	
