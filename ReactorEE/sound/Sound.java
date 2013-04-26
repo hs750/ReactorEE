@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class Sound {
 	public static final String DEFAULT_BUTTON_CLICK = "bs1";
 	public static final String DEFAULT_PLAY_BUTTON_CLICK = "bs2";
+	public static final String DEFAULT_MENU_PUTTON_CLICK = "bm2";
     private Sound() {
         if(instance != null) { System.out.println("CRITICAL: Sound constructor called more than once"); new Throwable().getStackTrace(); System.exit(1); }
 

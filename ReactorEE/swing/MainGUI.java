@@ -420,6 +420,7 @@ public class MainGUI
         btnNewGame.setBounds(749, 17, 40, 40);
         btnNewGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+            	Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
                 btnNewGame.setEnabled(false);
                 //plantController.newGame(initialNameValue);
                 //updateGUI();
@@ -438,6 +439,7 @@ public class MainGUI
         btnLoad.setBorder(null);
         btnLoad.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
         		plantController.loadGame();
         		updateGUI();
         	}
@@ -454,6 +456,7 @@ public class MainGUI
         btnSave.setBounds(849, 17, 40, 40);
         btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
                 btnSave.setEnabled(false);
                 if(!plantController.getUIData().isGameOver())
                  plantController.saveGame();
@@ -471,6 +474,7 @@ public class MainGUI
         btnShowScores.setBorder(null);
         btnShowScores.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
         		showScores();
         	}
         });
@@ -482,6 +486,7 @@ public class MainGUI
         btnShowManual = new JButton(viewManualImageIcon);
         btnShowManual.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
         		java.net.URL manualURL = this.getClass().getClassLoader().getResource("Manual3.pdf");
                 try{
                 	 Desktop.getDesktop().open(new File(manualURL.getPath()));
@@ -540,6 +545,7 @@ public class MainGUI
         btnValve1.setBounds(860, 508, 59, 23);
         btnValve1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play("bm1");
                 if (controlButtonsEnabled)
                 {
                 	//checks if the valve 1 state and alternates it
@@ -566,6 +572,7 @@ public class MainGUI
         btnValve2.setBounds(968, 508, 59, 23);
         btnValve2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Sound.play("bm1");
                 if (controlButtonsEnabled)
                 {
                 	//checks if the valve 1 state and alternates it
