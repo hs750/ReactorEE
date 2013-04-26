@@ -3,7 +3,6 @@ package ReactorEE.sound;
 import javazoom.jl.player.Player;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.util.List;
 
 public class MP3Player {
@@ -64,7 +63,8 @@ public class MP3Player {
     private Player createPlayer(String filename) {
         Player out = null;
         try {
-            out = new Player(new BufferedInputStream(new FileInputStream(filename)));
+           // out = new Player(new BufferedInputStream(new FileInputStream(filename))); //OLD way (below allows loading of music files from within jar file.
+            out = new Player(new BufferedInputStream(this.getClass().getClassLoader().getResourceAsStream(filename)));
         } catch (Exception e) {
             if(isDebug) System.out.println("DEBUG MP3 track not found");
             e.printStackTrace();
