@@ -1,7 +1,8 @@
 package ReactorEE.simulator;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
+
+import javax.swing.JOptionPane;
 
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
@@ -24,6 +25,13 @@ public class MultiplayerStepLooper extends StepLooper {
 	public void run(){
 		boolean gameOver = false;
 		int connectionAttempts = 0;
+		
+		class GameConnectionException extends IOException{
+			private static final long serialVersionUID = 1L;
+			public GameConnectionException(String string) {
+				super(string);
+			}}
+		
 		 try {
 		        while (running) {
 		        	if(!controller.getPlant().isPaused() & !controller.getPlant().isGameOver()){
@@ -39,7 +47,7 @@ public class MultiplayerStepLooper extends StepLooper {
 		        	}catch(IOException ce){
 		        		connectionAttempts++;
 		        		if(connectionAttempts > 2)
-		        			throw new IOException("Unable to Connect to player two");
+		        			throw new GameConnectionException("Unable to Connect to Saboteur");
 		        	}
 		        	
 		        	if(controller.getPlant().isGameOver()){
@@ -56,10 +64,9 @@ public class MultiplayerStepLooper extends StepLooper {
 		        }
 		    } catch (InterruptedException e) {
 		        e.printStackTrace();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e){
-				e.printStackTrace();
+			} catch (GameConnectionException gce){
+				gce.printStackTrace();
+				JOptionPane.showMessageDialog(GUI.getFrame(), "Unable to connect to Saboteur", "Connection Error", JOptionPane.ERROR_MESSAGE);
 			}
 		 
 	}

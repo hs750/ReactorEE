@@ -9,6 +9,7 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
@@ -54,7 +55,9 @@ public class MultiplayerMainGUI extends MainGUI{
                 try {
                 	if(guir.useSabo())
                 		new Message().run("pump1", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
-				} catch (Exception e1) {e1.printStackTrace();}
+				} catch (Exception e1) {e1.printStackTrace();
+					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
+				}
             }
         });
 		
@@ -65,7 +68,9 @@ public class MultiplayerMainGUI extends MainGUI{
             	try {
                 	if(guir.useSabo())
                 		new Message().run("pump2", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
-				} catch (Exception e1) {e1.printStackTrace();}
+				} catch (Exception e1) {e1.printStackTrace();
+					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
+				}
             }
         });
 		
@@ -76,7 +81,9 @@ public class MultiplayerMainGUI extends MainGUI{
             	try {
                 	if(guir.useSabo())
                 		new Message().run("pump3", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
-				} catch (Exception e1) {e1.printStackTrace();}
+				} catch (Exception e1) {e1.printStackTrace();
+					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
+				}
             }
         });
 		
@@ -87,7 +94,9 @@ public class MultiplayerMainGUI extends MainGUI{
             	try {
                 	if(guir.useSabo())
                 		new Message().run("turbine", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
-				} catch (Exception e1) {e1.printStackTrace();}
+				} catch (Exception e1) {e1.printStackTrace();
+					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
+				}
             }
         });
 		
@@ -98,7 +107,9 @@ public class MultiplayerMainGUI extends MainGUI{
             	try {
                 	if(guir.useSabo())
                 		new Message().run("operator software", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
-				} catch (Exception e1) {e1.printStackTrace();}
+				} catch (Exception e1) {e1.printStackTrace();
+					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
+				}
             }
         });
 		
