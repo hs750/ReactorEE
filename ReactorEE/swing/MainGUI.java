@@ -32,7 +32,9 @@ import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -487,9 +489,28 @@ public class MainGUI
         btnShowManual.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
-        		java.net.URL manualURL = this.getClass().getClassLoader().getResource("Manual3.pdf");
-                try{
-                	 Desktop.getDesktop().open(new File(manualURL.getPath()));
+        		this.getClass().getClassLoader();
+        		File manual = new File("User Manual.pdf");
+        		if(!manual.exists()){
+        			try{
+            			InputStream in = ClassLoader.getSystemResourceAsStream("Manual.pdf");
+            			FileOutputStream out = new FileOutputStream(manual);
+
+            			byte[] buffer = new byte[1024];
+            			int len;
+            			while ((len = in.read(buffer)) != -1) {
+            				out.write(buffer, 0, len);
+            			}
+
+            			in.close();
+            			out.close();
+            		}catch (Exception e){
+            			e.printStackTrace();
+            		}
+        		}
+        		
+        		try{
+                	 Desktop.getDesktop().open(manual);
                 }catch (IOException e)
                 {
                     e.printStackTrace();
