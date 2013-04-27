@@ -493,7 +493,7 @@ public class MainGUI
         		File manual = new File("User Manual.pdf");
         		if(!manual.exists()){
         			try{
-            			InputStream in = ClassLoader.getSystemResourceAsStream("Manual.pdf");
+            			InputStream in = ClassLoader.getSystemResourceAsStream("Libraries/Manual.pdf");
             			FileOutputStream out = new FileOutputStream(manual);
 
             			byte[] buffer = new byte[1024];
