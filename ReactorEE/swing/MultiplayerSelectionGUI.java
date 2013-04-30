@@ -24,6 +24,8 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Component;
 
 public class MultiplayerSelectionGUI {
 
@@ -90,7 +92,7 @@ public class MultiplayerSelectionGUI {
 					e1.printStackTrace();}
 			}
 		});
-		btnOperator.setBounds(310, 84, 117, 29);
+		btnOperator.setBounds(20, 60, 117, 29);
 		layeredPane.add(btnOperator);
         
         
@@ -121,7 +123,7 @@ public class MultiplayerSelectionGUI {
         		}
         	}
         });
-        btnSabateur.setBounds(310, 124, 117, 29);
+        btnSabateur.setBounds(20, 100, 117, 29);
         layeredPane.add(btnSabateur);
         
         btnCancel.setEnabled(false);
@@ -140,11 +142,11 @@ public class MultiplayerSelectionGUI {
         		}
         	}
         });
-        btnCancel.setBounds(310, 165, 117, 29);
+        btnCancel.setBounds(20, 140, 117, 29);
         layeredPane.add(btnCancel);
         
         JButton btnBack = new JButton("Back");
-        btnBack.setBounds(310, 205, 117, 28);
+        btnBack.setBounds(20, 180, 117, 28);
         layeredPane.add(btnBack);
         
         btnBack.addActionListener(new ActionListener() {
@@ -165,22 +167,31 @@ public class MultiplayerSelectionGUI {
         });
         
         txtOperatorIP = new JTextField();
-        txtOperatorIP.setBounds(164, 123, 134, 28);
+        txtOperatorIP.setHorizontalAlignment(SwingConstants.CENTER);
+        txtOperatorIP.setBounds(147, 100, 177, 28);
         txtOperatorIP.setColumns(10);
         layeredPane.add(txtOperatorIP);
         
+        txtOperatorIP.setText("Enter your foe's IP here.");
+		
+        
+        JLabel lblNewLabel;
+        String myIP = new String();
         try {
-        	txtOperatorIP.setText(Inet4Address.getLocalHost().getHostAddress());
+        myIP = "Your I.P. address is " + Inet4Address.getLocalHost().getHostAddress();		
+			
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
-			txtOperatorIP.setText("OpIP");
+			myIP = "Could not find users IP";
 		}
         
-        JLabel lblNewLabel = new JLabel("I.P. address");
+        lblNewLabel = new JLabel(myIP);
+        lblNewLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        lblNewLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
         lblNewLabel.setForeground(new Color(240, 255, 255));
-        lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 13));
         lblNewLabel.setLabelFor(txtOperatorIP);
-        lblNewLabel.setBounds(70, 113, 94, 47);
+        lblNewLabel.setBounds(20, 0, 179, 55);
         layeredPane.add(lblNewLabel);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
