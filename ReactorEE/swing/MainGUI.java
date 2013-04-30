@@ -184,6 +184,7 @@ public class MainGUI
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
         layeredPane.add(backgroundImageLabel);
+        System.out.print(layeredPane.getComponentCount());
 
         //loads all the images that are required for the image labels
         //the path is relative to the project
@@ -532,7 +533,7 @@ public class MainGUI
         btnStep = new JButton(nextStepImageIcon);
         btnStep.setToolTipText("Step");
         btnStep.setOpaque(false);
-        btnStep.setBounds(426, 500, 49, 39);
+        btnStep.setBounds(10, 502, 49, 39);
         btnStep.setMargin(new Insets(0,0,0,0));
         btnStep.setBorder(null);
         btnStep.addActionListener(new ActionListener() {

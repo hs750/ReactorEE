@@ -1,5 +1,6 @@
 package ReactorEE.swing;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -21,7 +23,7 @@ import ReactorEE.sound.Sound;
 public class MultiplayerMainGUI extends MainGUI{
 
 	private String saboteurIP;
-	JLabel lblAvailableSabos = new JLabel("Available Sabotages: 0");
+	JLabel lblAvailableSabos = new JLabel("Available Sabotages  0");
 	GUIRefresher guir = null;
 	
 	/**
@@ -48,6 +50,16 @@ public class MultiplayerMainGUI extends MainGUI{
 	public MultiplayerMainGUI(final PlantController plantController, String IP) {
 		super(plantController);
 		this.saboteurIP = IP;
+		
+		layeredPane.remove(1);
+		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackgroundSabo.png");
+        ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
+        JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
+        backgroundImageLabel.setBackground(new Color(0, 153, 0));
+        backgroundImageLabel.setBounds(0, 0, 1040, 709);
+        layeredPane.add(backgroundImageLabel, 1);
+		
+		
 		btnRepairPump1.removeActionListener(btnRepairPump1.getActionListeners()[0]);
 		btnRepairPump1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -119,7 +131,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		//initialise label displaying the number of sabtages that that sabateur has.
         lblAvailableSabos.setFont(new Font("Tahoma", Font.PLAIN, 30));
         layeredPane.setLayer(lblAvailableSabos, 2);
-        lblAvailableSabos.setBounds(46, 490, 315, 59);
+        lblAvailableSabos.setBounds(90, 493, 315, 59);
         layeredPane.add(lblAvailableSabos);
         
         //disable gui componnets that are not needed in multiplayer
@@ -157,7 +169,7 @@ public class MultiplayerMainGUI extends MainGUI{
 	public void updateGUI(){
 		super.updateGUI();
 		if(lblAvailableSabos != null && guir!= null){
-			lblAvailableSabos.setText("Available Sabotages: " + guir.getNumberOfAvailableSabotages());
+			lblAvailableSabos.setText("Available Sabotages  " + guir.getNumberOfAvailableSabotages());
 		}
 		
 	}
