@@ -31,6 +31,7 @@ import java.awt.event.FocusEvent;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -713,8 +714,15 @@ public class MainGUI
                 } 
             }
         });
-        btnQuench = new JButton("QUENCH!");
-        btnQuench.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/btnRepairDisabled.png")));
+        ImageIcon quenchIcon = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/quenchButton.png"));
+        Image quenchImage = quenchIcon.getImage().getScaledInstance(67, 57,  java.awt.Image.SCALE_SMOOTH);
+    
+        quenchIcon = new ImageIcon(quenchImage);
+        btnQuench = new JButton(quenchIcon);
+        btnQuench.setBorder(null);
+        
+        quenchIcon = new ImageIcon(quenchImage);
+        btnQuench.setIcon(quenchIcon);
         btnQuench.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		Sound.play(Sound.DEFAULT_BUTTON_CLICK);
@@ -724,7 +732,7 @@ public class MainGUI
         	}
         });
         layeredPane.setLayer(btnQuench, 1);
-        btnQuench.setBounds(70, 626, 59, 62);
+        btnQuench.setBounds(62, 632, 67, 57);
         layeredPane.add(btnQuench);
         
         
