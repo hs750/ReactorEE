@@ -100,6 +100,11 @@ public class MainGUI
     private JProgressBar progressBarReactorWaterLevel;
     private JProgressBar progressBarCondenserWaterLevel;
     
+
+    private JLabel lblPump3Broke = new JLabel("New label");
+    private JLabel lblTurbineBroke = new JLabel("New label");
+    private JLabel lblPump1Broke = new JLabel("New label");
+    private JLabel lblPump2Broke = new JLabel("New label");
     
     //sliders controlling the rpm of the pumps, the level of the
     //control rods and the number of timesteps
@@ -174,23 +179,26 @@ public class MainGUI
         //loads and sets the background image
         java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
-        
-        JLabel lblPump3Broke = new JLabel("New label");
+        layeredPane.setLayer(lblPump3Broke, 1);
+                
         lblPump3Broke.setBounds(646, 422, 59, 111);
         layeredPane.add(lblPump3Broke);
         lblPump3Broke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Pump3Broken.png")));
+        layeredPane.setLayer(lblTurbineBroke, 1);
         
-        JLabel lblTurbineBroke = new JLabel("New label");
+        
         lblTurbineBroke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/TurbineBroken.png")));
         lblTurbineBroke.setBounds(449, 15, 172, 111);
         layeredPane.add(lblTurbineBroke);
+        layeredPane.setLayer(lblPump1Broke, 1);
         
-        JLabel lblPump1Broke = new JLabel("New label");
+        
         lblPump1Broke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Pump1Broken.png")));
         lblPump1Broke.setBounds(327, 263, 67, 96);
         layeredPane.add(lblPump1Broke);
+        layeredPane.setLayer(lblPump2Broke, 1);
         
-        JLabel lblPump2Broke = new JLabel("New label");
+        
         lblPump2Broke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Pump2Broken.png")));
         lblPump2Broke.setBounds(327, 381, 71, 96);
         layeredPane.add(lblPump2Broke);
@@ -1011,12 +1019,14 @@ public class MainGUI
             lblPump1State.setIcon(stateBeingRepairedImageIcon);
             sliderPump1RPM.setEnabled(false);
             btnRepairPump1.setIcon(repairButtonDisabledImageIcon);
+            lblPump1Broke.setVisible(true);
         }//if a component has failed and is not repaired its controls are disabled and red light is showing
         else if(!plantController.getUIData().getPumps().get(0).isOperational())
         {
             lblPump1State.setIcon(stateBrokenImageIcon);
             sliderPump1RPM.setEnabled(false);
             btnRepairPump1.setIcon(repairButtonEnabledImageIcon);
+            lblPump1Broke.setVisible(true);
         }else//the component is in its normal safe operating state
         	 //its controls are enabled and green light is showing
         {
@@ -1024,6 +1034,7 @@ public class MainGUI
             sliderPump1RPM.setEnabled(true);
             sliderPump1RPM.setValue(plantController.getUIData().getPumps().get(0).getRpm());
             btnRepairPump1.setIcon(repairButtonDisabledImageIcon);
+            lblPump1Broke.setVisible(false);
         }
         
         if(componentsBeingRepaired.contains("pump2"))
@@ -1031,28 +1042,33 @@ public class MainGUI
             lblPump2State.setIcon(stateBeingRepairedImageIcon);
             sliderPump2RPM.setEnabled(false);
             btnRepairPump2.setIcon(repairButtonDisabledImageIcon);
+            lblPump2Broke.setVisible(true);
         }else if(!plantController.getUIData().getPumps().get(1).isOperational())
         {
             lblPump2State.setIcon(stateBrokenImageIcon);
             sliderPump2RPM.setEnabled(false);
             btnRepairPump2.setIcon(repairButtonEnabledImageIcon);
+            lblPump2Broke.setVisible(true);
         }else
         {
             lblPump2State.setIcon(stateSafeImageIcon);
             sliderPump2RPM.setEnabled(true);
             sliderPump2RPM.setValue(plantController.getUIData().getPumps().get(1).getRpm());
             btnRepairPump2.setIcon(repairButtonDisabledImageIcon);
+            lblPump2Broke.setVisible(false);
         }
         
         if(componentsBeingRepaired.contains("pump3"))
         {   lblPump3State.setIcon(stateBeingRepairedImageIcon);
             sliderPump3RPM.setEnabled(false);
             btnRepairPump3.setIcon(repairButtonDisabledImageIcon);
+            lblPump3Broke.setVisible(true);
         }else if(!plantController.getUIData().getPumps().get(2).isOperational())
         {   
             lblPump3State.setIcon(stateBrokenImageIcon);
             sliderPump3RPM.setEnabled(false);
             btnRepairPump3.setIcon(repairButtonEnabledImageIcon);
+            lblPump3Broke.setVisible(true);
         }else
         {
            
@@ -1060,20 +1076,24 @@ public class MainGUI
             sliderPump3RPM.setEnabled(true);
             sliderPump3RPM.setValue(plantController.getUIData().getPumps().get(2).getRpm());
             btnRepairPump3.setIcon(repairButtonDisabledImageIcon);
+            lblPump3Broke.setVisible(false);
         }
         
         if(componentsBeingRepaired.contains("turbine"))
         {
             lblTurbineState.setIcon(stateBeingRepairedImageIcon);
             btnRepairTurbine.setIcon(repairButtonDisabledImageIcon);
+            lblTurbineBroke.setVisible(true);
         }else if(!plantController.getUIData().isTurbineFunctional())
         {
             lblTurbineState.setIcon(stateBrokenImageIcon);
             btnRepairTurbine.setIcon(repairButtonEnabledImageIcon);
+            lblTurbineBroke.setVisible(true);
         }else
         {
             lblTurbineState.setIcon(stateSafeImageIcon);
             btnRepairTurbine.setIcon(repairButtonDisabledImageIcon);
+            lblTurbineBroke.setVisible(false);
         }
         
         //if the operating software is being repaired all components that rely on it for their commands to
