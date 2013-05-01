@@ -453,7 +453,7 @@ public class MainGUI
             public void actionPerformed(ActionEvent arg0) {
             	Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
                 btnNewGame.setEnabled(false);
-                //plantController.newGame(initialNameValue);
+                plantController.newGame(initialNameValue);
                 //updateGUI();
                 btnNewGame.setEnabled(true);
                 frmReactoree.dispose();
