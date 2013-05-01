@@ -51,12 +51,12 @@ public class MultiplayerMainGUI extends MainGUI{
 		super(plantController);
 		this.saboteurIP = IP;
 		
-		layeredPane.remove(1);
 		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackgroundSabo.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
+        layeredPane.setLayer(backgroundImageLabel, 0);
         layeredPane.add(backgroundImageLabel, 1);
 		
 		
@@ -130,7 +130,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		
 		//initialise label displaying the number of sabtages that that sabateur has.
         lblAvailableSabos.setFont(new Font("Tahoma", Font.PLAIN, 30));
-        layeredPane.setLayer(lblAvailableSabos, 2);
+        layeredPane.setLayer(lblAvailableSabos, 1);
         lblAvailableSabos.setBounds(90, 493, 315, 59);
         layeredPane.add(lblAvailableSabos);
         
