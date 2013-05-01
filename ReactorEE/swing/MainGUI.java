@@ -175,12 +175,31 @@ public class MainGUI
         java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         
+        JLabel lblPump3Broke = new JLabel("New label");
+        lblPump3Broke.setBounds(646, 422, 59, 111);
+        layeredPane.add(lblPump3Broke);
+        lblPump3Broke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Pump3Broken.png")));
+        
+        JLabel lblTurbineBroke = new JLabel("New label");
+        lblTurbineBroke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/TurbineBroken.png")));
+        lblTurbineBroke.setBounds(449, 15, 172, 111);
+        layeredPane.add(lblTurbineBroke);
+        
+        JLabel lblPump1Broke = new JLabel("New label");
+        lblPump1Broke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Pump1Broken.png")));
+        lblPump1Broke.setBounds(327, 263, 67, 96);
+        layeredPane.add(lblPump1Broke);
+        
+        JLabel lblPump2Broke = new JLabel("New label");
+        lblPump2Broke.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Pump2Broken.png")));
+        lblPump2Broke.setBounds(327, 381, 71, 96);
+        layeredPane.add(lblPump2Broke);
+        
         warningLabel = new JLabel("Warning");
         warningLabel.setToolTipText("Reactor is overheating!");
         warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
         warningLabel.setBounds(27, 58, 500, 500);
         layeredPane.add(warningLabel);
-        warningLabel.setVisible(false);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
