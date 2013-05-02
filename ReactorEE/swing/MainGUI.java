@@ -212,7 +212,6 @@ public class MainGUI
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
         layeredPane.add(backgroundImageLabel);
-        System.out.print(layeredPane.getComponentCount());
 
         //loads all the images that are required for the image labels
         //the path is relative to the project
