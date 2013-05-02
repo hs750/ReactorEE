@@ -745,11 +745,17 @@ public class MainGUI
         Image quenchImage = quenchIcon.getImage().getScaledInstance(67, 57,  java.awt.Image.SCALE_SMOOTH);
     
         quenchIcon = new ImageIcon(quenchImage);
-        btnQuench = new JButton(quenchIcon);
-        btnQuench.setBorder(null);
+       
         
         quenchIcon = new ImageIcon(quenchImage);
-        btnQuench.setIcon(quenchIcon);
+        btnQuench = new JButton(quenchIcon);
+        
+        ImageIcon quenchIconDisabled = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/quenchButtonDisabled.png"));
+        Image quenchImageDisabled = quenchIconDisabled.getImage().getScaledInstance(67, 57,  java.awt.Image.SCALE_SMOOTH);
+        
+      
+        btnQuench.setDisabledIcon(new ImageIcon(quenchImageDisabled));
+        btnQuench.setBorder(null);
         btnQuench.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		Sound.play(Sound.DEFAULT_BUTTON_CLICK);
