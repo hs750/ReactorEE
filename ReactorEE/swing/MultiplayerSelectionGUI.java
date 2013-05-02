@@ -191,7 +191,7 @@ public class MultiplayerSelectionGUI {
         lblNewLabel.setForeground(new Color(240, 255, 255));
         lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 13));
         lblNewLabel.setLabelFor(txtOperatorIP);
-        lblNewLabel.setBounds(20, 0, 179, 55);
+        lblNewLabel.setBounds(20, 0, 205, 55);
         layeredPane.add(lblNewLabel);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
