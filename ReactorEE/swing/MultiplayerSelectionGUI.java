@@ -81,7 +81,7 @@ public class MultiplayerSelectionGUI {
 		
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+				Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
 				try{
 				new HandshakeListener(getThis()).start();
 				btnOperator.setEnabled(false);
@@ -102,7 +102,7 @@ public class MultiplayerSelectionGUI {
         		btnOperator.setEnabled(false);
 				btnSabateur.setEnabled(false);
 				btnCancel.setEnabled(true);
-				Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+				Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		try {
         			String suppliedIP = txtOperatorIP.getText();
         			if(ReactorEE.Networking.SocketUtil.validateIP(suppliedIP) == true)
@@ -131,7 +131,7 @@ public class MultiplayerSelectionGUI {
         
         btnCancel.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		try {
         			btnOperator.setEnabled(true);
         			btnSabateur.setEnabled(true);
@@ -151,7 +151,7 @@ public class MultiplayerSelectionGUI {
         
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		frmMultiplayerConnection.dispose();
         		try {
         			if(connectionActive)

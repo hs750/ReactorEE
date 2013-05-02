@@ -9,20 +9,17 @@ import java.util.Arrays;
 public class Sound {
 	public static final String DEFAULT_BUTTON_CLICK = "bs1";
 	public static final String DEFAULT_PLAY_BUTTON_CLICK = "bs2";
-	public static final String DEFAULT_MENU_PUTTON_CLICK = "bm2";
+	public static final String DEFAULT_MENU_BUTTON_CLICK = "bm2";
     private Sound() {
         if(instance != null) { System.out.println("CRITICAL: Sound constructor called more than once"); new Throwable().getStackTrace(); System.exit(1); }
 
         library = new HashMap<String, List<String>>();
-        library.put("menu", Arrays.asList("Music/menu-1.mp3","Music/menu-2.mp3"));
-        library.put("game", Arrays.asList("Music/game-1.mp3","Music/game-2.mp3","Music/game-3.mp3","Music/game-4.mp3"));
+        library.put("menu", Arrays.asList("Music/game-3.mp3","Music/game-3.mp3"));
+        library.put("game", Arrays.asList("Music/menu-1.mp3","Music/menu-1.mp3"));
         library.put("bm1", Arrays.asList("Music/button-med.mp3"));
         library.put("bm2", Arrays.asList("Music/button-med2.mp3"));
-        library.put("bmine", Arrays.asList("Music/button-minecraft.mp3"));
         library.put("bs1", Arrays.asList("Music/button-short.mp3"));
         library.put("bs2", Arrays.asList("Music/button-short2.mp3"));
-        library.put("mc1", Arrays.asList("Music/menu-change.mp3"));
-        library.put("mc2", Arrays.asList("Music/menu-change2.mp3"));
         //library.put("", Arrays.asList("Music/.mp3"));
         library.put("button-test", Arrays.asList("Music/button-short.mp3", "Music/button-short2.mp3"));
     }

@@ -70,7 +70,7 @@ public class GameTypeSelectionGUI {
 		JButton btnSinglePlayer = new JButton("Single Player");
 		btnSinglePlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+				Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
 				new SinglePlayerInit();
 				frmErr.dispose();
 			}
@@ -81,7 +81,7 @@ public class GameTypeSelectionGUI {
         JButton btnMultiplayer = new JButton("Multiplayer");
         btnMultiplayer.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		new MultiplayerSelectionGUI();
         		frmErr.dispose();
         	}

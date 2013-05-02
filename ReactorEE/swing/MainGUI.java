@@ -450,7 +450,7 @@ public class MainGUI
         btnNewGame.setBounds(749, 17, 40, 40);
         btnNewGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+            	Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
                 btnNewGame.setEnabled(false);
                 plantController.newGame(initialNameValue);
                 //updateGUI();
@@ -469,7 +469,7 @@ public class MainGUI
         btnLoad.setBorder(null);
         btnLoad.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		plantController.loadGame();
         		updateGUI();
         	}
@@ -486,7 +486,7 @@ public class MainGUI
         btnSave.setBounds(849, 17, 40, 40);
         btnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+            	Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
                 btnSave.setEnabled(false);
                 if(!plantController.getUIData().isGameOver())
                  plantController.saveGame();
@@ -504,7 +504,7 @@ public class MainGUI
         btnShowScores.setBorder(null);
         btnShowScores.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		showScores();
         	}
         });
@@ -516,7 +516,7 @@ public class MainGUI
         btnShowManual = new JButton(viewManualImageIcon);
         btnShowManual.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		Sound.play(Sound.DEFAULT_MENU_PUTTON_CLICK);
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         		this.getClass().getClassLoader();
         		File manual = new File("User Manual.pdf");
         		if(!manual.exists()){
