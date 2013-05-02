@@ -3,6 +3,7 @@ package ReactorEE.swing;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -59,7 +60,15 @@ public class MultiplayerMainGUI extends MainGUI{
         layeredPane.setLayer(backgroundImageLabel, 0);
         layeredPane.add(backgroundImageLabel, 1);
 		
-		
+        ImageIcon breakPumpIcon = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/breakButton.png"));
+        Image breakPump1Image = breakPumpIcon.getImage().getScaledInstance(59, 57,  java.awt.Image.SCALE_SMOOTH);
+        breakPumpIcon = new ImageIcon(breakPump1Image);
+        btnRepairPump1.setIcon(breakPumpIcon);
+        btnRepairPump2.setIcon(breakPumpIcon);
+        btnRepairPump3.setIcon(breakPumpIcon);
+        btnRepairTurbine.setIcon(breakPumpIcon);
+        btnRepairOperatingSoftware.setIcon(breakPumpIcon);
+       
 		btnRepairPump1.removeActionListener(btnRepairPump1.getActionListeners()[0]);
 		btnRepairPump1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
