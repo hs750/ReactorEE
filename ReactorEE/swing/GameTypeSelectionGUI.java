@@ -1,7 +1,9 @@
 package ReactorEE.swing;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.sound.sampled.SourceDataLine;
 import javax.swing.ImageIcon;
@@ -55,10 +57,14 @@ public class GameTypeSelectionGUI {
 	 */
 	private void initialize() {
 		frmErr = new JFrame();
+		frmErr.setUndecorated(true);
 		frmErr.setTitle("Game type selection");
-		frmErr.setBounds(100, 100, 450, 300);
+		int windowHight = 300;
+		int windowWidth = 450;
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    frmErr.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
 		frmErr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frmErr.setResizable(false);
 		JLayeredPane layeredPane = new JLayeredPane();
 		frmErr.getContentPane().add(layeredPane, BorderLayout.CENTER);
 
@@ -75,7 +81,7 @@ public class GameTypeSelectionGUI {
 				frmErr.dispose();
 			}
 		});
-		btnSinglePlayer.setBounds(143, 93, 117, 29);
+		btnSinglePlayer.setBounds(161, 90, 117, 29);
 		layeredPane.add(btnSinglePlayer);
         
         JButton btnMultiplayer = new JButton("Multiplayer");
@@ -86,11 +92,21 @@ public class GameTypeSelectionGUI {
         		frmErr.dispose();
         	}
         });
-        btnMultiplayer.setBounds(143, 154, 117, 29);
+        btnMultiplayer.setBounds(161, 155, 117, 29);
         layeredPane.add(btnMultiplayer);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 450, 300);
         layeredPane.add(backgroundImageLabel);
+        
+        JButton btnExit = new JButton("Exit");
+        btnExit.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.exit(0);
+        	}
+        });
+        layeredPane.setLayer(btnExit, 1);
+        btnExit.setBounds(161, 243, 117, 29);
+        layeredPane.add(btnExit);
 	}
 }

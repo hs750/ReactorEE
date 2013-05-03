@@ -5,7 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * This class creates its own gui which has a relative position the the mainGUI.
@@ -27,6 +32,7 @@ public class EndGameGUI {
 	
 	//takes the score from the mainGUI
 	private int score;
+	private JButton btnOk;
 
 	
 	
@@ -59,10 +65,16 @@ public class EndGameGUI {
 		
 		//creates and sets the frame
 		frame = new JFrame();
-		frame.setBounds(100, 100, 506, 177);
+		frame.setUndecorated(true);
 		frame.setLocation(mainGUI.getFrame().getLocation());
+		int windowHight = 151;
+	    int windowWidth = 499;
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    frame.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
 		
 		//creates and adds the layered pane
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -83,5 +95,15 @@ public class EndGameGUI {
 		lblShowScore.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		layeredPane.setLayer(lblShowScore, 1);
 		layeredPane.add(lblShowScore);
+		
+		btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		layeredPane.setLayer(btnOk, 1);
+		btnOk.setBounds(424, 116, 69, 29);
+		layeredPane.add(btnOk);
 	}
 }

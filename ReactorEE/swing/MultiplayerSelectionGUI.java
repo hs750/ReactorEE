@@ -1,8 +1,10 @@
 package ReactorEE.swing;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -64,10 +66,15 @@ public class MultiplayerSelectionGUI {
 	 */
 	private void initialize() {
 		frmMultiplayerConnection = new JFrame();
+		frmMultiplayerConnection.setUndecorated(true);
 		frmMultiplayerConnection.setTitle("Multiplayer connection");
-		frmMultiplayerConnection.setBounds(100, 100, 450, 300);
+		int windowHight = 300;
+	    int windowWidth = 450;
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    frmMultiplayerConnection.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
 		frmMultiplayerConnection.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frmMultiplayerConnection.setAlwaysOnTop(true);
+		frmMultiplayerConnection.setResizable(false);
 		JLayeredPane layeredPane = new JLayeredPane();
 		frmMultiplayerConnection.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		

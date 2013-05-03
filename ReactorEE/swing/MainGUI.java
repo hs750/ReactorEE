@@ -32,10 +32,12 @@ import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.awt.Point;
 
 
 /**
@@ -166,8 +168,16 @@ public class MainGUI
     	Sound.play("game");
     	//instantiates the main frame
         frmReactoree = new JFrame();
+        frmReactoree.setUndecorated(true);
+        frmReactoree.setLocation(new Point(0, 0));
         frmReactoree.setTitle("ReactorEE");
-        frmReactoree.setBounds(100, 100, 1049, 740);
+       
+        int windowHight = 709;
+        int windowWidth = 1040;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frmReactoree.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
+        frmReactoree.setAlwaysOnTop(true);
+		frmReactoree.setResizable(false);
         frmReactoree.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //which is layered - two layers: background picture - layer 0

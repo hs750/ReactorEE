@@ -4,12 +4,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JLayeredPane;
 
 import ReactorEE.model.HighScore;
 import ReactorEE.simulator.PlantController;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -35,6 +40,7 @@ public class ScoresGUI {
 	
 	//where the background picture is displayed
 	private JLabel lblBackground;
+	private JButton btnOk;
 
 
 	
@@ -65,8 +71,12 @@ public class ScoresGUI {
 		
         //creates and sets the frame
         frame = new JFrame();
+        frame.setUndecorated(true);
 		frame.setLocation(mainGUI.getFrame().getLocation());
-		frame.setBounds(100, 100, 408, 690);
+		int windowHight = 662;
+	    int windowWidth = 403;
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    frame.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setAlwaysOnTop(true);
@@ -93,6 +103,16 @@ public class ScoresGUI {
 	    textArea.setEditable(false);
 	    layeredPane.setLayer(textArea, 1);
 	    layeredPane.add(textArea);
+	    
+	    btnOk = new JButton("OK");
+	    btnOk.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		frame.dispose();
+	    	}
+	    });
+	    layeredPane.setLayer(btnOk, 1);
+	    btnOk.setBounds(328, 630, 69, 29);
+	    layeredPane.add(btnOk);
 
 	}
 	
