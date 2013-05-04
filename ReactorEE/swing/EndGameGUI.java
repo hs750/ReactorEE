@@ -99,6 +99,7 @@ public class EndGameGUI {
 		btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new GameTypeSelectionGUI();
 				frame.dispose();
 			}
 		});

@@ -1169,8 +1169,6 @@ public class MainGUI
     	//updateGUI();
     	//sliderNumberOfSteps.setValue(1);
     	frmReactoree.dispose();
-
-    	new GameTypeSelectionGUI();
     }
     
     
