@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JLayeredPane;
@@ -15,6 +17,8 @@ import ReactorEE.simulator.PlantController;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
+import java.awt.Frame;
 
 
 
@@ -28,7 +32,6 @@ public class ScoresGUI {
 
 	//the main frame
 	private JFrame frame;
-	
 	//reference to the main gui
 	private MainGUI mainGUI;
 	
@@ -76,7 +79,9 @@ public class ScoresGUI {
 		int windowHight = 662;
 	    int windowWidth = 403;
 	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	    frame.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
+	    Rectangle mainBounds = mainGUI.getFrame().getBounds();
+	    //frame.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
+	    frame.setBounds(mainBounds.x + mainBounds.width, screenSize.height/2-windowHight/2, windowWidth, windowHight);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setAlwaysOnTop(true);
@@ -134,4 +139,5 @@ public class ScoresGUI {
 		}
 		
 	}
+	
 }
