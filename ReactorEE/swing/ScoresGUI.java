@@ -79,13 +79,17 @@ public class ScoresGUI {
 		int windowHight = 662;
 	    int windowWidth = 403;
 	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	    Rectangle mainBounds = mainGUI.getFrame().getBounds();
-	    //frame.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
-	    frame.setBounds(mainBounds.x + mainBounds.width, screenSize.height/2-windowHight/2, windowWidth, windowHight);
+	    frame.setBounds(screenSize.width/2-windowWidth/2, screenSize.height/2-windowHight/2, windowWidth, windowHight);
+	    mainGUI.getFrame().setAlwaysOnTop(false);
+	    mainGUI.getFrame().setEnabled(false);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
+		
+		final boolean wasPaused = controller.getPlant().isPaused();
+		if(!wasPaused)
+			controller.togglePaused();
 		
 		//creates and adds the layered pane
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -112,6 +116,10 @@ public class ScoresGUI {
 	    btnOk = new JButton("OK");
 	    btnOk.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		mainGUI.getFrame().setEnabled(true);
+	    		mainGUI.getFrame().setAlwaysOnTop(true);
+	    		if(!wasPaused)
+	    			controller.togglePaused();
 	    		frame.dispose();
 	    	}
 	    });
