@@ -611,6 +611,7 @@ public class PlantController {
 			{
 				if (component instanceof Reactor || component instanceof Condenser) {
 					gameOver();
+					break;
 				}
 				else {
 					failingComponents.add(component);
