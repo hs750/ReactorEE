@@ -87,7 +87,7 @@ public class MainGUI
     private JLabel lblPump3State;
     private JLabel lblTurbineState;
     private JLabel lblOperatingSoftwareState;
-    private JLabel warningLabel;
+   // private JLabel warningLabel;
     
     private JLabel lblScore;
     
@@ -213,11 +213,11 @@ public class MainGUI
         lblPump2Broke.setBounds(327, 381, 71, 96);
         layeredPane.add(lblPump2Broke);
         
-        warningLabel = new JLabel("Warning");
-        warningLabel.setToolTipText("Reactor is overheating!");
-        warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
-        warningLabel.setBounds(27, 58, 500, 500);
-        layeredPane.add(warningLabel);
+//        warningLabel = new JLabel("Warning");
+//        warningLabel.setToolTipText("Reactor is overheating!");
+//        warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
+//        warningLabel.setBounds(27, 58, 500, 500);
+        //layeredPane.add(warningLabel);
         JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
@@ -1148,10 +1148,10 @@ public class MainGUI
         
         if(plantController.getPlant().getReactor().isQuenchable()){
         	btnQuench.setEnabled(true);
-        	warningLabel.setVisible(true);
+        	//warningLabel.setVisible(true);
         }else{
         	btnQuench.setEnabled(false);
-        	warningLabel.setVisible(false);
+        	//warningLabel.setVisible(false);
         }
     }
     
