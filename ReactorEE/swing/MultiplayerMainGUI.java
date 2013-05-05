@@ -20,11 +20,12 @@ import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
 import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.sound.Sound;
+import javax.swing.SwingConstants;
 
 public class MultiplayerMainGUI extends MainGUI{
 
 	private String saboteurIP;
-	JLabel lblAvailableSabos = new JLabel("Available Sabotages 0");
+	JLabel lblAvailableSabos = new JLabel("0");
 	GUIRefresher guir = null;
 	
 	/**
@@ -137,6 +138,7 @@ public class MultiplayerMainGUI extends MainGUI{
 		
 		//disable step button as sabateur cannot controll playing of the game. keeping it allows saboteur to see whether the game is playing or not.
 		btnStep.removeActionListener(btnStep.getActionListeners()[0]);
+        lblAvailableSabos.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		//initialise label displaying the number of sabtages that that sabateur has.
         lblAvailableSabos.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -144,7 +146,7 @@ public class MultiplayerMainGUI extends MainGUI{
         lblAvailableSabos.setBounds(90, 493, 315, 59);
         lblAvailableSabos.setFont(new Font("OCR A Std", Font.PLAIN, 20));
         layeredPane.setLayer(lblAvailableSabos, 2);
-        lblAvailableSabos.setBounds(95, 497, 315, 59);
+        lblAvailableSabos.setBounds(75, 497, 315, 59);
 
         layeredPane.add(lblAvailableSabos);
         
@@ -183,7 +185,7 @@ public class MultiplayerMainGUI extends MainGUI{
 	public void updateGUI(){
 		super.updateGUI();
 		if(lblAvailableSabos != null && guir!= null){
-			lblAvailableSabos.setText("Available Sabotages " + guir.getNumberOfAvailableSabotages());
+			lblAvailableSabos.setText(""+guir.getNumberOfAvailableSabotages());
 		}
 		
 	}
