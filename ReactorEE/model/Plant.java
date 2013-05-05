@@ -75,7 +75,7 @@ public class Plant implements Serializable {
 		this.score = 0;
 		this.beingRepaired = new ArrayList<Repair>();
 		this.isPaused = false;
-		this.highScores = new ArrayList<HighScore>();
+		//this.highScores = new ArrayList<HighScore>();
 		this.plantComponents = new ArrayList<PlantComponent>();
 		this.failedComponents = new ArrayList<PlantComponent>();
 	}
@@ -294,9 +294,14 @@ public class Plant implements Serializable {
 	 * 
 	 * @return a list of all highscores (maximum 20)
 	 */
-	public List<HighScore> getHighScores() {
+	public synchronized List<HighScore> getHighScores() {
 		if(this.highScores.size() > 20) {
-			this.highScores = this.highScores.subList(0, 20); //Trims the high scores list to only the first 10 elements
+			ArrayList<HighScore> hs = new ArrayList<HighScore>();
+			for(int i = 0; i < 20; i++){
+				hs.add(new HighScore(highScores.get(i).getName(), highScores.get(i).getHighScore()));
+			}
+			//this.highScores = this.highScores.subList(0, 20); //Trims the high scores list to only the first 10 elements
+			highScores = hs;
 		}
 		return this.highScores;
 	}
@@ -308,7 +313,7 @@ public class Plant implements Serializable {
 	 * 
 	 * @param highScores  list of high scores
 	 */
-	public void setHighScores(List<HighScore> highScores) {
+	public synchronized void setHighScores(List<HighScore> highScores) {
 		this.highScores = highScores;
 	}
 	

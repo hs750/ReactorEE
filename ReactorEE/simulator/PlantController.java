@@ -226,7 +226,7 @@ public class PlantController {
 	 * 
 	 * @return list of highscores.
 	 */
-	public List<HighScore> getHighScores() {
+	public synchronized List<HighScore> getHighScores() {
 		return plant.getHighScores();
 	}
 	
@@ -236,7 +236,7 @@ public class PlantController {
 	 * @param newHighScore the score to add
 	 * @return true if adding was successful and the new score is in top 10, false otherwise
 	 */
-	public boolean addHighScore(HighScore newHighScore) {
+	public synchronized boolean addHighScore(HighScore newHighScore) {
 		List<HighScore> highScores = plant.getHighScores();
 		int size = highScores.size();
 		if (newHighScore.getHighScore() > 0) {
