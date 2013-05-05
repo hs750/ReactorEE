@@ -62,6 +62,9 @@ public class MainGUI
     //the field where the player should write theirs
     private JTextField nameTextField;
     
+    //background image label
+    protected JLabel backgroundImageLabel;
+    
     //the buttons which effect is not dependent on the operating software
     protected JButton btnNewGame;
     protected JButton btnLoad;
@@ -189,6 +192,11 @@ public class MainGUI
         //loads and sets the background image
         java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
+        backgroundImageLabel = new JLabel(backgroundImageIcon);
+        backgroundImageLabel.setBackground(new Color(0, 153, 0));
+        backgroundImageLabel.setBounds(0, 0, 1040, 709);
+        layeredPane.add(backgroundImageLabel);
+        
         layeredPane.setLayer(lblPump3Broke, 1);
                 
         lblPump3Broke.setBounds(646, 422, 59, 111);
@@ -213,15 +221,11 @@ public class MainGUI
         lblPump2Broke.setBounds(327, 381, 71, 96);
         layeredPane.add(lblPump2Broke);
         
-//        warningLabel = new JLabel("Warning");
-//        warningLabel.setToolTipText("Reactor is overheating!");
-//        warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
-//        warningLabel.setBounds(27, 58, 500, 500);
-        //layeredPane.add(warningLabel);
-        JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
-        backgroundImageLabel.setBackground(new Color(0, 153, 0));
-        backgroundImageLabel.setBounds(0, 0, 1040, 709);
-        layeredPane.add(backgroundImageLabel);
+       /* warningLabel = new JLabel("Warning");
+        warningLabel.setToolTipText("Reactor is overheating!");
+        warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
+        warningLabel.setBounds(27, 58, 500, 500);
+        layeredPane.add(warningLabel);*/
 
         //loads all the images that are required for the image labels
         //the path is relative to the project

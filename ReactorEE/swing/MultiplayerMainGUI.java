@@ -54,12 +54,13 @@ public class MultiplayerMainGUI extends MainGUI{
 		
 		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackgroundSabo.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
-        JLabel backgroundImageLabel = new JLabel(backgroundImageIcon);
-        backgroundImageLabel.setBackground(new Color(0, 153, 0));
-        backgroundImageLabel.setBounds(0, 0, 1040, 709);
-        layeredPane.setLayer(backgroundImageLabel, 0);
-        layeredPane.add(backgroundImageLabel, 1);
-		
+        JLabel MPBackgroundImageLabel = new JLabel(backgroundImageIcon);
+        MPBackgroundImageLabel.setBackground(new Color(0, 153, 0));
+        MPBackgroundImageLabel.setBounds(0, 0, 1040, 709);
+        layeredPane.remove(backgroundImageLabel);
+        layeredPane.add(MPBackgroundImageLabel);
+        layeredPane.setLayer(MPBackgroundImageLabel, 0);
+        
         ImageIcon breakPumpIcon = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/breakButton.png"));
         Image breakPump1Image = breakPumpIcon.getImage().getScaledInstance(59, 57,  java.awt.Image.SCALE_SMOOTH);
         breakPumpIcon = new ImageIcon(breakPump1Image);
