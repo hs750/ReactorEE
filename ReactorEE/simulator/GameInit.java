@@ -1,6 +1,5 @@
 package ReactorEE.simulator;
 
-import ReactorEE.sound.Sound;
 import ReactorEE.swing.GameTypeSelectionGUI;
 
 
