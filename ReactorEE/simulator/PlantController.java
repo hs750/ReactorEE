@@ -1194,6 +1194,10 @@ public class PlantController {
 		uidata = new UIData(plant);
 	}
 	
+	/**
+	 * 
+	 * @return automatic stepping thread.
+	 */
 	public StepLooper getStepLooper(){
 		return slooper;
 	}

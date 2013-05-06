@@ -10,8 +10,12 @@ import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.PlantController;
 
+/**
+ * The GUI used by the Operator of the plant in a multiplayer game.
+ */
 public class MPOperatorMainGUI extends MainGUI {
 
+	
 	public MPOperatorMainGUI(PlantController plantController) {
 		super(plantController);
 		
@@ -21,10 +25,14 @@ public class MPOperatorMainGUI extends MainGUI {
 		btnSave.setEnabled(false);
 		btnSave.setVisible(false);
 		
-		//Move remaining buttons
+		//Move remaining buttons to fill the gap.
       	btnShowManual.setBounds(btnLoad.getX(), btnShowManual.getY(), btnShowManual.getWidth(), btnShowManual.getHeight());
       	btnShowScores.setBounds(btnSave.getX(), btnShowScores.getY(), btnShowScores.getWidth(), btnShowScores.getHeight());
       	
+      	/**
+      	 * Add an aditional action listener to newGame button.
+      	 * Kills the networking thread. 
+      	 */
       	btnNewGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

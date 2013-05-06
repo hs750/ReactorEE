@@ -1,7 +1,6 @@
 package ReactorEE.swing;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -18,41 +17,29 @@ import ReactorEE.Networking.Message;
 import ReactorEE.Networking.SocketUtil;
 import ReactorEE.simulator.GUIRefresher;
 import ReactorEE.simulator.PlantController;
-import ReactorEE.simulator.ReactorUtils;
 import ReactorEE.sound.Sound;
 import javax.swing.SwingConstants;
 
+/**
+ * The GUI used by the saboteur during a multiplayer game.
+ *
+ */
 public class MultiplayerMainGUI extends MainGUI{
 
-	private String saboteurIP;
+	private String operatorIP;
 	JLabel lblAvailableSabos = new JLabel("0");
 	GUIRefresher guir = null;
 	
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					@SuppressWarnings("unused")
-					MultiplayerMainGUI window = new MultiplayerMainGUI(new PlantController(new ReactorUtils()), "localhost");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-
-	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
+	 * Initialise the GUI
+	 * @param plantController plant controller to use in the game
+	 * @param IP The IP address of the operator. 
 	 */
 	public MultiplayerMainGUI(final PlantController plantController, String IP) {
 		super(plantController);
-		this.saboteurIP = IP;
+		this.operatorIP = IP;
 		
+		//Change background of GUI to alternate image.
 		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackgroundSabo.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         JLabel MPBackgroundImageLabel = new JLabel(backgroundImageIcon);
@@ -71,13 +58,14 @@ public class MultiplayerMainGUI extends MainGUI{
         btnRepairTurbine.setIcon(breakPumpIcon);
         btnRepairOperatingSoftware.setIcon(breakPumpIcon);
        
+        //Change actionlisteners of repair buttons to send a break comand over the network rather than break the component localy. 
 		btnRepairPump1.removeActionListener(btnRepairPump1.getActionListeners()[0]);
 		btnRepairPump1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
                 try {
                 	if(guir.useSabo())
-                		new Message().run("pump1", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
+                		new Message().run("pump1", operatorIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();
 					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -90,7 +78,7 @@ public class MultiplayerMainGUI extends MainGUI{
             	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
-                		new Message().run("pump2", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
+                		new Message().run("pump2", operatorIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();
 					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -103,7 +91,7 @@ public class MultiplayerMainGUI extends MainGUI{
             	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
-                		new Message().run("pump3", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
+                		new Message().run("pump3", operatorIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();
 					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -116,7 +104,7 @@ public class MultiplayerMainGUI extends MainGUI{
             	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
-                		new Message().run("turbine", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
+                		new Message().run("turbine", operatorIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();
 					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -129,7 +117,7 @@ public class MultiplayerMainGUI extends MainGUI{
             	Sound.play(Sound.DEFAULT_BUTTON_CLICK);
             	try {
                 	if(guir.useSabo())
-                		new Message().run("operator software", saboteurIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
+                		new Message().run("operator software", operatorIP, SocketUtil.SABOTAGE_LISTENER_PORT_NO);
 				} catch (Exception e1) {e1.printStackTrace();
 					JOptionPane.showMessageDialog(getFrame(), "Unable to connect to Operator", "Connection Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -159,6 +147,7 @@ public class MultiplayerMainGUI extends MainGUI{
       	btnShowManual.setBounds(btnLoad.getX(), btnShowManual.getY(), btnShowManual.getWidth(), btnShowManual.getHeight());
       	btnShowScores.setBounds(btnSave.getX(), btnShowScores.getY(), btnShowScores.getWidth(), btnShowScores.getHeight());
       	
+      	//Add action listener to new game button to kill network communication thread. 
       	btnNewGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -176,12 +165,18 @@ public class MultiplayerMainGUI extends MainGUI{
 	}
 	
 	@Override
+	/**
+	 * Only display the endgameGUI, dont do anything else.
+	 */
 	public void endGameHandler(){
 		@SuppressWarnings("unused")
 		EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
 	}
 	
 	@Override
+	/**
+	 * {@inheritJavaDoc}
+	 */
 	public void updateGUI(){
 		super.updateGUI();
 		if(lblAvailableSabos != null && guir!= null){
@@ -190,6 +185,10 @@ public class MultiplayerMainGUI extends MainGUI{
 		
 	}
 	
+	/**
+	 * 
+	 * @param guir thread which will continuously refresh game GUI. 
+	 */
 	public void setGUIRefresher(GUIRefresher guir){
 		this.guir = guir;
 	}

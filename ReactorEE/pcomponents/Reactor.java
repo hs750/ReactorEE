@@ -173,14 +173,23 @@ public class Reactor extends PlantComponent {
 		controlRod.setPercentageLowered(percentageLowered);
 	}
 	
-	public void quench(){
-		quenchTank.quench();
-	}
+	
+	/**
+	 * Reactor is quenchable when its tempeature is 3/4 of it's maximum and when quench has not already been used.
+	 * @return Whether quench can be used.
+	 */
 	public boolean isQuenchable(){
 		return quenchTank.isQuenchable();
 	}
 	
 	// ---------------- System update methods ---------------
+	
+	/**
+	 * Quenches the reactor using its water tank.
+	 */
+	public void quench(){
+		quenchTank.quench();
+	}
 	/**
 	 * Updates the state of the reactor.
 	 * 
@@ -361,14 +370,6 @@ public class Reactor extends PlantComponent {
 			}
 			this.percentageLowered = percentageLowered;
 		}
-//
-//		@Override
-//		public int hashCode() {
-//			final int prime = 31;
-//			int result = 1;
-//			result = prime * result + percentageLowered;
-//			return result;
-//		}
 
 		@Override
 		public boolean equals(Object obj) {
@@ -424,14 +425,6 @@ public class Reactor extends PlantComponent {
 			}
 		}
 
-//		@Override
-//		public int hashCode() {
-//			final int prime = 31;
-//			int result = 1;
-//			result = prime * result + (used ? 1231 : 1237);
-//			result = prime * result + waterVolume;
-//			return result;
-//		}
 
 		@Override
 		public boolean equals(Object obj) {
@@ -453,24 +446,6 @@ public class Reactor extends PlantComponent {
 			return true;
 		}
 	}
-
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = super.hashCode();
-//		result = prime * result
-//				+ ((controlRod == null) ? 0 : controlRod.hashCode());
-//		result = prime * result + health;
-//		result = prime * result + pressure;
-//		result = prime * result
-//				+ ((quenchTank == null) ? 0 : quenchTank.hashCode());
-//		result = prime * result + steamOut;
-//		result = prime * result + steamVolume;
-//		result = prime * result + temperature;
-//		result = prime * result + waterPumpedIn;
-//		result = prime * result + waterVolume;
-//		return result;
-//	}
 
 	@Override
 	public boolean equals(Object obj) {

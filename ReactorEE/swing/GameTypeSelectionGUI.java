@@ -2,7 +2,6 @@ package ReactorEE.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -23,29 +22,17 @@ public class GameTypeSelectionGUI {
 	private JFrame frmErr;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameTypeSelectionGUI window = new GameTypeSelectionGUI();
-					window.frmErr.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
+	 * Create the GUI.
 	 */
 	public GameTypeSelectionGUI() {
 		initialize();
 		frmErr.setVisible(true);
 	}
 
+	/**
+	 * Change visibility of the frame.
+	 * @param visible visibility 
+	 */
 	public void setVisible(boolean visible)
 	{
 		frmErr.setVisible(visible);

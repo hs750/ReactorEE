@@ -221,12 +221,6 @@ public class MainGUI
         lblPump2Broke.setBounds(327, 381, 71, 96);
         layeredPane.add(lblPump2Broke);
         
-       /* warningLabel = new JLabel("Warning");
-        warningLabel.setToolTipText("Reactor is overheating!");
-        warningLabel.setIcon(new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/animates.gif")));
-        warningLabel.setBounds(27, 58, 500, 500);
-        layeredPane.add(warningLabel);*/
-
         //loads all the images that are required for the image labels
         //the path is relative to the project
         imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/btnRepairEnabled.png");
@@ -755,19 +749,14 @@ public class MainGUI
                 } 
             }
         });
+        
+        //Quench button for use to quench reactor.
         ImageIcon quenchIcon = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/quenchButton.png"));
         Image quenchImage = quenchIcon.getImage().getScaledInstance(67, 57,  java.awt.Image.SCALE_SMOOTH);
-    
-        quenchIcon = new ImageIcon(quenchImage);
-       
-        
         quenchIcon = new ImageIcon(quenchImage);
         btnQuench = new JButton(quenchIcon);
-        
         ImageIcon quenchIconDisabled = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/quenchButtonDisabled.png"));
         Image quenchImageDisabled = quenchIconDisabled.getImage().getScaledInstance(67, 57,  java.awt.Image.SCALE_SMOOTH);
-        
-      
         btnQuench.setDisabledIcon(new ImageIcon(quenchImageDisabled));
         btnQuench.setBorder(null);
         btnQuench.addActionListener(new ActionListener() {
@@ -1150,12 +1139,11 @@ public class MainGUI
         else
         	btnStep.setIcon(nextStepPausedImageIcon);
         
+        //Activate / deactivate the quench button depending on isQuenchable()
         if(plantController.getPlant().getReactor().isQuenchable()){
         	btnQuench.setEnabled(true);
-        	//warningLabel.setVisible(true);
         }else{
         	btnQuench.setEnabled(false);
-        	//warningLabel.setVisible(false);
         }
     }
     
@@ -1169,9 +1157,6 @@ public class MainGUI
     	@SuppressWarnings("unused")
 		EndGameGUI endGameGui = new EndGameGUI(this, plantController.getUIData().getScore());
     	plantController.togglePaused();
-    	//plantController.newGame(initialNameValue);
-    	//updateGUI();
-    	//sliderNumberOfSteps.setValue(1);
     	frmReactoree.dispose();
     }
     

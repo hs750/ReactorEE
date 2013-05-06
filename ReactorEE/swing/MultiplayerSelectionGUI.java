@@ -2,7 +2,6 @@ package ReactorEE.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -34,27 +33,9 @@ public class MultiplayerSelectionGUI {
 	private JFrame frmMultiplayerConnection;
 	private JTextField txtOperatorIP;
 	boolean connectionActive = false;
-	//protected Component btnCancel;
-	//protected Component btnSabateur;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MultiplayerSelectionGUI window = new MultiplayerSelectionGUI();
-					window.frmMultiplayerConnection.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
+	 * Create the gui.
 	 */
 	public MultiplayerSelectionGUI() {
 		initialize();
@@ -65,6 +46,7 @@ public class MultiplayerSelectionGUI {
 	 * Initialise the contents of the frame.
 	 */
 	private void initialize() {
+		//Set properties of the frame
 		frmMultiplayerConnection = new JFrame();
 		frmMultiplayerConnection.setUndecorated(true);
 		frmMultiplayerConnection.setTitle("Multiplayer connection");
@@ -78,7 +60,7 @@ public class MultiplayerSelectionGUI {
 		JLayeredPane layeredPane = new JLayeredPane();
 		frmMultiplayerConnection.getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
-		
+		//set background of frame
 		java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
         
@@ -86,11 +68,12 @@ public class MultiplayerSelectionGUI {
 		final JButton btnSabateur = new JButton("Saboteur");
 		final JButton btnCancel = new JButton("Cancel");
 		
+		//Create buttons for selecting who to play as. 
 		btnOperator.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
 				try{
-				new HandshakeListener(getThis()).start();
+				new HandshakeListener(MultiplayerSelectionGUI.this).start();
 				btnOperator.setEnabled(false);
 				btnSabateur.setEnabled(false);
 				btnCancel.setEnabled(true);
@@ -117,7 +100,7 @@ public class MultiplayerSelectionGUI {
         				btnOperator.setEnabled(false);
         				btnSabateur.setEnabled(false);
         				btnCancel.setEnabled(true);
-        				new HandshakeRequest(getThis(),suppliedIP).start();
+        				new HandshakeRequest(MultiplayerSelectionGUI.this,suppliedIP).start();
         				connectionActive = true;
         				
         			}
@@ -173,6 +156,7 @@ public class MultiplayerSelectionGUI {
         	}
         });
         
+        //Text box for user to enter the ip sddress of the operator. 
         txtOperatorIP = new JTextField();
         txtOperatorIP.setHorizontalAlignment(SwingConstants.CENTER);
         txtOperatorIP.setBounds(147, 100, 177, 28);
@@ -181,7 +165,7 @@ public class MultiplayerSelectionGUI {
         
         txtOperatorIP.setText("Enter your foe's IP here.");
 		
-        
+        //Find users UP address and set lebel text displaying it.
         JLabel lblNewLabel;
         String myIP = new String();
         try {
@@ -212,9 +196,10 @@ public class MultiplayerSelectionGUI {
 	public void close(){
 		frmMultiplayerConnection.dispose();
 	}
-	private MultiplayerSelectionGUI getThis(){
-		return this;
-	}
+	/**
+	 * 
+	 * @return GUI frame.
+	 */
 	public JFrame getFrame(){
 		return frmMultiplayerConnection;
 	}
