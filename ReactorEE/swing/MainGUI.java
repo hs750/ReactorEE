@@ -26,6 +26,7 @@ import ReactorEE.sound.Sound;
 
 import java.awt.ComponentOrientation;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Desktop;
@@ -133,6 +134,10 @@ public class MainGUI
     private ImageIcon viewScoresImageIcon;
     private ImageIcon nextStepImageIcon;
     private ImageIcon nextStepPausedImageIcon;
+    
+    //Variables for controlling playing or quenchable alarm
+    private long lastAlarmPlayed = 0;
+    private int alarmPlayedCount = 0;
     
     //the repair buttons are not disabled directly but a different image is associated
     //with them when they cannot be used - this variable prevents them from being used
@@ -1142,8 +1147,18 @@ public class MainGUI
         //Activate / deactivate the quench button depending on isQuenchable()
         if(plantController.getPlant().getReactor().isQuenchable()){
         	btnQuench.setEnabled(true);
+        	Calendar cal = Calendar.getInstance();
+        	long currentTime = cal.getTime().getTime();
+        	
+        	if( currentTime- lastAlarmPlayed > 2830 && alarmPlayedCount < 2){
+        		lastAlarmPlayed = cal.getTime().getTime();
+        		alarmPlayedCount++;
+        		Sound.play("alarm");
+        	}
+        	
         }else{
         	btnQuench.setEnabled(false);
+        	alarmPlayedCount = 0;
         }
     }
     
