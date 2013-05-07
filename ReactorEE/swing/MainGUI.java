@@ -153,7 +153,7 @@ public class MainGUI
     //a temporary value which has different usages 
     private int tempValue;
     
-
+    private boolean musicPlaying;
     
     /**
      * The constructor sets the plantController object, initialises the gui
@@ -165,6 +165,7 @@ public class MainGUI
         this.plantController = plantController;
         initialize();
         frmReactoree.setVisible(true);
+        musicPlaying = true;
     }
 
 
@@ -201,6 +202,14 @@ public class MainGUI
         JButton btnMute = new JButton((new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Mute.png"))));
         btnMute.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+        		if(musicPlaying){
+        			Sound.stopBackgroundMusic();
+        			musicPlaying = false;
+        		}else if(!musicPlaying){
+        			Sound.play("game");
+        			musicPlaying = true;
+        		}
+        		
         	}
         });
         btnMute.setBorder(null);
