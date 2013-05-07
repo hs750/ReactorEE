@@ -20,6 +20,7 @@ public class Sound {
         library.put("bm2", Arrays.asList("Music/button-med2.mp3"));
         library.put("bs1", Arrays.asList("Music/button-short.mp3"));
         library.put("bs2", Arrays.asList("Music/button-short2.mp3"));
+        library.put("alarm", Arrays.asList("Music/alarm.mp3"));
         //library.put("", Arrays.asList("Music/.mp3"));
         library.put("button-test", Arrays.asList("Music/button-short.mp3", "Music/button-short2.mp3"));
     }
