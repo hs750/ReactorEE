@@ -192,6 +192,15 @@ public class MainGUI
         //loads and sets the background image
         java.net.URL imageURL = this.getClass().getClassLoader().getResource("ReactorEE/graphics/plantBackground.png");
         ImageIcon backgroundImageIcon = new ImageIcon(imageURL);
+        
+        JButton btnMute = new JButton((new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/Mute.png"))));
+        btnMute.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
+        btnMute.setBorder(null);
+        btnMute.setBounds(992, 17, 40, 35);
+        layeredPane.add(btnMute);
         backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
         backgroundImageLabel.setBounds(0, 0, 1040, 709);
