@@ -29,7 +29,7 @@ public class MultiplayerMainGUI extends MainGUI{
 	private String operatorIP;
 	JLabel lblAvailableSabos = new JLabel("0");
 	GUIRefresher guir = null;
-	
+	ImageIcon breakPumpIcon;
 	/**
 	 * Initialise the GUI
 	 * @param plantController plant controller to use in the game
@@ -49,7 +49,7 @@ public class MultiplayerMainGUI extends MainGUI{
         layeredPane.add(MPBackgroundImageLabel);
         layeredPane.setLayer(MPBackgroundImageLabel, 0);
         
-        ImageIcon breakPumpIcon = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/breakButton.png"));
+        breakPumpIcon = new ImageIcon(MainGUI.class.getResource("/ReactorEE/graphics/breakButton.png"));
         Image breakPump1Image = breakPumpIcon.getImage().getScaledInstance(59, 57,  java.awt.Image.SCALE_SMOOTH);
         breakPumpIcon = new ImageIcon(breakPump1Image);
         btnRepairPump1.setIcon(breakPumpIcon);
@@ -182,7 +182,11 @@ public class MultiplayerMainGUI extends MainGUI{
 		if(lblAvailableSabos != null && guir!= null){
 			lblAvailableSabos.setText(""+guir.getNumberOfAvailableSabotages());
 		}
-		
+		btnRepairPump1.setIcon(breakPumpIcon);
+        btnRepairPump2.setIcon(breakPumpIcon);
+        btnRepairPump3.setIcon(breakPumpIcon);
+        btnRepairTurbine.setIcon(breakPumpIcon);
+        btnRepairOperatingSoftware.setIcon(breakPumpIcon);
 	}
 	
 	/**
