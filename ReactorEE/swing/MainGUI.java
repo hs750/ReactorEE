@@ -213,7 +213,7 @@ public class MainGUI
         	}
         });
         btnMute.setBorder(null);
-        btnMute.setBounds(992, 17, 40, 35);
+        btnMute.setBounds(999, 17, 40, 40);
         layeredPane.add(btnMute);
         backgroundImageLabel = new JLabel(backgroundImageIcon);
         backgroundImageLabel.setBackground(new Color(0, 153, 0));
