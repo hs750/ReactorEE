@@ -209,7 +209,7 @@ public class MainGUI
         			Sound.play("game");
         			musicPlaying = true;
         		}
-        		
+        		Sound.play(Sound.DEFAULT_MENU_BUTTON_CLICK);
         	}
         });
         btnMute.setBorder(null);
