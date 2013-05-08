@@ -46,7 +46,7 @@ public class Plant implements Serializable {
 	private boolean isPaused;
 	
 	//a list of all the high scores
-	private List<HighScore> highScores;
+	private List<HighScore> highScores = new ArrayList<HighScore>();
 	
 	//a list with all the functional components of the plant
 	private List<PlantComponent> plantComponents;
