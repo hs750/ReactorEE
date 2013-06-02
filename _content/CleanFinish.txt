@@ -1,0 +1,5 @@
+A simple yet attractive display rendered from 3D into a static 2D finish. 
+
+Our emphasis on familiar technologies means that you don’t have to learn an obscure Graphics Engine to continue development. Instead, a basic understanding of Java.AWT, Google Sketchup and Photoshop is all you need!
+
+With minimalized yet striking animation, simplicity remains at the heart of everything that Anchovy does. Save time with the technologies you know and inherit our breath taking yet manageable display.
